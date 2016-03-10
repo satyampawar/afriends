@@ -1,0 +1,35 @@
+
+<div class="row">
+<%@user1.albums.each do |album|%>
+
+	<div class="col-md-3 col-sm-3 col-xs-3">
+		 <a href="/users/<%=current_user.id%>/albums/<%=album.id%>" class="photolink" data-remote="true">
+	<i class="fa fa-folder-open folder"></i>
+	<%=album.album_name%></a>
+	</div>
+
+<%end%>
+</div>
+
+
+
+
+
+<style>
+.folder
+{
+  font-size: 50px;
+  color: teal;
+
+}
+.photolink
+{
+	text-decoration: none;
+	color: teal;
+}
+.photolink:hover
+{
+	text-decoration: none;
+	color: teal;
+}
+</style>

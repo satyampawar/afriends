@@ -1,0 +1,92 @@
+
+<div class="backalbum"><i class="fa fa-arrow-circle-left"></i><%=link_to "back",user_albums_path(@user1), remote: true%></div>	
+<%if current_user==@user1%>
+<%= form_for Photo.new, url: user_album_photos_path(current_user,@album), html: { multipart: true , remote: true,class: "formData1",:id => 'formData1',:name => 'formData1'}  do |form| %>
+              <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+              		 <span class="new"> <span style="margin-left: 36px;margin-top: 6px;">Addphoto</span>
+						 <%= form.file_field :pic, id:"file1" , class: "form1",multiple: true%>
+
+						 </span>
+			<%end%>
+<%end%>
+
+<div class="col-sm-12">
+	<div>hello </div>
+    <div class="row">
+<%@photos.each do |photo|%>
+<div class="col-md-4">
+<%=image_tag photo.pic.url,class: "img_view"%>
+</div>
+<%end%>
+
+</div>
+</div>
+
+               
+    
+<script>
+$(document).ready(function(){
+
+$("#formData1").change(function(){
+ debugger
+
+ $.ajax
+ ({
+
+    method : "post",
+    url :  $('#formData1').attr("action"),
+    contentType: false,               
+	processData:false, 
+    data:   new FormData(this)
+
+
+
+
+ })
+
+
+});
+
+
+
+});
+
+</script>
+<style>
+.img_view
+{
+	max-width: 200px;
+	max-height: 220px;
+	min-width: 170px;
+	min-height: 178px;
+	padding: 1px;
+
+}
+.addphoto
+
+{
+
+	width: 40px;
+
+}
+.new
+{
+	    background: url(/assets/add.png) no-repeat;
+    background-size: cover;
+    display: block;
+    position: relative;
+    width: 36px;
+    height: 36px;
+   
+}
+.form1
+{
+	cursor: pointer;
+}
+.backalbum
+{
+	    float: right;
+    margin-right: 10px;
+
+}
+</style>

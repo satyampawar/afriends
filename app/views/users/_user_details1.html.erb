@@ -1,0 +1,99 @@
+<%= form_for @user, :url => {:controller => "users",:action => "user_details"},
+             :remote => true,
+             :html =>{
+                     :class => "user_detail"} do |f| %>
+    <%= hidden_field_tag :div,"personal" %>
+<%if current_user== @user1%>
+<ul class="profl_btn pull-left">
+  <li><a href="javascript:void(0);" class="atc1"><i class="fa
+                  fa-pencil-square-o
+                  "></i></a></li>
+</ul>
+<%end%>
+<div class="clear"></div>
+<div id="show_summary">
+ 	<table class="table new_table table-user-information ">
+                 
+                           
+                      <tr>
+                        <td><i class="glyphicon glyphicon-briefcase"></i>&nbsp;Worked at:</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td><i class=" 	glyphicon glyphicon-education"></i>&nbsp;<br>Study at:</td>
+                        <td>06/23/2013</td>
+                      </tr>
+                      <tr>
+                        <td><i class=" 	glyphicon glyphicon-education"></i>&nbsp;School:</td>
+                        <td>01/24/1988</td>
+                      </tr>
+                     <tr>
+
+                        <td><i class=" 	glyphicon glyphicon-map-marker"></i>&nbsp;live at</td>
+                        <td>Male</td>
+                      </tr>
+                        <tr>
+                        <td><i class="glyphicon glyphicon-home"></i>&nbsp;Home town</td>
+                        <td>Metro Manila,Philippines</td>
+                      </tr>
+                      <tr>
+                        <td><i class="glyphicon glyphicon-phone"></i>&nbsp;Nationality</td>
+                        <td>Metro Manila,Philippines</td>
+                      </tr>
+                      
+                   
+                      
+                      
+                     
+                     
+                    </tbody>
+                  </table>
+                  
+</div>
+<div id="edit_profile" class="edit_element_div" style="display: none;">
+  <%=f.label :worked_at%>
+  <%= f.text_field :worked_at, class: 'form-control' ,placeholder:"worked_at" %>
+   <%=f.label :collage%>
+  <%= f.text_field :collage,  class: 'form-control' ,placeholder:"collage name" %>
+   <%=f.label :school%>
+  <%= f.text_field :school,  class: 'form-control' ,placeholder:"school name" %>
+   <%=f.label :llves%>
+  <%= f.text_field :llves,   class: 'form-control' ,placeholder:"current city" %>
+   <%=f.label :hometown%>
+  <%= f.text_field :hometown,  class: 'form-control' , placeholder:"hometown " %>
+    <%= f.submit "submit", :class => "btn btn-primary edit_element_div_btn" %>
+</div>
+<% end %>
+<script>
+$(document).ready(function(){
+  $('.atc1').click(function(){
+
+  $('.table').toggle();
+  $('#edit_profile').toggle();
+
+
+
+});
+ }); 
+
+</script>
+<style>
+.glyphicon
+{
+	font-size: 17px;
+}
+
+.table-user-information > tbody > tr {
+    border-top: 1px solid rgb(221, 221, 221);
+    font-size: 12px !important
+}
+
+.table-user-information > tbody > tr:first-child {
+    border-top: 0;
+
+}
+.table-user-information 
+{
+	max-width: 12px !important;
+}
+</style>

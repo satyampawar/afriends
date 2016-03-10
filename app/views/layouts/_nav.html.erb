@@ -1,0 +1,105 @@
+<nav class="navbar navbar-default navbar-fixed-top nav_header1" role="navigation">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Brand</a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Link</a></li>
+					<li><a href="#">Link</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li class="divider"></li>
+							<%if user_signed_in?%>
+							<li><%=link_to "logout" ,destroy_user_session_path , method: :delete%></li>
+							<%end%>
+							<li class="divider"></li>
+							<li><a href="#">One more separated link</a></li>
+						</ul>
+					</li>
+				</ul>
+				
+				<ul class="nav navbar-nav navbar-right">
+
+					<li id="notification_li">
+						 <%if user_signed_in?%>
+						<span id="notification_count">3</span>
+						<a href="#" id="notificationLink">Notifications</a>
+						 <%end%>
+						
+						<div id="notificationContainer">
+						<div id="notificationTitle">Notifications</div>
+						<div id="notificationsBody" class="notifications">
+
+				        <%if user_signed_in?%>
+                         <%@friendreq.each do |friendreq|%>
+                         <div id="notdiv<%=friendreq.id%>">
+                         	 <%=friendreq.user.avatar.present? ? image_tag(friendreq.user.avatar.url ,id: "imgss",class: "[ img-circle pull-left ]",:width=>"40") : image_tag('/assets/user.png',:width=>"40" ,class: "[ img-circle pull-left ]")%>  <%=link_to "#{friendreq.user.fullname}" ,user_profile_path(friendreq.user.id) ,style: "color:teal;"%>
+                         	<span class="timfrq"><%=time_ago_in_words(friendreq.user.updated_at)%></span>
+            				<br>
+                            <%=link_to "Accept" ,user_friendlog_path(friendreq.user,friendreq),method: :patch,remote: true,class: "btn btn-xs btn-default afriends_btn" %>
+                             <%=link_to "decline" ,user_friendlog_path(friendreq.user,friendreq.id), method: :delete,remote: true,id: "cancelreq",class: "btn btn-xs btn-default afriends_btn" %>
+                             <hr>
+                         	 
+                         </div>
+
+                          
+                         <%end%>
+                        
+                         <%end%>
+                       
+						</div>
+						<div id="notificationFooter"><a href="#">See All</a></div>
+						</div>
+					
+
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li class="divider"></li>
+							<%if user_signed_in?%>
+							<li><%=link_to "logout" ,destroy_user_session_path , method: :delete%></li>
+							<%end%>
+
+						</ul>
+					</li>
+				</ul>
+
+				<form class="navbar-form" role="search">
+					<div class="input-group">
+						<input type="text" class="form-control pull-right" style="width: 300px; margin-right: 35px, border: 1px solid black; background-color: #e5e5e5;" placeholder="Search">
+						<span class="input-group-btn">
+							<button type="reset" class="btn btn-default">
+								<span class="glyphicon glyphicon-remove">
+									<span class="sr-only">Close</span>
+								</span>
+							</button>
+							<button type="submit" class="btn btn-default">
+								<span class="glyphicon glyphicon-search">
+									<span class="sr-only">Search</span>
+								</span>
+							</button>
+						</span>
+					</div>
+				</form>
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
+  

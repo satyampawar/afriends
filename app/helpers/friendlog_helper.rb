@@ -1,0 +1,2 @@
+module FriendlogHelper
+end

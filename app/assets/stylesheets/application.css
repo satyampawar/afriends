@@ -1,0 +1,671 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ 
+ *= require_tree .
+ *= require bootstrap
+  *= require bootstrap.min
+ *= require font-awesome.min
+ *= require_self
+ */
+ .afriends_btn
+ {
+  background-color: teal;
+  color: white;
+  border-radius: 20%;
+ }
+  .afriends_btn:hover
+ {
+  background-color: teal;
+  color: white;
+ }
+.timfrq
+ {
+    color: #708090;
+    float: right;
+    margin-right: 10px;
+}
+ #notification_li{position:relative}
+  #notification_li a{color:white;}
+ #notificationContainer {
+    background-color: #FFFFFF;
+    border: 1px solid rgba(100, 100, 100, 0.4);
+    display: none;
+    margin-left: -170px;
+    overflow: visible;
+    position: absolute;
+    top: 37px;
+    width: 323px;
+    z-index: -1;
+    display: none;
+}
+
+#notificationContainer:before {
+
+display: block;
+position: absolute;
+width: 0;
+height: 0;
+color: transparent;
+border: 10px solid black;
+border-color: transparent transparent white;
+margin-top: -20px;
+margin-left: 188px;
+}
+#notificationTitle {
+z-index: 1000;
+font-weight: bold;
+padding: 8px;
+font-size: 13px;
+background-color: #ffffff;
+width: 322px;
+border-bottom: 1px solid #dddddd;
+}
+#notificationsBody {
+padding: 33px 0px 0px 0px !important;
+min-height:300px;
+}
+#notificationFooter {
+background-color: #e9eaed;
+text-align: center;
+font-weight: bold;
+padding: 8px;
+font-size: 12px;
+border-top: 1px solid #dddddd;
+}
+#notification_count {
+  background: none repeat scroll 0 0 #CC0000;
+  border-radius: 9px 9px 9px 9px;
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: bold;
+  margin-left: 103px;
+  margin-top: 6px;
+  padding: 3px 7px;
+  position: absolute;
+}
+#notificationFooter {
+  background-color: #008080;
+  border-top: 1px solid #008080;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 8px;
+  text-align: center;
+}
+ .btn-picssi
+ {
+  background-color: teal !important;
+ }
+.text_my
+{
+height: 55px !important;
+ }
+/* .panel-heading
+ {
+   float: left;
+    margin-top: 0;
+ }*/
+ .panel-heading h3
+ {
+  color: #008080;
+  font-size: 16px;
+
+ }
+ .emoji-menu
+ {
+
+  margin-top: 16px !important;
+   margin-left: 3% !important;
+ }
+ .post_btn
+ {
+ 	  background-color: #FFFFFF !important;
+    border-color: #000000 !important;
+    color: #000000 !important;
+    margin-left: 12px;
+ }
+ 
+.btn_new {
+	border-radius: 50% !important;
+	 padding-left: 6px;
+    width: 28px;
+
+}
+.post_hr
+{
+	 background-color: #E0E0FF;
+    border: medium dashed;
+    height: 0;
+}
+.btn_new:hover {
+    animation-direction: alternate;
+    animation-duration: 650ms;
+    animation-iteration-count: infinite;
+    animation-name: breathe_file;
+    animation-timing-function: ease-in-out;
+}
+@-moz-keyframes breathe_file {
+0% {
+    box-shadow: 0 1px 2px rgba(255, 255, 255, 0.1);
+    opacity: 0.9;
+}
+100% {
+    border: 1px solid #008080 ;
+    box-shadow: 0 1px 30px #008080 ;
+    opacity: 1;
+}
+}
+
+ .badge {
+    background-color: #008080;
+   }
+.glyphicon {
+    color: #008080;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    position: relative;
+    top: 1px;
+}
+@media (max-width:767px){
+
+    .profile-content {
+      margin-top: 5px;
+      width: auto;
+    }
+  }
+width: 130%;
+margin-left: -32px;"
+
+
+h4, h5, h6,
+h1, h2, h3 {margin-top: 0;}
+ul, ol {margin: 0;}
+p {margin: 0;}
+.s
+{ 
+background-color: #CF3859;
+height:10%;
+
+
+}
+.nav_header1{
+background-color:teal;
+}
+.navbar-default .navbar-nav > li > a {
+    color: #777777;
+}
+
+.s h1
+{
+margin:0;
+}
+.registration
+{
+float:right;
+box-shadow: 3px 6px 15px teal;
+
+}
+.phone {
+    position: relative;
+    margin-top: 15px;
+}
+
+.phone .iphone5-screen {
+    left: 8.2%;
+    overflow: none;
+    position: absolute;
+    right: 8.2%;
+    top: 14.5%;
+}
+	
+.cont-wid
+{
+	width: 100%;
+
+}
+	
+.box-sh
+{
+	box-shadow: 0px 1px 1px teal;
+}
+	
+	
+    body {
+		padding: 60px 0px;
+	}
+	.navbar-collapse {
+		position: relative;
+		padding-top: 30px !important;
+		max-height: 270px;
+	}
+	.navbar-collapse form[role="search"] {
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		width: 100%;
+		padding: 0px;
+		margin: 0px;
+		z-index: 0;
+	}
+	.navbar-collapse form[role="search"] button,
+	.navbar-collapse form[role="search"] input {
+		padding: 8px 12px;
+		border-radius: 0px;
+		border-width: 0px;
+		color: rgb(119, 119, 119);
+		background-color: rgb(248, 248, 248);
+		border-color: rgb(231, 231, 231);
+		box-shadow: none;
+		outline: none;
+	}
+	.navbar-collapse form[role="search"] input {
+		padding: 16px 12px;
+		font-size: 14pt;
+		font-style: italic;
+		color: rgb(160, 160, 160);
+		box-shadow: none;
+	}
+	.navbar-collapse form[role="search"] button[type="reset"] {
+		display: none;
+	}
+
+	@media (min-width: 768px) {
+     .profile-content
+     {
+
+	}	
+		.navbar-collapse {
+			padding-top: 0px !important;
+			padding-right: 38px !important;
+		}
+		.navbar-collapse form[role="search"] {
+			width: 38px;
+		}
+		.navbar-collapse form[role="search"] button,
+		.navbar-collapse form[role="search"] input {
+			padding: 15px 12px;
+		}
+		.navbar-collapse form[role="search"] input {
+			padding: 25px 12px;
+			font-size: 18pt;
+			opacity: 0;
+			display: none;
+		}
+		.navbar-collapse form[role="search"].active {
+			width: 100%;
+		}
+		.navbar-collapse form[role="search"].active button,
+		.navbar-collapse form[role="search"].active input {
+			display: table-cell;
+			opacity: 1;
+		}
+    	.navbar-collapse form[role="search"].active input {
+			width: 100%;
+		}
+	}
+
+
+.panel-heading {
+    padding: 5px 15px !important;
+}
+
+.panel-footer {
+	padding: 1px 15px;
+	color: #A0A0A0;
+}
+
+.profile-img {
+	width: 96px;
+	height: 96px;
+	margin: 0 auto 10px;
+	display: block;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+}
+.bt-colr
+{
+background-color: #008080;
+color: white;
+}
+.bt-colr:hover
+{
+background-color: tomato;
+color: white;
+}
+
+.panel-google-plus
+
+{
+	box-shadow: 0px 1px 5px 0px rgb(0, 128, 128);
+
+} 
+.badge
+{
+	background-color:teal !important;
+
+
+}
+.nav1 a
+{
+
+	color:teal !important;
+	font-style: arial;
+
+}
+
+/***
+User Profile Sidebar by @keenthemes
+A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
+Licensed under MIT
+***/
+
+body {
+  background: #F1F3FA;
+}
+
+/* Profile container */
+.profile {
+  margin: 20px 0;
+}
+
+/* Profile sidebar */
+.profile-sidebar {
+  padding: 0px 0 10px 0;
+  background: #fff;
+}
+
+.profile-userpic img {
+  float: none;
+  margin: 0 auto;
+  width: 50%;
+  height: 50%;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  border-radius: 50% !important;
+}
+
+.profile-usertitle {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.profile-usertitle-name {
+  color: #5a7391;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+.profile-usertitle-job {
+  text-transform: uppercase;
+  color: #5b9bd1;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.profile-userbuttons {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.profile-userbuttons .btn {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 15px;
+  margin-right: 5px;
+}
+
+.profile-userbuttons .btn:last-child {
+  margin-right: 0px;
+}
+    
+.profile-usermenu {
+  margin-top: 30px;
+}
+
+.profile-usermenu ul li {
+  border-bottom: 1px solid #f0f4f7;
+}
+
+.profile-usermenu ul li:last-child {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li a {
+  color: #93a3b5;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.profile-usermenu ul li a i {
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.profile-usermenu ul li a:hover {
+  background-color: #fafcfd;
+  color: #5b9bd1;
+}
+
+.profile-usermenu ul li.active {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li.active a {
+  color: #5b9bd1;
+  background-color: #f6f9fb;
+  border-left: 2px solid #5b9bd1;
+  margin-left: -2px;
+}
+
+/* Profile Content */
+.profile-content {
+  padding: 20px;
+  background: #fff;
+  min-height: 460px;
+}
+.select-wrapper {
+  background: url(/assets/1.png) no-repeat;
+  background-size: cover;
+  display: block;
+  position: relative;
+  width: 36px;
+  height: 36px;
+ 
+}
+#file1
+{
+	cursor: pointer;
+}
+
+.loader
+{
+  z-index: 999999;
+  width: 100px;
+  height: 100px;
+  text-align:  center;
+  background-color:  rgba(255, 255, 255, 0);
+  display:  none;
+
+
+}
+.image-upload>input
+{
+	display: none;
+}
+#file1 {
+  width: 26px;
+  height: 26px;
+  margin-right: 100px;
+  opacity: 0;
+  filter: alpha(opacity=0); /* IE 5-7 */
+}
+
+
+
+.circular {
+	max-height: 110px;
+    max-width: 56%;
+    border: 2px solid teal;
+	border-radius: 150px;
+	-webkit-border-radius: 150px;
+	-moz-border-radius: 150px;
+	background: url(http://link-to-your/image.jpg) no-repeat;
+	box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+	-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+	-moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+	min-height: 110px;
+    min-width: 56%;
+	}
+.cover-disc
+{
+ background-image: url("/assets/kj.jpg");
+
+ background-size:200x400 ;
+
+}
+
+
+
+
+.text_areasize
+{
+ width: 100%;
+ height:50%;
+
+}
+
+
+
+.btn.active {                
+	display: none;		
+}
+
+.btn span:nth-of-type(1)  {            	
+	display: none;
+}
+.btn span:last-child  {            	
+	display: block;		
+}
+
+.btn.active  span:nth-of-type(1)  {            	
+	display: block;		
+}
+.btn.active span:last-child  {            	
+	display: none;			
+}
+
+/*profile pic*/
+.fb-profile img.fb-image-lg{
+    z-index: 0;
+    width: 60%%;  
+    margin-bottom: 10px;
+        height: 248px;
+    width: 94%;
+}
+
+
+.fb-image-profile
+{
+    margin: -110px 10px 0px 50px;
+    z-index: 9;
+    width: 15%; 
+    height: 180px;
+    position: relative;
+}
+
+@media (max-width:768px)
+{
+    
+.fb-profile-text>h1{
+    font-weight: 700;
+    font-size:16px;
+}
+
+
+.fb-image-profile
+{
+    margin: -45px 10px 0px 25px;
+    z-index: 9;
+    width: 20%; 
+}
+}
+
+.with-nav-tabs.panel-primary .nav-tabs > li > a,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
+    color: #fff;
+}
+.with-nav-tabs.panel-primary .nav-tabs > .open > a,
+.with-nav-tabs.panel-primary .nav-tabs > .open > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > .open > a:focus,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
+    color: #fff;
+    background-color: #3071a9;
+    border-color: transparent;
+}
+.with-nav-tabs.panel-primary .nav-tabs > li.active > a,
+.with-nav-tabs.panel-primary .nav-tabs > li.active > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li.active > a:focus {
+    color: #428bca;
+    background-color: #fff;
+    border-color: #428bca;
+    border-bottom-color: transparent;
+}
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu {
+    background-color: #428bca;
+    border-color: #3071a9;
+}
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a {
+    color: #fff;   
+}
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a:focus {
+    background-color: #3071a9;
+}
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a,
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a:focus {
+    background-color: #4a9fe9;
+}
+
+.panel.with-nav-tabs .panel-heading{
+    padding: 3px 3px 0 3px;
+}
+.panel.with-nav-tabs .nav-tabs{
+    border-bottom: none;
+}
+.panel.with-nav-tabs .nav-justified{
+    margin-bottom: -1px;
+}
+.nav-tabs > li  
+{
+
+  width: 33%;
+}  
+
+/*.........end.......*/
+
+
+
+
+
+
+
+

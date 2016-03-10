@@ -1,0 +1,98 @@
+<%= form_for @user, :url => {:controller => "users",:action => "user_details"},
+             :remote => true,
+             :html =>{
+                     :class => "user_detail"} do |f| %>
+    <%= hidden_field_tag :div,"personal" %>
+<%if current_user== @user1%>
+<ul class="profl_btn pull-left">
+  <li><a href="javascript:void(0);" class="atc"><i class="fa
+                  fa-pencil-square-o
+                  "></i></a></li>
+</ul>
+<%end%>
+<div class="clear"></div>
+<div id="show_summary">
+ 	<table class="table table-user-information ">
+                     <tr>
+                        <td><i class=" 	glyphicon glyphicon-envelope"></i> &nbsp; Email</td>
+                        <td><a href="mailto:info@support.com">info@support.com</a></td>
+                      </tr>
+                      <tr>
+                      	<td><i class="glyphicon glyphicon-phone"></i> &nbsp; Phone Number</td>
+                        <td>123-4567-890(Landline)<br><br>555-4567-890(Mobile)
+                        </td></tr>
+
+                       <tr>
+                        <td><i class=" 	glyphicon glyphicon-user"></i>&nbsp;Gender</td>
+                        <td>Metro Manila,Philippines</td>
+                      </tr>
+
+                        <tr>
+                        <td><i class=" 	glyphicon glyphicon-user"></i>&nbsp;<br>Nick name</td>
+                        <td>Metro Manila,Philippines</td>
+                      </tr>
+                    
+                           
+                     
+                      
+                      
+                     
+                     
+                    </tbody>
+                  </table>
+                  
+</div>
+<div id="edit_summary" class="edit_element_div" style="display: none;">
+	<%=f.label :email%>
+    <%= f.text_field :email,  class: 'form-control' ,placeholder:"collage name" ,readonly: true%>	
+    <%=f.label :phone_number%>
+  <%= f.text_field :phone_number, class: 'form-control' ,placeholder:"phone number", readonly: true %>
+  <%=f.label :school%>
+  <%= f.text_field :school,  class: 'form-control' ,placeholder:"school name" ,readonly: true %>
+  <%=f.label :nickname%>
+  <%= f.text_field :nickname,   class: 'form-control' ,placeholder:"what is your nickname" %>
+  <%= f.submit "submit", :class => "btn btn-primary edit_element_div_btn" %>
+</div>
+<% end %>
+<script>
+$(document).ready(function(){
+  $('.atc').click(function(){
+
+  $('#edit_summary').toggle();
+
+  $('.table').toggle();
+
+
+});
+ }); 
+
+
+
+
+
+
+
+
+</script>
+<style>
+td {
+   padding-left: 45px !important
+}
+.glyphicon
+{
+	font-size: 17px;
+}
+.table-user-information > tbody > tr {
+    border-top: 1px solid rgb(221, 221, 221);
+    font-size: 12px !important
+}
+
+.table-user-information > tbody > tr:first-child {
+    border-top: 0;
+
+}
+.table-user-information 
+{
+	max-width: 12px !important;
+}
+</style>

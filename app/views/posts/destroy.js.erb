@@ -1,0 +1,10 @@
+  $("#post<%=@post.id%>").animate({
+            'width':0,
+            'height':0,
+            'top':$('input').offset().top,
+            'left':$('input').offset().left
+        }, function(){
+             $("#post<%=@post.id%>").hide();
+             $("#hr<%=@post.id%>").hide();
+       
+        });

@@ -1,0 +1,14 @@
+<%= form_for @friendlog, url: user_friendlog_index_path(current_user.id) do |form| %>
+<%= form.hidden_field :friend_id, :value => @user1.id %>
+<%=form.submit "Addfriend",id: "addfriend",class: "btn btn-lg btn-info addfriendbtn"%>
+
+<%end%>
+
+      
+
+
+
+
+
+
+
