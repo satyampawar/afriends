@@ -17,6 +17,42 @@
  *= require font-awesome.min
  *= require_self
  */
+ .logo {
+  background-color: #FFFFFF;
+  border-radius: 15px 15px 15px 15px;
+  color: #008080 ;
+  display: block;
+  font-size: 21px;
+  font-weight: 900;
+  height: 28px;
+  margin: 11px 91px 7px 27px;
+  padding: 6px;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0px 0px 1px;
+  width: 27px;
+}
+
+.logo span
+{
+  color: white;
+}
+.dropdown
+{
+  background-color: teal !important;
+  color: white;
+}
+.navbar-fixed-top
+{
+  background-color: teal;
+}
+
+.navbarnew li a{ color:white !important;}
+.dropdown li a
+{
+  color:teal !important;
+}
+
  .afriends_btn
  {
   background-color: teal;
@@ -200,12 +236,6 @@ height:10%;
 
 
 }
-.nav_header1{
-background-color:teal;
-}
-.navbar-default .navbar-nav > li > a {
-    color: #777777;
-}
 
 .s h1
 {
@@ -241,81 +271,6 @@ box-shadow: 3px 6px 15px teal;
 	box-shadow: 0px 1px 1px teal;
 }
 	
-	
-    body {
-		padding: 60px 0px;
-	}
-	.navbar-collapse {
-		position: relative;
-		padding-top: 30px !important;
-		max-height: 270px;
-	}
-	.navbar-collapse form[role="search"] {
-		position: absolute;
-		top: 0px;
-		right: 0px;
-		width: 100%;
-		padding: 0px;
-		margin: 0px;
-		z-index: 0;
-	}
-	.navbar-collapse form[role="search"] button,
-	.navbar-collapse form[role="search"] input {
-		padding: 8px 12px;
-		border-radius: 0px;
-		border-width: 0px;
-		color: rgb(119, 119, 119);
-		background-color: rgb(248, 248, 248);
-		border-color: rgb(231, 231, 231);
-		box-shadow: none;
-		outline: none;
-	}
-	.navbar-collapse form[role="search"] input {
-		padding: 16px 12px;
-		font-size: 14pt;
-		font-style: italic;
-		color: rgb(160, 160, 160);
-		box-shadow: none;
-	}
-	.navbar-collapse form[role="search"] button[type="reset"] {
-		display: none;
-	}
-
-	@media (min-width: 768px) {
-     .profile-content
-     {
-
-	}	
-		.navbar-collapse {
-			padding-top: 0px !important;
-			padding-right: 38px !important;
-		}
-		.navbar-collapse form[role="search"] {
-			width: 38px;
-		}
-		.navbar-collapse form[role="search"] button,
-		.navbar-collapse form[role="search"] input {
-			padding: 15px 12px;
-		}
-		.navbar-collapse form[role="search"] input {
-			padding: 25px 12px;
-			font-size: 18pt;
-			opacity: 0;
-			display: none;
-		}
-		.navbar-collapse form[role="search"].active {
-			width: 100%;
-		}
-		.navbar-collapse form[role="search"].active button,
-		.navbar-collapse form[role="search"].active input {
-			display: table-cell;
-			opacity: 1;
-		}
-    	.navbar-collapse form[role="search"].active input {
-			width: 100%;
-		}
-	}
-
 
 .panel-heading {
     padding: 5px 15px !important;

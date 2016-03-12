@@ -47,7 +47,7 @@
 // });
 	function callfriend(sid,rid)
 {
-	debugger
+	
 	 $.post("/conversations", { sender_id: sid, recipient_id: rid }, function (data) {
             chatBox.chatWith(data.conversation_id);
 });

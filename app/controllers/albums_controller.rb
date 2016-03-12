@@ -1,5 +1,6 @@
 class AlbumsController < ApplicationController
   def create
+    @user1=current_user
    
     album=current_user.albums.create(album_param)
     respond_to do |format|
@@ -9,8 +10,9 @@ class AlbumsController < ApplicationController
   end
 
   def index
-    binding.pry
-      @user1=User.find(params[:user_id])
+
+ 
+    @user1=User.find(params[:user_id])
     @album=@user1.albums
 
     if request.xhr?
@@ -28,7 +30,8 @@ class AlbumsController < ApplicationController
   end
 
   def show
- 
+  
+    @user1=User.find(params[:user_id])
     @album=Album.find(params[:id])
     @photos=Photo.where(album_id: params[:id])
     respond_to do |format|

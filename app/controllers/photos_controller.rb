@@ -1,6 +1,7 @@
 class PhotosController < ApplicationController
   def create
 
+    @user1=current_user
     @album=params[:album_id];
     @photos=Photo.where(:album_id => @album)
     if  params["photo"]["pic"].present?

@@ -1,6 +1,6 @@
 class PhoneNumber < ActiveRecord::Base
 def generate_pin
-	binding.pry
+
   self.pin = rand(0000..9999).to_s.rjust(4, "0")
   save
 end
