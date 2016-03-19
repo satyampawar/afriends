@@ -9,7 +9,11 @@ gem 'gemoji'
 gem 'twilio-ruby', '~> 4.1.0'
 gem 'remotipart', '~> 1.2'
 gem 'bootstrap-sass', '~> 2.3.2.0'
-gem "paperclip", "~> 4.3"
+gem "paperclip", "~> 3.4"
+gem 'google-api-client', '~> 0.7.1'
+
+
+gem 'paperclip-googledrive'
 gem 'devise'
 gem 'mailcatcher'
 gem "foreman"

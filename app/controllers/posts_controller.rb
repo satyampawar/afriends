@@ -9,6 +9,7 @@ class PostsController < ApplicationController
   def create
     @posts=Post.all.order(created_at: :desc)
     @post = current_user.posts.create(post_params)
+    binding.pry
       if params["post"]["photopst"]
         params["post"]["photopst"].each do |photopst|
         @post.photoposts.create(:photopst => photopst)

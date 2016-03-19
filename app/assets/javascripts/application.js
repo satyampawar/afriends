@@ -45,6 +45,8 @@
 //  })
 
 // });
+
+
 	function callfriend(sid,rid)
 {
 	
@@ -61,6 +63,7 @@
 
 
   $(function() {
+
       // Initializes and creates emoji set from sprite sheet
       window.emojiPicker = new EmojiPicker({
         emojiable_selector: '[data-emojiable=true]',

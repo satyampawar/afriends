@@ -624,3 +624,25 @@ body {
 
 
 
+.albums_div
+{
+
+
+}
+.album-md-12
+{
+ max-height: 256px;
+    overflow: scroll;
+    position: relative;
+  }
+  .album-section
+  {
+  max-height: 460px;
+  min-height: 368px;
+  background:#efefe9;
+}
+
+.map-div
+{
+  margin-top: -0px;
+}
