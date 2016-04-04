@@ -12,7 +12,8 @@ gem 'bootstrap-sass', '~> 2.3.2.0'
 gem "paperclip", "~> 3.4"
 gem 'google-api-client', '~> 0.7.1'
 gem 'paperclip-googledrive'
-gem 'devise'
+gem 'devise'        
+
 gem 'mailcatcher'
 gem "foreman"
 gem 'jquery-fileupload-rails'
