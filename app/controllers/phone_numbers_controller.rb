@@ -19,7 +19,6 @@ def new_verify
 end
 
   def verify
-  	binding.pry
   @phone_number = PhoneNumber.find_by_mobile_number(current_user.phone_number)
   @phone_number.verify(params[:pin])
   respond_to do |format|

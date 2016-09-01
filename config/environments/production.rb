@@ -60,9 +60,9 @@ config.action_mailer.smtp_settings = {
   port: 587,
   domain: "gmail.com",
   authentication: "plain",
-  enable_starttls_auto: true .
-  user_name: "satyampawar007@gmail.com",
-  password: "9770660518"
+  enable_starttls_auto: true,
+  user_name: ENV['EMAIL'],
+  password: ENV['EMAIL_PASSWORD']
 }
 
   # Prepend all log lines with the following tags.
