@@ -339,7 +339,6 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   soulmate
   spring
-  sqlite3
   thin
   turbolinks
   twilio-ruby (~> 4.1.0)

@@ -18,7 +18,7 @@ gem 'google-api-client', '~> 0.7.1'
 gem 'paperclip-googledrive'
 gem 'devise'        
 gem "factory_girl_rails", "~> 4.0"
-gem 'mailcatcher'
+
 gem "foreman"
 gem 'jquery-fileupload-rails'
 # Use SCSS for stylesheets
@@ -60,7 +60,8 @@ gem 'pry'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem 'sqlite3'
+  gem 'mailcatcher'
+
 end
 
 group :production do
