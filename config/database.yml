@@ -85,5 +85,5 @@ test:
 production:
   <<: *default
   database: picssi_production
-  username: vycuzxberqivrl
+  username: picssi
   password: <%= ENV['PICSSI_DATABASE_PASSWORD'] %>
