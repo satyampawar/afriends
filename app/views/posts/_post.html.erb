@@ -23,13 +23,19 @@
                     </ul>
                 </div>
                 <div class="panel-heading">
-                  <%=post.user.avatar.present? ? image_tag(current_user.avatar.url ,id: "imgss",class: "[ img-circle pull-left ]",:width=>"40") : image_tag('/assets/user.png',:width=>"40" ,class: "[ img-circle pull-left ]")%>  
+                <% if post.user.avatar.present? %>
+                  <%=image_tag(post.user.avatar.url ,id: "imgss",class: "[ img-circle pull-left ]",:width=>"40") %>
+                <%elsif post.user.img_url.present? %>
+                    <%=image_tag(post.user.img_url ,id: "imgss",class: "[ img-circle pull-left ]",:width=>"40") %>
+                <%else%>
+                <%=image_tag('/assets/user.png' ,id: "imgss",class: "[ img-circle pull-left ]",:width=>"40") %>
+                <%end%> 
                     <h3><%=post.user.fullname%></h3>
                     <h5><span>Shared publicly</span> - <span>
                     <%= time_ago_in_words(post.created_at) %> ago</span> </h5>
                 </div>
                 <div class="panel-body" >
-                  <%=post.post_name%>
+                  <%=raw post.post_name%>
                   
                     <div class="row grid">
                      <% if post.photoposts.present?%>
@@ -74,7 +80,6 @@
 
             </div>
            <hr id="hr<%=post.id%>"  class="gape">
-
         </div>
 
     </div>

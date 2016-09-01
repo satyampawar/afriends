@@ -23,20 +23,26 @@
                     </ul>
                 </div>
                 <div class="panel-heading">
-                  <%=post.user.avatar.present? ? image_tag(post.user.avatar.url ,id: "imgss",class: "[ img-circle pull-left ]",:width=>"40") : image_tag('/assets/user.png',:width=>"40" ,class: "[ img-circle pull-left ]")%>  <%=link_to "#{post.user.fullname}" ,user_profile_path(post.user.id) %>
-                    <h3><%=post.user.fullname%></h3>
+                <% if post.user.avatar.present? %>
+                  <%=image_tag(post.user.avatar.url ,id: "imgss",class: "[ img-circle pull-left ]",:width=>"40") %>
+                <%elsif post.user.img_url.present? %>
+                    <%=image_tag(post.user.img_url ,id: "imgss",class: "[ img-circle pull-left ]",:width=>"40") %>
+                <%else%>
+                <%=image_tag('/assets/user.png' ,id: "imgss",class: "[ img-circle pull-left ]",:width=>"40") %>
+                <%end%> 
+        
+                    <h3><%=link_to "#{post.user.fullname}" ,user_profile_path(post.user.id) %></h3>
                     <h5><span>Shared publicly</span> - <span>
                     <%= time_ago_in_words(post.created_at) %> ago</span> </h5>
                 </div>
                 <div class="panel-body" >
-                  <%=post.post_name%>
+                  <%=raw post.post_name%>
                   
                     <div class="row grid">
                      <% if post.photoposts.present?%>
                       <%post.photoposts.each do |photo|%>
-                        
                             <div class="col-xs-4 thumbnail">
-                                <%=image_tag(photo.photopst.url) %>
+                            <%= post_photo(photo.id,photo.photopst_file_name) %>
                           </div>
                     
                       <%end%>
@@ -44,22 +50,19 @@
                   </div> 
                 </div>
 
-                <div class="panel-footer">
-                     <div> <%=post.likes.count%></div>
+                <div class="panel-footer col-md-12">
+                <div class="col-md-6">
+                  <%=post.likes.count%>
                     <%if !post.likes.find_by_user_id(current_user.id).present?%>
-
-                   <%=link_to "" ,user_post_likes_path(current_user,post.id),:id => "sp",class: "[ btn btn-default ] btn_new glyphicon glyphicon-heart-empty",method: :post,remote: true%> 
-                 
+                      <%=link_to "" ,user_post_likes_path(current_user,post.id),:id => "sp",class: "[ btn btn-default ] btn_new glyphicon glyphicon-heart-empty",method: :post,remote: true%> 
                     <%else%>
-                   
                       <%@likeid=post.likes.find_by_user_id(current_user.id).id%>
-                  
                        <%=link_to "" ,user_post_like_path(current_user.id,post.id,@likeid),:id => "sp1",class: "[ btn btn-default ] btn_new glyphicon glyphicon-heart",method: :delete,remote: true%>
-
                     <%end%>
-                    <button type="button" class="[ btn btn-default ]">
+                    <button type="button" class="[ btn btn-default ] share-btn">
                         <span class="[ glyphicon glyphicon-share-alt ]"></span>
                     </button>
+                  </div>
                     <div class="input-placeholder">Add a comment...</div>
                 </div>
                 <div class="panel-google-plus-comment">
@@ -79,9 +82,7 @@
 
     </div>
 
-</div>
 
-</div>
 <style>
 
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,700);
@@ -97,8 +98,8 @@ body {
     height: 6px;
     color: black;
     background-color: #E5E5E5;
-    width: 566px;
-    margin-left: -21px;"
+    width: 530px;
+    margin-left: -5px;"
 }
 
 .thumbnail {
@@ -112,8 +113,6 @@ body {
 
 .panel-google-plus {
     position: relative;
-    border-radius: 0px;
-    border: 1px solid rgb(216, 216, 216);
     font-family: 'Roboto', sans-serif;
 }
 .panel-google-plus > .dropdown {

@@ -1,4 +1,5 @@
 
+<div id="form_structure"></div>
 <div class="col-sm-10 profile-div-10"><div class="container" style="padding-bottom:6px;">
 	
     <div class="fb-profile">
@@ -12,8 +13,6 @@
              <span class="select-wrapper">
              <%= form.file_field :coverpic, id:"file1" , class: "form1"%>
              </span>
-
-            
           <% end %>
           <%end%>
         </div>
@@ -28,8 +27,13 @@ it's save automatically !! "><i class="fa fa-info-circle info-icon"></i></a>
           <h4 class="cover_name"><b><%=@user1.fullname%></b></h4>
 
       </div>
-        <%=@user1.avatar.present? ? image_tag(@user1.avatar.url ,id: "imgss",class: "fb-image-profile thumbnail",:align =>"left") : image_tag('/assets/user.png',class: "fb-image-profile thumbnail",:align =>"left")%>
-      
+      <% if @user1.avatar.present? %>
+                  <%=image_tag(@user1.avatar.url ,id: "imgss",class: "fb-image-profile thumbnail",:align =>"left") %>
+                <%elsif @user1.img_url.present? %>
+                    <%=image_tag(@user1.img_url ,id: "imgss",class: "fb-image-profile thumbnail",:align =>"left")%>
+                <%else%>
+                <%=image_tag('/assets/user.png' ,id: "imgss",class: "fb-image-profile thumbnail",:align =>"left") %>
+                <%end%> 
               <div class="collapse navbar-collapse ats" id="navbar-collapse-2" style="width: 761px">
           <ul class="nav navbar-nav navbar-right" >
           <%if current_user!=@user1%>
@@ -138,7 +142,8 @@ it's save automatically !! "><i class="fa fa-info-circle info-icon"></i></a>
 
                       </div>
                       <div class="tab-pane fade" id="profile">
-                          <h3 class="head text-center">Create a Bootsnipp<sup>™</sup> Profile</h3>
+                         <%= render :partial => 'tree_panes/form_structure',
+                          :locals => {:object => @user1, :user_structure => @user_structure} %>
                       </div>
                       <div class="tab-pane fade" id="doner">
                         <h3 class="head text-center">fsdfsa a Boofdsafatsnipp<sup>™</sup> Profile</h3>
@@ -180,9 +185,11 @@ it's save automatically !! "><i class="fa fa-info-circle info-icon"></i></a>
 
 </style>
 <%if current_user==@user1%>
+
 <script>
 
 $(function(){
+
  
 
  var coverdiv= $("#cover-div").position().top;
@@ -231,12 +238,12 @@ $(function(){
 </script>
 <%end%>
 <script>
+
+
+
 $(document).ready(function(){
+   
 $("#formData").change(function(){
-
-
- 
-
  $.ajax
  ({
 
@@ -245,9 +252,6 @@ $("#formData").change(function(){
     contentType: false,               
   processData:false, 
     data:   new FormData(this)
-
-
-
 
  })
 

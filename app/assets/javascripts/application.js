@@ -12,15 +12,23 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.e-calendar
+//= require jquery.soulmate
+//= require jquery.jstree
+
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
+//= require jstree.min
+//= require jstree
+//= require select2.min
 //= require turbolinks
 //= require bootstrap
 //= require private_pub
+
+
+
 //= require chat
 //= require user
-
-//= require masonry.pkgd.min
 
 //= require_tree .
 // $(document).keydown(function(e){
@@ -46,6 +54,74 @@
 
 // });
 
+window.onload = function() {
+
+  // Set the size of the rendered Emojis
+  // This can be set to 16x16, 36x36, or 72x72
+  twemoji.size = '16x16';
+
+  // Parse the document body and
+  // insert <img> tags in place of Unicode Emojis
+  twemoji.parse(document.body);
+
+}
+
+
+
+
+$(document).ready(function(){
+  $("select").select2({
+
+    templateResult: formatState,
+    templateSelection: formatState
+  })
+
+  function formatState (opt) {
+      if (!opt.id) {
+          return opt.text;
+      }               
+      var optimage = $(opt.element).data('image'); 
+      if(!optimage){
+          return opt.text;
+      } else {                    
+          var $opt = $(
+              '<span><img src="' + optimage + '" width="23px" /> ' + opt.text + '</span>'
+          );
+          return $opt;
+      }
+
+  };
+   var sampleTags = ['c++', 'java', 'php', 'coldfusion', 'javascript', 'asp', 'ruby', 'python', 'c', 'scala', 'groovy', 'haskell', 'perl', 'erlang', 'apl', 'cobol', 'go', 'lua'];
+   
+    twemoji.size = '16x16';
+
+  // Parse the document body and
+  // insert <img> tags in place of Unicode Emojis
+  twemoji.parse(document.body);
+
+  
+    $(document).on( 'scroll', function(){
+ 
+        if ($(window).scrollTop() > 100) {
+
+            $('.scroll-top-wrapper').addClass('show');
+        } else {
+            $('.scroll-top-wrapper').removeClass('show');
+        }
+    });
+ 
+    $('.scroll-top-wrapper').on('click', scrollToTop);
+ 
+ });
+function scrollToTop() {
+    verticalOffset = typeof(verticalOffset) != 'undefined' ? verticalOffset : 0;
+    element = $('body');
+    offset = element.offset();
+    offsetTop = offset.top;
+    $('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
+}
+
+
 
 	function callfriend(sid,rid)
 {
@@ -56,9 +132,6 @@
 }
 
     
-    var m = new Masonry($('.grid').get()[0], {
-        itemSelector: ".thumbnail"
-    });
 
 
 

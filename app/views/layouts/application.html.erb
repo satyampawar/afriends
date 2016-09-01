@@ -2,26 +2,33 @@
 <html>
 <head>
 	<meta charset="utf-8">
-     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <meta name="description" content="">
-   <meta name="author" content="">
-<meta content='<%= user_signed_in? ? current_user.id : "" %>' name='user-id'/>
-<title>Picssi</title>
-  <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-<!--      // <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3&amp;sensor=false"></script> -->
-   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
- 
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta content='<%= user_signed_in? ? current_user.id : "" %>' name='user-id'/>
   <%= csrf_meta_tags %>
-    
+  <title>Picssi</title>
+  <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
+  <link rel="icon" 
+      type="image/png" 
+      href="/assets/add.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<!--      // <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3&amp;sensor=false"></script> -->
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>    
+  <script src="//twemoji.maxcdn.com/twemoji.min.js"></script>  
 </head>
 <body>
 	<%=render "layouts/nav"%>
 
+
+<div class="scroll-top-wrapper ">
+  <span class="scroll-top-inner">
+    <i class="fa fa-2x fa-arrow-circle-up"></i>
+  </span>
+</div>
 <%= yield %>
+
 <audio id="chatAudio"><source src="/sounds/notification.mp3" type="audio/mpeg"></audio>
 </body>
 </html>

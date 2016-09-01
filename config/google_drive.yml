@@ -14,9 +14,8 @@ application_version: 1.0.0
 # access_token: <%= ENV["GOOGLE_DRIVE_ACCESS_TOKEN"] %>
 # refresh_token: <%= ENV["GOOGLE_DRIVE_REFRESH_TOKEN"] %>
 
-
-client_id: "471915587883-7v1b155ungee9vpg945b7vn62rssk46i.apps.googleusercontent.com"
-client_secret: "nRPMfcu4sdodAqz1w02tJX-Y"
-access_token: "ya29.pALA-ky85UEmvoAPoyns6zFWFF_OQcFt5n2duG52j87uF45K3ZhmxH37dfwTZys92g"
-refresh_token: "1/CiY2zP0QJBuXmrNdGDw-pUzq49gCOwKYqHU9-dlMEr8"
-pulic_folder: "0B4d-BosofnhbZncyNG1kbUM3bFE"
+client_id: "742084394503-iau3jl2r55c5d4889f8dmoc49tk5amag.apps.googleusercontent.com"
+client_secret: "TQxGjjAVHX1feC-QC8xcWzTm"
+access_token: "ya29.CjHhAgO18y-d65jYMC6WXmCesVDphAo4n_DJBpHCBn0kGQAMdvEgHCYiMp3zlJVPhhl5"
+refresh_token: "1/YgJkuCNnqsK3fiepDzIW4zIbcdJoaxGdjmu1C86FUhUMEudVrK5jSpoR30zcRFq6"
+pulic_folder: "0B3-wKP83_thWanZaVlJSUGxYLW8"

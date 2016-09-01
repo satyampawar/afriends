@@ -1,2 +1,4 @@
 $('#posts').prepend("<%= j render 'post', post: @post %>")
+ twemoji.size = '16x16';
+ twemoji.parse(document.body);
 // $("#posts").html("<%= j(render(:partial => 'posts/index')) %>");

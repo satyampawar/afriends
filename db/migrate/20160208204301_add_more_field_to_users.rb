@@ -6,5 +6,6 @@ class AddMoreFieldToUsers < ActiveRecord::Migration
     add_column :users, :llves, :string
     add_column :users, :hometown, :string
     add_column :users, :nickname, :string
+    add_column :users, :img_url, :string
   end
 end
