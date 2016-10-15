@@ -1,6 +1,6 @@
 class PhotosController < ApplicationController
   def create
-
+debugger
     @user1=current_user
     @album=params[:album_id];
     @photos=Photo.where(:album_id => @album)

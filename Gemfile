@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.4'
 ruby "2.2.4"
 # Use postgresql as the database for Active Record
+#gem 'mysql2', '~> 0.3.5'
 gem 'pg'
 
 gem 'gemoji'

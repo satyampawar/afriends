@@ -195,42 +195,42 @@ $(function(){
  var coverdiv= $("#cover-div").position().top;
  var coverhight= $('#cover-div').height();
  var ui;
- $('#cover-pic').draggable({
-  axis : "y",
-  drag : function(event, ui)
-  {
+ // $('#cover-pic').draggable({
+ //  axis : "y",
+ //  drag : function(event, ui)
+ //  {
 
-    if(ui.position.top > coverdiv) 
-    {
+ //    if(ui.position.top > coverdiv) 
+ //    {
        
-      ui.position.top=coverdiv
+ //      ui.position.top=coverdiv
      
-    }
-    else if(ui.position.top <= coverhight-ui.helper.height())
-    {
+ //    }
+ //    else if(ui.position.top <= coverhight-ui.helper.height())
+ //    {
    
-     ui.position.top = coverhight-ui.helper.height();
+ //     ui.position.top = coverhight-ui.helper.height();
 
-    }
-    $.ajax
-    ({
+ //    }
+ //    $.ajax
+ //    ({
 
-    method : "get",
-    url : '/fixposition',
+ //    method : "get",
+ //    url : '/fixposition',
    
-    // contentType: "charset=utf-8",
+ //    // contentType: "charset=utf-8",
    
-     data: { coverposition: ui.position.top },
-   })
+ //     data: { coverposition: ui.position.top },
+ //   })
 
 
 
 
 
-  }
+ //  }
 
 
- });
+ // });
 
 
 });
