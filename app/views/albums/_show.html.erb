@@ -1,28 +1,42 @@
 
-<div class="backalbum"><i class="fa fa-arrow-circle-left"></i><%=link_to "back",user_albums_path(@user1), remote: true%></div>	
+<div class="backalbum"><i class="fa fa-arrow-circle-left"></i><%=link_to "back",user_albums_path(@user1), remote: true %></div>	
 <%if current_user==@user1%>
 <%= form_for Photo.new, url: user_album_photos_path(current_user,@album), html: { multipart: true , remote: true,class: "formData1",:id => 'formData1',:name => 'formData1'}  do |form| %>
-              <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-              		 <span class="new"> <span style="margin-left: 36px;margin-top: 6px;">Addphoto</span>
-						 <%= form.file_field :pic, id:"file1" , class: "form1",multiple: true%>
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    		 <span class="new"> <span style="margin-left: 36px;margin-top: 6px;">Addphoto</span>
+	 <%= form.file_field :pic, id:"file1" , class: "form1",multiple: true%>
 
-						 </span>
-			<%end%>
+		</span>
+	<%end%>
 <%end%>
 
 <div class="col-sm-12 album-md-12">
     <div class="row">
-<%@photos.each do |photo|%>
+<%
+ FileUtils.rm_rf(Dir.glob('#{Rails.root.to_s}/app/assets/images/tmp/*')) 
+tmp = []
+ %>
+<%@photos.each_with_index do |photo, index|%>
 <div class="col-md-4">
-<%=image_tag photo.pic.url,class: "img_view"%>
+	<%
+	frmat =(File.extname(photo.pic_file_name)).gsub("..",".")
+    encrypted_file_content = (File.read(photo.pic.path(:medium)) rescue  File.read(photo.pic.path))
+    secured_keys=SecuredKey.last
+    file_content = AES.decrypt(encrypted_file_content, secured_keys.key)
+    tmp[index] = Tempfile.new([File.basename((photo.pic_file_name), frmat)+index.to_s, frmat], "#{Rails.root.to_s}/app/assets/images/tmp/")
+    tmp[index] << file_content.force_encoding('utf-8')
+    tmp[index].flush 
+    file = tmp[index]
+	%>
+    <%= image_tag file.path.gsub("images/","").split("/app",2)[1], class: "img_view"%>
 </div>
-<%end%>
+<% end %>
+<%# tmp.collect{|a| a.unlink} %>
+
 
 </div>
 </div>
 
-               
-    
 <script>
 $(document).ready(function(){
 
@@ -38,18 +52,11 @@ $("#formData1").change(function(){
 	processData:false, 
     data:   new FormData(this)
 
-
-
-
  })
 
-
 });
 
-
-
 });
-
 </script>
 <style>
 .img_view
@@ -70,7 +77,7 @@ $("#formData1").change(function(){
 }
 .new
 {
-	    background: url(/assets/add.png) no-repeat;
+	 background: url(/assets/add.png) no-repeat;
     background-size: cover;
     display: block;
     position: relative;

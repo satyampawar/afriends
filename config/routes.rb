@@ -46,6 +46,9 @@ mount Soulmate::Server, :at => "/autocomplete"
    end 
    resources :albums  do
      resources :photos
+     member do
+      get "lock_album"
+     end
    end
  end
  
@@ -63,6 +66,7 @@ mount Soulmate::Server, :at => "/autocomplete"
   # You can have the root of your site routed with "root"
    root 'welcome#index'
    resources :phone_numbers, only: [:new, :create]
+  get '/change_emotion' => "welcome#change_emotion" , as: :change_emotion
    get 'phone_numbers/new_verify' => "phone_numbers#new_verify" , as: :new_verify
    post 'users/update_profile' => "users#update_profile", as: :update_profile
      post 'users/update_cover' => "users#cover_pic", as: :update_coverpic

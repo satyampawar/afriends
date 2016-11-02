@@ -1,21 +1,74 @@
 
 <div class="row">
-<%@user1.albums.each do |album|%>
-
-	<div class="col-md-3 col-sm-3 col-xs-3">
-		 <a href="/users/<%=current_user.id%>/albums/<%=album.id%>" class="photolink" data-remote="true">
-	<i class="fa fa-folder-open folder"></i>
-	<%=album.album_name%></a>
-	</div>
-
-<%end%>
+  <div id = "album_msg"  style = "margin:15px;"></div>
+  <% @user1.albums.each do |album| %>
+  	<div class="col-md-3 col-sm-3 col-xs-3 album-div" id = "album-<%= album.id %>">
+        <% if album.locked == "No" %>
+          <a href="/users/<%=current_user.id%>/albums/<%=album.id%>" class="photolink" data-remote="true">
+          <i class="fa fa-folder-open folder"></i>
+        <% elsif album.locked == "Yes" %>
+          <a href="#" class="photolink" data-remote="true">
+        	<i class="fa fa-lock folder"></i>
+        <% end %>
+          <%= album.album_name %>
+      </a>
+  	</div>
+  <%end%>
 </div>
 
 
+<!-- Modal -->
+<div class="modal fade" id="lock_album_pin_form" tabindex="-1" role="dialog">
+  <div class="modal-dialog small-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          &times;
+        </button>
+        <h4 class="modal-title">Enter Your Pin Nubmer</h4>
+      </div>
+      <div class="modal-body form-horizontal">
+        <div class="form-group">
+          <%= label_tag :pin, t("pin"), :class => "col-md-2 control-label" %>
+          <div class="col-md-10">
+            <%= text_field_tag :pin, '', {:class => "form-control", :maxlength => "4", :type => :password} %>
+            <p><span id="pin_enter_status" class="pull-right"></span></p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <%= link_to "Cancel", "", { :class => 'btn btn-default', :"data-dismiss" => "modal"} %>
 
+        <%= link_to "<i class='fa fa-check'></i>&nbsp;Submit".html_safe, "#-", onClick: "lock_unlock_album()", :class => "btn btn-primary", :id=> "submit_btn", :remote => true %>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
 <style>
+.custom-menu {
+    display: none;
+    z-index: 1000;
+    position: absolute;
+    overflow: hidden;
+    border: 1px solid #CCC;
+    white-space: nowrap;
+    font-family: sans-serif;
+    background: #FFF;
+    color: #333;
+    border-radius: 5px;
+}
+.custom-menu li {
+    padding: 8px 12px;
+    cursor: pointer;
+    list-style-type: none;
+    transition: all .3s ease;
+}
+
+.custom-menu li:hover {
+    background-color: #DEF;
+}
 .folder
 {
   font-size: 50px;
@@ -33,3 +86,114 @@
 	color: teal;
 }
 </style>
+
+<script>
+  // function lock_unlock_album(){
+  //   var album_id = $(this).attr('id')
+  //   $("#lock_album_pin_form").modal();
+  // };
+
+  function lock_unlock_album(event)
+  {
+    $("#submit_btn i").removeClass("fa-check").addClass("fa-refresh fa-spin");
+    var album_id = $("#submit_btn i")[0].id
+    if ($.isNumeric(album_id))
+    {
+      $.ajax
+      ({
+        method : "get",
+        data: {pin: $("#pin").val(), album_id: album_id},
+        url :  "/users/<%=current_user.id%>/albums/"+album_id+"/lock_album",
+      }).always(function() {
+          $("#submit_btn i").removeClass("fa-check fa-spin fa-refresh").addClass("fa-check");
+          $("#pin").val("")
+          $('#lock_album_pin_form').find("a#submit_btn i").attr("id", "")
+          $("#lock_album_pin_form").modal('hide');
+      });
+    }
+    else
+    {
+      album_id = album_id.split(" ")[0]
+      $.ajax
+      ({
+        method : "delete",
+        data: {pin: $("#pin").val(), album_id: album_id},
+        url :  "/users/<%=current_user.id%>/albums/"+album_id,
+      }).always(function() {
+          $("#submit_btn i").removeClass("fa-check fa-spin fa-refresh").addClass("fa-check");
+          $("#pin").val("")
+          $('#lock_album_pin_form').find("a#submit_btn i").attr("id", "")
+          $("#lock_album_pin_form").modal('hide');
+      });
+    }
+  }
+</script>
+
+<script type="text/javascript">
+  var album_class
+  $(function(){
+      $.contextMenu({
+          selector: '.album-div', 
+          callback: function(key, options) {
+              var m = "global: " + key;
+              window.console && console.log(m) || alert(m); 
+          },
+          build:function(data,e){
+            album_class = $(data).children("a").children("i").attr("class");
+          },
+          items: {
+              "lock": {
+                name: "Lock-Album",
+                icon: "lock",
+                disabled: function (obj) {
+                  if (album_class == "fa fa-folder-open folder")
+                  {
+                    return false;
+                  }
+                  else
+                  {
+                    return true;
+                  }
+                },
+                // superseeds "global" callback
+                callback: function(key, options) {
+                  var m = $(this)[0].id.split("-")[1]
+                  $('#lock_album_pin_form').find("a#submit_btn i").attr("id", m)
+                  $("#lock_album_pin_form").modal();
+                }
+              },
+              "unlock": {
+                  name: "Unlock-Album", 
+                  icon: "unlock", 
+                  disabled: function (obj) {
+                    if (album_class == "fa fa-lock folder")
+                    {
+                      return false;
+                    }
+                    else
+                    {
+                      return true;
+                    }
+                  },
+                  // superseeds "global" callback
+                  callback: function(key, options) {
+                    var m = $(this)[0].id.split("-")[1]
+                    $('#lock_album_pin_form').find("a#submit_btn i").attr("id", m)
+                    $("#lock_album_pin_form").modal();
+                  }
+              },
+              "sep1": "---------",
+              "delete": {
+                name: "Delete",
+                icon: "delete",
+                callback: function(key, options) {
+                    var m = $(this)[0].id.split("-")[1] + " delete"
+                   $('#lock_album_pin_form').find("a#submit_btn i").attr("id", m)
+                    $("#lock_album_pin_form").modal();
+                  }
+              },
+              "quit": {name: "Quit", icon: function($element, key, item){ return 'context-menu-icon context-menu-icon-quit'; }}
+          }
+      });
+  });
+</script>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511062650) do
+ActiveRecord::Schema.define(version: 20161027121201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,8 +21,10 @@ ActiveRecord::Schema.define(version: 20160511062650) do
     t.string   "album_name"
     t.string   "status"
     t.boolean  "hide"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "locked",     default: "No"
+    t.string   "pin"
   end
 
   create_table "conversations", force: :cascade do |t|
@@ -101,6 +103,14 @@ ActiveRecord::Schema.define(version: 20160511062650) do
     t.string   "post_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "secured_keys", force: :cascade do |t|
+    t.text     "salt"
+    t.text     "key"
+    t.integer  "document_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "users", force: :cascade do |t|

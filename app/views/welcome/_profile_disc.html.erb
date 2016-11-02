@@ -51,6 +51,7 @@
 // });
 
 
+
 // Google Analytics
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -60,12 +61,48 @@
   ga('create', 'UA-49610253-3', 'auto');
   ga('send', 'pageview');
 $(document).ready(function(){
+	
+$('#emotion').change(function(){ 
+	var value =  this.value;
+ $.ajax
+ ({
+    method : "get",
+    url :  '<%= change_emotion_path %>',
+    data: {emo_id: value , stage: '1'},
+ //    contentType: false,               
+	// processData: false, 
+
+ })
+
+
+})
  $(".emotion").click(function(){
  	$('.emotion-channel').toggle()
+ 	debugger
+$("#emotion").select2({
+  templateResult: formatState
+});
 
  })
 
 })
+
+
+
+
+function formatState (state) {
+	debugger
+  if (!state.id) { 
+   
+  	return state.text; }
+  var $state = $(
+    '<span><img src="vendor/images/flags/' + state.element.value.toLowerCase() + '.png" class="img-flag" /> ' + state.text + '</span>'
+  );
+  return $state;
+};
+
+
+
 </script>
 <style>
 .fa-smile-o

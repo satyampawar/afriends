@@ -1,9 +1,14 @@
+
 <% publish_to @path do %>
     var id = "<%= @conversation.id %>";
     var chatbox = $("#chatbox_" + id + " .chatboxcontent");
     var sender_id = "<%= @message.user.id %>";
     var reciever_id = $('meta[name=user-id]').attr("content");
-
+    var current_user = "<%= current_user.id %>"
+    // if(current_user == reciever_id){
+    //     callfriend(reciever_id,sender_id)
+    // }
+    
     chatbox.append("<%= j render( partial: @message ) %>");
     chatbox.scrollTop(chatbox[0].scrollHeight);
 

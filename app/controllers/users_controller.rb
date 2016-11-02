@@ -64,6 +64,8 @@ def user_details
   end
 end 
 
+
+
  protected
   
   def user_params

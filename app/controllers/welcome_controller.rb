@@ -22,4 +22,30 @@ class WelcomeController < ApplicationController
 						] 
 
   end
+
+
+def change_emotion
+  emotion = params[:emo_id].to_i
+  @results = [];
+  case emotion
+ when 1
+
+ # 	@results = [["happy", 1, {"data-image"=>"http://www.hdwallpapers.in/walls/love_hearts_abstract_valentine-wide.jpg"}],
+	# ["crezy", 2, {"data-currency_code"=>""}],
+	# ["sad", 3, {"data-currency_code"=>"jain"}]]
+
+	@results = [{ id: 0, text: 'enhancement' }, { id: 1, text: 'bug' }, { id: 2, text: 'duplicate' }];
+	# @results = JSON.parse(@results)
+ when 2
+  "It's 6"
+ when 3
+  "You passed a string"
+ else
+  "You gave me #{a} -- I have no idea what to do with that."
+ end
+ respond_to do |format|
+    format.js
+  end
+end
+
 end

@@ -1,0 +1,6 @@
+<% if @album.locked == "No" %>
+	$("#albumpage #album-<%= @album.id %>").html("<a href='/users/<%=current_user.id%>/albums/<%=@album.id%>' class='photolink' data-remote='true'><i class='fa fa-folder-open folder'></i>");
+<% else %>
+	$("#albumpage #album-<%= @album.id %>").html("<a href='#' class='photolink' data-remote='true'><i class='fa fa-lock folder'></i>");
+<% end %>
+$("#album_msg").html("<span style = 'color:green'><%= @msg %></span>")

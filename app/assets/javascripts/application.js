@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
 //= require jquery.e-calendar
 //= require jquery.soulmate
@@ -24,6 +25,7 @@
 //= require turbolinks
 //= require bootstrap
 //= require private_pub
+//= require jquery.contextMenu
 
 
 

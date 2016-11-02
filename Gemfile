@@ -14,9 +14,10 @@ gem 'soulmate', :require => 'soulmate/server'
 gem 'twilio-ruby', '~> 4.1.0'
 gem 'remotipart', '~> 1.2'
 gem 'bootstrap-sass', '~> 2.3.2.0'
-gem "paperclip", "~> 3.4"
+gem "paperclip", "~> 4.2"
 gem 'google-api-client', '~> 0.7.1'
-gem 'paperclip-googledrive'
+gem 'paperclip-googledrive-new', '~> 1.0'
+#gem 'paperclip-googledrive'
 gem 'devise'        
 gem "factory_girl_rails", "~> 4.0"
 
@@ -77,3 +78,6 @@ group :production do
 
 end
 
+gem 'aes', '~> 0.5.0'
+
+gem "jquery_context_menu-rails"

@@ -1,6 +1,7 @@
 class PhotosController < ApplicationController
+  after_action :delete_original_image, only: [:create, :update]
+
   def create
-debugger
     @user1=current_user
     @album=params[:album_id];
     @photos=Photo.where(:album_id => @album)
@@ -32,5 +33,11 @@ debugger
     protected
   def photo_param
     params.require(:photo).permit(:pic)
+  end
+
+  def delete_original_image
+    if (!@photo.nil?)
+      File.delete(@photo.pic.path(:original))
+    end
   end
 end

@@ -57,7 +57,27 @@ var ready = function () {
          */
 
         restructure: function () {
+            debugger
             align = 0;
+            for (x in chatBoxes) {
+                chatbox_id = chatBoxes[x];
+
+                if ($("#chatbox_" + chatbox_id).css('display') != 'none') {
+                    if (align == 0) {
+                        $("#chatbox_" + chatbox_id).css('right', '20px');
+                    } else {
+                        width = (align) * (280 + 7) + 20;
+                        $("#chatbox_" + chatbox_id).css('right', width + 'px');
+                    }
+                    align++;
+                }
+            }
+
+        },
+
+
+         redesign: function (align) {
+            debugger
             for (x in chatBoxes) {
                 chatbox_id = chatBoxes[x];
 
@@ -89,8 +109,18 @@ var ready = function () {
         createChatBox: function (conversation_id, minimizeChatBox) {
             if ($("#chatbox_" + conversation_id).length > 0) {
                 if ($("#chatbox_" + conversation_id).css('display') == 'none') {
-                    $("#chatbox_" + conversation_id).css('display', 'block');
+                $("#chatbox_" + conversation_id).css('display', 'block');
+                   if($('.chatbox').length>0)
+                   {
+                    debugger
+                    chatBox.redesign($('.chatbox')[0].style.right)
+                   }
+                   else
+                   {
+                    debugger
                     chatBox.restructure();
+                   }
+                    
                 }
                 $("#chatbox_" + conversation_id + " .chatboxtextarea").focus();
                 return;

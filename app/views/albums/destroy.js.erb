@@ -1,0 +1,4 @@
+<% if !Album.exists?(@album.id) %>
+	$("#albumpage #album-<%= @album.id %>").remove()
+	$("#album_msg").html("<span style = 'color:green'>Album is deleted !</span>")
+<%end%>

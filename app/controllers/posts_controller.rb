@@ -1,13 +1,13 @@
 class PostsController < ApplicationController
+  before_action :show_all_post 
+
   def new
   end
 
   def index
-    @posts=Post.all.order(created_at: :desc)
   end
 
   def create
-    @posts=Post.all.order(created_at: :desc)
     @post = current_user.posts.create(post_params)
       if params["post"]["photopst"]
         params["post"]["photopst"].each do |photopst|
@@ -27,9 +27,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @posts=Post.all
-
-    @post=Post.destroy(params[:id])
+    @post=Post.find(params[:id])
     @post.destroy
     respond_to do |format|
         format.js
@@ -38,6 +36,10 @@ class PostsController < ApplicationController
   end
 
   def show
+  end
+
+  def show_all_post 
+     @posts=Post.all.order(created_at: :desc)
   end
 
   protected
