@@ -26,6 +26,7 @@
 //= require bootstrap
 //= require private_pub
 //= require jquery.contextMenu
+//= require gmaps
 
 
 

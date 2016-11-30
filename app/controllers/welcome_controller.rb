@@ -1,6 +1,5 @@
 class WelcomeController < ApplicationController
   def index
-   
   	@user=User.new
   	@posts=Post.all.order(created_at: :desc)
   	@post=Post.new
@@ -23,6 +22,17 @@ class WelcomeController < ApplicationController
 
   end
 
+def get_ip_machine
+	debugger
+	 ip = Socket.ip_address_list.detect{|intf| intf.ipv4_private?}
+     ip = ip.ip_address
+     Geokit::Geocoders::IpGeocoder.geocode(ip.to_s())
+    respond_to do |format|
+      format.json { 
+        render json: ip
+      }
+    end
+end
 
 def change_emotion
   emotion = params[:emo_id].to_i
