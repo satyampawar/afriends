@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	
+	before_filter :authenticate_user!, only: [:update_profile, :fixposition, :cover_pic, :profile_page, :user_details]
   def update_profile
   @user_photo=User.find_by_id(current_user.id)
    render :action => "crop"

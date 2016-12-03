@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'twilio-ruby'
 class PhoneNumbersController < ApplicationController
+  before_filter :authenticate_user!
   def new
   	@phone_number =PhoneNumber.new
   end
