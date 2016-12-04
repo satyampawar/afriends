@@ -1,4 +1,5 @@
 class WelcomeController < ApplicationController
+
   def index
   	@user=User.new
   	@posts=Post.all.order(created_at: :desc)
@@ -32,6 +33,15 @@ def get_ip_machine
         render json: ip
       }
     end
+end
+
+
+def who_is_online
+  @friendreq=Friendlog.where(:friend_id => current_user).where(:status => "req") 
+  @friendlist=current_user.friendlist
+  respond_to do |format|
+    format.js
+  end
 end
 
 def change_emotion

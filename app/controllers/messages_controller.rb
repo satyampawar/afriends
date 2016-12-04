@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  before_filter :authenticate_user!
   def create
     @conversation = Conversation.find(params[:conversation_id])
     @message = @conversation.messages.build(message_params)

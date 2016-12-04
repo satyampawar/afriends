@@ -1,4 +1,5 @@
 class PhotosController < ApplicationController
+  before_filter :authenticate_user!
   after_action :delete_original_image, only: [:create, :update]
 
   def create

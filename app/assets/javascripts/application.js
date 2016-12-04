@@ -192,6 +192,10 @@ function scrollToTop() {
 
 $(document).ready(function()
 {
+  
+  // setInterval(function(){get_last_seen();}, 10000);
+
+
 $("#notificationLink").click(function()
 {
 $("#notificationContainer").fadeToggle(300);
@@ -208,6 +212,18 @@ $("#notificationContainer").hide();
 
 });
 
+
+// function get_last_seen()
+// {
+//   $("chat-panel").html
+
+
+//   $.ajax({
+//     type: "get",
+//     url: "feedback.php",
+//     async: false
+//     })
+// }
 
 
 var ready = function () {

@@ -1,4 +1,6 @@
 class AlbumsController < ApplicationController
+  before_filter :authenticate_user!
+
   def create
     @user1=current_user
    

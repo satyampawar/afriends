@@ -83,3 +83,5 @@ gem 'aes', '~> 0.5.0'
 gem "jquery_context_menu-rails"
 
 gem 'geokit-rails'
+
+gem 'devise_lastseenable'

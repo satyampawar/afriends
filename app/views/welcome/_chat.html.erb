@@ -230,6 +230,7 @@
            
         </script>
       <div id="msg">
+
         <div class="chat-sidebar">
             <%@friendlist.each do |friends|%>
               <%@friend=User.find(friends.friend_id)%>
@@ -239,14 +240,18 @@
                 <a href="#" data-rid ="<%=@friend.id%>" data-sid ="<%=current_user.id%>"class="start-conversation">
                 <a href="#" onclick="callfriend(<%=current_user.id%>,<%=@friend.id%>)"class="start-conversation">
                     <%=@friend.avatar.present? ? image_tag(@friend.avatar.url ,id: "imgss",class: "",:width=>"30") : image_tag('/assets/user.png',:width=>"40" ,class: "")%>
-
                     <span><%=@friend.fullname%></span>
+                    <span><i class = "<%=@friend.last_seen.to_time < Time.now - 1.minute ? 'fa fa-circle-o' : 'fa fa-circle online' %>"> </i><br>was active: <i class = "last_seen"><%=@friend.last_seen.to_time < Time.now - 1.minute ? @friend.last_seen.to_time.strftime("%Y/%m/%d : %H:%S")  : '' %></i><br></span>
                 </a>
             </div>
-            <%end%>
-            
-          
-           
-        </div>
-        </div>
+        <%end%>
+    </div>
+</div>
 
+
+<style type="text/css">
+.online{
+    color: green !important;
+}
+
+</style>

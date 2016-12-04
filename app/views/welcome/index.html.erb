@@ -95,7 +95,9 @@ Licensed under MIT
   
 	</div>
 </div>
-<%=render 'welcome/chat'%>
+<div id="chat-panel" style="width: 50px; height: 100px">
+  <%=render 'welcome/chat'%>
+</div>
 <%else%>
 <div class="col-sm-6 enter">
 
@@ -105,8 +107,12 @@ Licensed under MIT
 </div>
 <%end%>
 <script>
-$(document).ready(function(){
 
+
+
+$(document).ready(function(){
+ 
+  // setInterval(function(){get_last_seen();}, 10000);
 $("#formData").change(function(){
    $(".img-responsive").hide();
    $(".loader").show();
@@ -120,6 +126,14 @@ $("#formData").change(function(){
  })
 });
 });
+
+function get_last_seen()
+{
+  $.ajax({
+    type: "get",
+    url: "/who_is_online"
+    })
+}
 </script>
 <style>
 .enter
