@@ -34,7 +34,7 @@ Rails.application.routes.draw do
 mount Soulmate::Server, :at => "/autocomplete"
   get "/photochange" => "users#photochange"
 
- devise_for :users ,controllers: { registrations: 'registrations' ,:omniauth_callbacks => "callbacks"} 
+ devise_for :users ,controllers: { registrations: 'registrations', sessions: 'sessions' ,:omniauth_callbacks => "callbacks"} 
  resources :users do
   
 
