@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/agentrock/gdata.git
+  revision: 271d0b49d7dbe97b16969f06104f3e91022c40bc
+  specs:
+    gdata (1.1.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -63,6 +69,9 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.2)
+    contacts (1.2.4)
+      gdata (= 1.1.1)
+      json (>= 0.4.1)
     cookiejar (0.3.3)
     daemons (1.2.4)
     debug_inspector (0.0.2)
@@ -140,6 +149,7 @@ GEM
     heroku-api (0.4.2)
       excon (~> 0.45)
       multi_json (~> 1.8)
+    hpricot (0.8.6)
     http_parser.rb (0.6.0)
     i18n (0.7.0)
     jbuilder (2.6.0)
@@ -345,15 +355,18 @@ DEPENDENCIES
   bootstrap-sass (~> 2.3.2.0)
   byebug
   coffee-rails (~> 4.1.0)
+  contacts
   devise
   devise_lastseenable
   factory_girl_rails (~> 4.0)
   faye
   foreman
+  gdata!
   gemoji
   geokit-rails
   google-api-client (~> 0.7.1)
   heroku
+  hpricot
   jbuilder (~> 2.0)
   jquery-fileupload-rails
   jquery-rails

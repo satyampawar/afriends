@@ -69,10 +69,11 @@ mount Soulmate::Server, :at => "/autocomplete"
   get '/change_emotion' => "welcome#change_emotion" , as: :change_emotion
   get '/who_is_online' => "welcome#who_is_online" , as: :who_is_online
   get '/get_ip_machine' => "welcome#get_ip_machine" , as: :get_ip_machine
-   get 'phone_numbers/new_verify' => "phone_numbers#new_verify" , as: :new_verify
-   post 'users/update_profile' => "users#update_profile", as: :update_profile
-     post 'users/update_cover' => "users#cover_pic", as: :update_coverpic
-   post '/verify_account/:session_id' => "users#verify_account", as: :verify_account
+  get '/:user_id/create_page' => 'users#create_page' ,as: :create_page
+  get 'phone_numbers/new_verify' => "phone_numbers#new_verify" , as: :new_verify
+  post 'users/update_profile' => "users#update_profile", as: :update_profile
+  post 'users/update_cover' => "users#cover_pic", as: :update_coverpic
+  post '/verify_account/:session_id' => "users#verify_account", as: :verify_account
   post '/user_details' => "users#user_details", as: :user_details
   get '/fixposition' => 'users#fixposition', as: :cover_fixposition
 
