@@ -70,13 +70,14 @@ mount Soulmate::Server, :at => "/autocomplete"
   get '/who_is_online' => "welcome#who_is_online" , as: :who_is_online
   get '/get_ip_machine' => "welcome#get_ip_machine" , as: :get_ip_machine
   get '/:user_id/create_page' => 'users#create_page' ,as: :create_page
+  get "/search_movies" => "users#search_movies"
   get 'phone_numbers/new_verify' => "phone_numbers#new_verify" , as: :new_verify
   post 'users/update_profile' => "users#update_profile", as: :update_profile
   post 'users/update_cover' => "users#cover_pic", as: :update_coverpic
   post '/verify_account/:session_id' => "users#verify_account", as: :verify_account
   post '/user_details' => "users#user_details", as: :user_details
   get '/fixposition' => 'users#fixposition', as: :cover_fixposition
-
+  
 
   post 'phone_numbers/verify' => "phone_numbers#verify"
   get '/:user_id/profile-page' => 'users#profile_page' ,as: :user_profile

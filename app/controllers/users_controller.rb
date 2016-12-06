@@ -82,6 +82,32 @@ def create_page
     @user_structure= @user1.structure_json
 end
 
+def search_movies
+  results = Imdb::Search.new(params[:movie_name])
+  if results.movies.size > 0
+    # http = Net::HTTP.new(URI.parse(f.url).host, uri.port)
+    # request = Net::HTTP::Get.new(URI.parse(f.url).request_uri)
+    # response = http.request(request)
+    # URI.extract(response.body).collect{|a| a.include?('.jpg') ? a.include?('amazon') ? a: nil : nil}.compact.first
+    data = results.movies[0..2].map{
+      |f| 
+    http = Net::HTTP.new(URI.parse(f.url).host, URI.parse(f.url).port)
+    request = Net::HTTP::Get.new(URI.parse(f.url).request_uri)
+    response = http.request(request)
+    image_url = URI.extract(response.body).collect{|a| a.include?('.jpg') ? a.include?('amazon') ? a: nil : nil}.compact.first
+      [
+        "<img src= #{image_url} width='120px' height='120px'>",
+        f.title,
+        f.rating,
+        "<input type='radio' name='movies' class='radio-btn' value='#{f.id}'>"
+        
+      ]}
+    render :json => data
+  else
+    render :json => {data: nil}
+  end
+end
+
 
  protected
   

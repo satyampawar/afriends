@@ -1,121 +1,16 @@
-<style type="text/css">#map_canvas {
-  height: 100%;
-}
-@media print {
-  html,
-  body {
-    height: auto;
-  }
-}
+<style type="text/css">
 
-#map_canvas {
-    position: inherit !important;
-    height: 650px;
-}
 </style>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJho-K64WJTAuK9qZFV2-aqvUCDx5K8uI"></script>
 
 
-
-
-
-
-
-
-
-<div>
+ <!-- <div>  -->
   <!-- <input id="address12" type="textbox" value="Sydney, NSW"> -->
-  <input type="button" value="Geocode" onclick="codeAddress()">
-</div>
-<div id="map_canvas" style="height:90%;top:30px; position: inherit !important;"></div>
+  <!-- <input type="button" value="Get Addrss" onclick="codeAddress()">
+ </div> 
+<div id="map_canvas" style="height:90%;top:30px; position: inherit !important;"></div> -->
 <script>
 
-
-var geocoder;
-var map;
-var marker;
-var infowindow = new google.maps.InfoWindow({
-  size: new google.maps.Size(150, 50)
-});
-
-// function geocodePosition(pos) {
-//   geocoder.geocode({
-//     latLng: pos
-//   }, function(responses) {
-//     if (responses && responses.length > 0) {
-//       debugger
-//       updateMarkerAddress(responses[0].formatted_address);
-//     } else {
-//       updateMarkerAddress('Cannot determine address at this location.');
-//     }
-//   });
-// }
-
-function initialize() {
-  geocoder = new google.maps.Geocoder();
-  var latlng = new google.maps.LatLng(-34.397, 150.644);
-  var mapOptions = {
-    zoom: 8,
-    center: latlng,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  }
-  map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
-  google.maps.event.addListener(map, 'click', function() {
-    infowindow.close();
-  });
-}
-
-function geocodePosition(pos) {
-  geocoder.geocode({
-    latLng: pos
-  }, function(responses) {
-    if (responses && responses.length > 0) {
-      debugger
-      marker.formatted_address = responses[0].formatted_address;
-    } else {
-      marker.formatted_address = 'Cannot determine address at this location.';
-    }
-    infowindow.setContent(marker.formatted_address + "<br>coordinates: " + marker.getPosition().toUrlValue(6));
-    infowindow.open(map, marker);
-  });
-}
-
-function codeAddress() {
-  var address = document.getElementById('address').value;
-  geocoder.geocode({
-    'address': address
-  }, function(results, status) {
-    if (status == google.maps.GeocoderStatus.OK) {
-      map.setCenter(results[0].geometry.location);
-      if (marker) {
-        marker.setMap(null);
-        if (infowindow) infowindow.close();
-      }
-      marker = new google.maps.Marker({
-        map: map,
-        draggable: true,
-        position: results[0].geometry.location
-      });
-      google.maps.event.addListener(marker, 'dragend', function() {
-        geocodePosition(marker.getPosition());
-      });
-      google.maps.event.addListener(marker, 'click', function() {
-        if (marker.formatted_address) {
-          infowindow.setContent(marker.formatted_address + "<br>coordinates: " + marker.getPosition().toUrlValue(6));
-        } else {
-          infowindow.setContent(address + "<br>coordinates: " + marker.getPosition().toUrlValue(6));
-        }
-        infowindow.open(map, marker);
-      });
-      google.maps.event.trigger(marker, 'click');
-    } else {
-      alert('Geocode was not successful for the following reason: ' + status);
-    }
-  });
-}
-
-google.maps.event.addDomListener(window, "load", initialize);
 </script>
 
 

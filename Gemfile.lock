@@ -152,9 +152,16 @@ GEM
     hpricot (0.8.6)
     http_parser.rb (0.6.0)
     i18n (0.7.0)
+    imdb (0.8.1)
+      nokogiri (>= 1.6.0)
     jbuilder (2.6.0)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
+    jquery-datatables-rails (3.4.0)
+      actionpack (>= 3.1)
+      jquery-rails
+      railties (>= 3.1)
+      sass-rails
     jquery-fileupload-rails (0.4.7)
       actionpack (>= 3.1)
       railties (>= 3.1)
@@ -367,7 +374,9 @@ DEPENDENCIES
   google-api-client (~> 0.7.1)
   heroku
   hpricot
+  imdb (~> 0.8)
   jbuilder (~> 2.0)
+  jquery-datatables-rails (~> 3.4.0)
   jquery-fileupload-rails
   jquery-rails
   jquery_context_menu-rails

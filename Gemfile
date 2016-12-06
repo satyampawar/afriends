@@ -91,3 +91,7 @@ gem "contacts"
 gem 'gdata', git: 'https://github.com/agentrock/gdata.git'
 
 gem 'hpricot'
+
+gem 'imdb', '~> 0.8'
+
+gem 'jquery-datatables-rails', '~> 3.4.0'
