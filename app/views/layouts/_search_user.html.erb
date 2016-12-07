@@ -1,0 +1,42 @@
+<div id="searchContainer">
+	<div id="searchTitle">Notifications</div>
+	<div id="searchBody" class="notifications">
+	<%if user_signed_in? && @users.present? %>
+		<%@users.each do |user|%>
+      <div id="search_<%=user.id%>">
+     	 <%=image_tag(user.avatar.url ,id: "imgss",class: "[ img-circle pull-left ]",:width=>"40")%>  <%=link_to "#{user.fullname}" ,user_profile_path(user.id) ,style: "color:teal;"%>
+     	</div>      
+     <% end %>
+	<%end%>
+	</div>
+	<div id="notificationFooter"><a href="#">See All</a></div>
+</div>
+
+<style>
+#searchContainer {
+    background-color: #FFFFFF;
+    border: 1px solid rgba(100, 100, 100, 0.4);
+    display: none; 
+    overflow: visible;
+    position: absolute;
+    top: 37px;
+    width: 81.5%;
+    margin-left: 14px;
+    z-index: -1;
+    /* display: none; */
+}
+#searchTitle {
+z-index: 1000;
+font-weight: bold;
+padding: 8px;
+font-size: 13px;
+background-color: #ffffff;
+width: 322px;
+border-bottom: 1px solid #dddddd;
+}
+#searchBody {
+padding: 33px 0px 0px 0px !important;
+min-height: 300px;
+}
+
+</style>

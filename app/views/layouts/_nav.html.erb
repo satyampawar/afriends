@@ -1,5 +1,3 @@
-
-
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<div class="navbar-header">
         <a class="navbar-brand logo" rel="home" href="#">A&nbsp;&nbsp;<span>Friends</span></a>
@@ -15,33 +13,23 @@
 			<li><a href="#">Link</a></li>
 			<li><a href="#">Link</a></li>
 			<li><a href="#">Link</a></li>
-			<li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-                <li class="divider"></li>
-                <%if user_signed_in?%>
-					<li><%=link_to "logout" ,destroy_user_session_path , method: :delete%></li>
-				<%end%>
-              </ul>
-            </li>
 		</ul>
 		<%#= form_tag do %>
 	  <%#= text_field_tag "search", nil, placeholder: "Search", autocomplete: :off %>
 	<%# end %>
 			
-		<div class="col-sm-3 col-md-3 pull-right">
+		<div class="col-sm-6 col-md-6">
           <form class="navbar-form" role="search">
-            <div class="input-group">
+            <div class="input-group" style="width:100%;">
                 <input type="text" class="form-control" placeholder="Search" name="srch-term search" id="search" autocomplete="">
                 <div class="input-group-btn">
                     <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                 </div>
             </div>
           </form>
+          <div id="search-panel-box">
+          	<%#=render "layouts/search"%>
+      	  </div>
 		</div>
 		<ul class="nav navbar-nav navbar-right">
 
@@ -54,32 +42,45 @@
 						 <%end%>
 						
 						<div id="notificationContainer">
-						<div id="notificationTitle">Notifications</div>
-						<div id="notificationsBody" class="notifications">
+					<div id="notificationTitle">Notifications</div>
+					<div id="notificationsBody" class="notifications">
 
-				        <%if user_signed_in?%>
-                         <%@friendreq.each do |friendreq|%>
-                         <div id="notdiv<%=friendreq.id%>">
-                         	 <%=friendreq.user.avatar.present? ? image_tag(friendreq.user.avatar.url ,id: "imgss",class: "[ img-circle pull-left ]",:width=>"40") : image_tag('/assets/user.png',:width=>"40" ,class: "[ img-circle pull-left ]")%>  <%=link_to "#{friendreq.user.fullname}" ,user_profile_path(friendreq.user.id) ,style: "color:teal;"%>
-                         	<span class="timfrq"><%=time_ago_in_words(friendreq.user.updated_at)%></span>
-            				<br>
-                            <%=link_to "Accept" ,user_friendlog_path(friendreq.user,friendreq),method: :patch,remote: true,class: "btn btn-xs btn-default afriends_btn" %>
-                             <%=link_to "decline" ,user_friendlog_path(friendreq.user,friendreq.id), method: :delete,remote: true,id: "cancelreq",class: "btn btn-xs btn-default afriends_btn" %>
-                             <hr>
-                         	 
-                         </div>
+			        <%if user_signed_in?%>
+                       <%@friendreq.each do |friendreq|%>
+                       <div id="notdiv<%=friendreq.id%>">
+                       	 <%=friendreq.user.avatar.present? ? image_tag(friendreq.user.avatar.url ,id: "imgss",class: "[ img-circle pull-left ]",:width=>"40") : image_tag('/assets/user.png',:width=>"40" ,class: "[ img-circle pull-left ]")%>  <%=link_to "#{friendreq.user.fullname}" ,user_profile_path(friendreq.user.id) ,style: "color:teal;"%>
+                       	<span class="timfrq"><%=time_ago_in_words(friendreq.user.updated_at)%></span>
+          				<br>
+                          <%=link_to "Accept" ,user_friendlog_path(friendreq.user,friendreq),method: :patch,remote: true,class: "btn btn-xs btn-default afriends_btn" %>
+                           <%=link_to "decline" ,user_friendlog_path(friendreq.user,friendreq.id), method: :delete,remote: true,id: "cancelreq",class: "btn btn-xs btn-default afriends_btn" %>
+                           <hr>
+                       	 
+                       </div>
 
-                          
-                         <%end%>
                         
-                         <%end%>
-                       
-						</div>
-						<div id="notificationFooter"><a href="#">See All</a></div>
-						</div>
-					
+                       <%end%>
+                      
+                       <%end%>
+                     
+					</div>
+					<div id="notificationFooter"><a href="#">See All</a></div>
+					</div>
+				
 
 					</li>
-				</ul>
+					<li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style ="color: white;">Dropdown <b class="caret"></b></a>
+  	        <ul class="dropdown-menu">
+		          <li><a href="#">Action</a></li>
+		          <li><a href="#">Another action</a></li>
+		          <li class="divider"></li>
+		          <li><a href="#">Separated link</a></li>
+		          <li class="divider"></li>
+		          <%if user_signed_in?%>
+							<li><%=link_to "logout" ,destroy_user_session_path , method: :delete%></li>
+							<%end%>
+            </ul>
+           </li>
+			</ul>
 	</div>
 </nav>

@@ -241,7 +241,9 @@
                 <a href="#" onclick="callfriend(<%=current_user.id%>,<%=@friend.id%>)"class="start-conversation">
                     <%=@friend.avatar.present? ? image_tag(@friend.avatar.url ,id: "imgss",class: "",:width=>"30") : image_tag('/assets/user.png',:width=>"40" ,class: "")%>
                     <span><%=@friend.fullname%></span>
-                    <span><i class = "<%=@friend.last_seen.to_time < Time.now - 1.minute ? 'fa fa-circle-o' : 'fa fa-circle online' %>"> </i><br>was active: <i class = "last_seen"><%=@friend.last_seen.to_time < Time.now - 1.minute ? @friend.last_seen.to_time.strftime("%Y/%m/%d : %H:%S")  : '' %></i><br></span>
+                    <%unless @friend.last_seen.nil?%>
+                    <span><i class = "<%=@friend.last_seen.to_time < Time.now - 1.minute ? 'fa fa-circle-o' : 'fa fa-circle online' %>"> </i> <i class = "last_seen"><%=@friend.last_seen.to_time < Time.now - 1.minute ? time_ago_in_words(@friend.last_seen,include_seconds: true).slice(0..5) : '' %></i><br></span>
+                   <%end%>
                 </a>
             </div>
         <%end%>

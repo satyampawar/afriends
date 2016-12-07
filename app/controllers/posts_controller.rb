@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_filter :authenticate_user!
 
   include LastSeenUser
-  before_action :tag_names
+
   before_action :show_all_post 
 
   def new
