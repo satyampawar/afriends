@@ -24,7 +24,6 @@ class WelcomeController < ApplicationController
   end
 
 def get_ip_machine
-	debugger
 	 ip = Socket.ip_address_list.detect{|intf| intf.ipv4_private?}
      ip = ip.ip_address
      Geokit::Geocoders::IpGeocoder.geocode(ip.to_s())
@@ -41,6 +40,20 @@ def who_is_online
   @friendlist=current_user.friendlist
   respond_to do |format|
     format.js
+  end
+end
+
+def search_user
+  query = params[:search_letter]
+  unless query == ""
+    users = User.where("first_name Like ?","#{query.split[0]}%")
+    users = users.where("last_name Like ?","#{query.split[1..query.split.count].join('')}%") if query.split[1].present?
+    @users = users
+    respond_to do |format|
+      format.js
+    end
+  else
+
   end
 end
 
