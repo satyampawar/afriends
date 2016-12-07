@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161203101505) do
+ActiveRecord::Schema.define(version: 20161206143318) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,35 @@ ActiveRecord::Schema.define(version: 20161203101505) do
     t.string   "integer"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "page_institutes", force: :cascade do |t|
+    t.decimal  "lats"
+    t.decimal  "long"
+    t.text     "address"
+    t.integer  "page_id"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "page_movies", force: :cascade do |t|
+    t.string   "url"
+    t.integer  "imdb_id"
+    t.integer  "page_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pages", force: :cascade do |t|
+    t.string   "page_type"
+    t.integer  "user_id"
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "phone_numbers", force: :cascade do |t|

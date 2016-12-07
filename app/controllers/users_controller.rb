@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_filter :authenticate_user!, only: [:update_profile, :fixposition, :cover_pic, :profile_page, :user_details]
+	before_filter :authenticate_user!, only: [:update_profile, :fixposition, :cover_pic, :profile_page, :user_details, :create_page]
   def update_profile
   @user_photo=User.find_by_id(current_user.id)
    render :action => "crop"
@@ -64,6 +64,49 @@ def user_details
   end
 end 
 
+def create_page
+  @page = Post.new
+  @friendlog=Friendlog.new
+
+
+
+  @user1=User.find(params[:user_id])
+   @friendlogs=Friendlog.where(:friend_id => [@user1.id,current_user.id]).where(:user_id => [@user1_id,current_user.id])
+
+ 
+  @user=User.new
+      @posts=Post.all.order(created_at: :desc)
+      @post=Post.new
+      @album=Album.new
+    @friendreq=Friendlog.where(:friend_id => current_user).where(:status => "req") 
+    @user_structure= @user1.structure_json
+end
+
+def search_movies
+  results = Imdb::Search.new(params[:movie_name])
+  if results.movies.size > 0
+    # http = Net::HTTP.new(URI.parse(f.url).host, uri.port)
+    # request = Net::HTTP::Get.new(URI.parse(f.url).request_uri)
+    # response = http.request(request)
+    # URI.extract(response.body).collect{|a| a.include?('.jpg') ? a.include?('amazon') ? a: nil : nil}.compact.first
+    data = results.movies[0..2].map{
+      |f| 
+    http = Net::HTTP.new(URI.parse(f.url).host, URI.parse(f.url).port)
+    request = Net::HTTP::Get.new(URI.parse(f.url).request_uri)
+    response = http.request(request)
+    image_url = URI.extract(response.body).collect{|a| a.include?('.jpg') ? a.include?('amazon') ? a: nil : nil}.compact.first
+      [
+        "<img src= #{image_url} width='120px' height='120px'>",
+        f.title,
+        f.rating,
+        "<input type='radio' name='movies' class='radio-btn' value='#{f.id}'>"
+        
+      ]}
+    render :json => data
+  else
+    render :json => {data: nil}
+  end
+end
 
 
  protected

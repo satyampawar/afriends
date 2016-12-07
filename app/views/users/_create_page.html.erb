@@ -1,0 +1,331 @@
+<div class="col-xs-12 col-sm-12" >      
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title" style="color: pink;">Create Your Page</h3>
+      <span class="pull-right">
+        <!-- Tabs -->
+        <ul class="nav panel-tabs">
+          <li class="active"><a href="#tab1" data-toggle="tab">Social</a></li>
+          <li><a href="#tab2" data-toggle="tab">Institute</a></li>
+          <li><a href="#tab3" data-toggle="tab">Movie</a></li>
+          <li><a href="#tab4" data-toggle="tab">Country</a></li>
+        </ul>
+      </span>
+    </div>
+    <div class="panel-body">
+      <%= form_tag create_page_path, multipart: true do%>
+        <div class="tab-content">
+          <!-- <input id="address12" type="textbox" value="Sydney, NSW"> -->
+          <!-- <input type="button" value="Get Addrss" onclick="codeAddress()"> -->
+          <div class="tab-pane active" id="tab1">
+            <div class="form-group">
+              <%= text_field_tag :name, nil, :placeholder => 'Name', :class => 'form-control' %>
+            </div>
+          </div>
+          <div class="tab-pane" id="tab2">
+            <div class="form-group">
+              <%= text_field_tag :name, nil, :placeholder => 'Name', :class => 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-8" style="margin-left: -15px;">
+                <%= text_field_tag :address, nil, :placeholder => 'Search Your Address and point it on Map', :class => 'form-control' %>
+                <%= hidden_field_tag :formatted_address, nil %>
+                <%= hidden_field_tag :lats, nil %>
+                <%= hidden_field_tag :longs, nil %>
+              </div>
+              <div class="col-md-4">
+                <%= link_to "Find", "javascript:void(0)", :onclick => 'codeAddress()', :class => 'btn btn-primary' %>
+              </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="col-md-11">
+              <div class="map-div">
+                <div id="map_canvas" style="height:auto;margin-top:30px; position: inherit !important; width: auto !important;"></div>
+              </div>
+            </div>
+            <div class="col-md-1"></div>
+
+            <div class="form-group">
+              <div class="col-md-12" style="margin-left: -15px; margin-top:20px; position: inherit !important;">
+                Upload Institute Picture <%= file_field_tag :picture %>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+
+          <div class="tab-pane" id="tab3">
+            <div class="form-group">
+              <div class="col-md-8" style="margin-left: -15px;">
+                <%= text_field_tag :movie_name, nil, :placeholder => 'Movie Name', :class => 'form-control' %>
+              </div>
+              <div class="col-md-4">
+                <%= link_to "Find", "javascript:void(0)", :onclick => 'findMovies()', :class => 'btn btn-primary' %>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="form-group">
+              <div class="col-md-12" style="margin-left: -15px; margin-top:20px;">
+                <table id="datatable" class="table table-striped table-bordered table-hover " cellspacing="0">
+                  <thead>
+                  <tr>
+                    <th></th>
+                    <th>Title</th>
+                    <th>Rating</th>
+                    <th></th>
+                  </tr>
+                  </thead>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="tab4">
+            
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= render 'google_map'%>
+
+<style type="text/css">
+  .panel-tabs {
+    position: relative;
+    bottom: 30px;
+    clear:both;
+    border-bottom: 1px solid transparent;
+}
+
+.panel-tabs > li {
+    float: left;
+    margin-bottom: -1px;
+}
+
+.panel-tabs > li > a {
+    margin-right: 2px;
+    margin-top: 4px;
+    line-height: .85;
+    border: 1px solid transparent;
+    border-radius: 4px 4px 0 0;
+    color: #ffffff;
+}
+.map-div {
+    height: 200px;
+    margin-top: 1%;
+    position: unset;
+}
+.map-div div{
+    max-height: 200px !important;  
+}
+
+#map_canvas {
+  height: 100%;
+}
+
+@media print {
+  html,
+  body {
+    height: auto;
+  }
+}
+
+#map_canvas {
+    position: inherit !important;
+    height: 650px;
+}
+
+.panel-tabs > li > a:hover {
+    border-color: transparent;
+    color: #ffffff;
+    background-color: transparent;
+}
+
+.panel-tabs > li.active > a,
+.panel-tabs > li.active > a:hover,
+.panel-tabs > li.active > a:focus {
+    color: #fff;
+    cursor: default;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    background-color: rgba(255,255,255, .23);
+    border-bottom-color: transparent;
+}
+.panel-body{
+  position: relative;
+  height: auto;
+}
+</style>
+
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJho-K64WJTAuK9qZFV2-aqvUCDx5K8uI"></script>
+
+<script type="text/javascript">
+  var geocoder;
+  var map;
+  var marker;
+  var infowindow = new google.maps.InfoWindow({
+    size: new google.maps.Size(150, 50)
+  });
+
+  function geocodePosition(pos) {
+    geocoder.geocode({
+      latLng: pos
+    }, function(responses) {
+      if (responses && responses.length > 0) {
+        updateMarkerAddress(responses[0].formatted_address);
+      } else {
+        updateMarkerAddress('Cannot determine address at this location.');
+      }
+    });
+  }
+
+  function initialize() {
+    geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(-34.397, 150.644);
+    var mapOptions = {
+      zoom: 8,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+    google.maps.event.addListener(map, 'click', function() {
+      infowindow.close();
+    });
+  }
+
+  function geocodePosition(pos) {
+    geocoder.geocode({
+      latLng: pos
+    }, function(responses) {
+      if (responses && responses.length > 0) {
+        marker.formatted_address = responses[0].formatted_address;
+        $("#lats").val(marker["position"].toUrlValue().split(',')[0]);
+        $("#longs").val(marker["position"].toUrlValue().split(',')[1]);
+        $("#formatted_address").val(responses[0].formatted_address)
+      } else {
+        marker.formatted_address = 'Cannot determine address at this location.';
+      }
+      infowindow.setContent(marker.formatted_address + "<br>coordinates: " + marker.getPosition().toUrlValue(6));
+      infowindow.open(map, marker);
+    });
+  }
+
+  function codeAddress() {
+    var address = document.getElementById('address').value;
+    geocoder.geocode({
+      'address': address
+    }, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        map.setCenter(results[0].geometry.location);
+        if (marker) {
+          marker.setMap(null);
+          if (infowindow) infowindow.close();
+        }
+        marker = new google.maps.Marker({
+          map: map,
+          draggable: true,
+          position: results[0].geometry.location
+        });
+        google.maps.event.addListener(marker, 'dragend', function() {
+          geocodePosition(marker.getPosition());
+        });
+        google.maps.event.addListener(marker, 'click', function() {
+          if (marker.formatted_address) {
+            infowindow.setContent(marker.formatted_address + "<br>coordinates: " + marker.getPosition().toUrlValue(6));
+          } else {
+            infowindow.setContent(address + "<br>coordinates: " + marker.getPosition().toUrlValue(6));
+          }
+          infowindow.open(map, marker);
+        });
+        google.maps.event.trigger(marker, 'click');
+        $("#lats").val(marker["position"].toUrlValue().split(',')[0]);
+        $("#longs").val(marker["position"].toUrlValue().split(',')[1]);
+        $("#formatted_address").val($("#address").val())
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
+
+  google.maps.event.addDomListener(window, "load", initialize);
+
+
+  function findMovies(){
+    $.ajax
+      ({
+        method : "get",
+        data: {movie_name: $("#movie_name").val()},
+        url :  "/search_movies",
+      }).always(function(data) {
+        if (data != null){
+          $("#movie_name").val("")
+          $('#datatable').dataTable({
+            "scrollX": true,
+            data: data,
+            "fnDrawCallback": function(oSettings) {
+            $(".radio-btn").prop('checked', false);
+            }
+          });
+        }
+        else
+        {
+          alert("Not Found");
+        }
+      });
+  }
+</script>
+
+<!-- <script type="text/javascript"> function initialize() { //set initial settings for the map here
+ var mapOptions = { 
+  //set center of map as center for the contiguous US 
+  center: new google.maps.LatLng(39.828, -98.5795), zoom: 4, mapTypeId: google.maps.MapTypeId.HYBRID };
+   //load the map
+    var map = new google.maps.Map(document.getElementById("map"), mapOptions); //This runs when the user clicks on the map 
+    google.maps.event.addListener(map, 'click', function(event) { //initialize geocoder 
+    var geocoder = new google.maps.Geocoder() 
+    //load coordinates into the user form 
+    main_form.latitude.value = event.latLng.lat(); 
+    main_form.longitude.value = event.latLng.lng(); 
+    //prepare latitude and longitude
+     var latlng = new google.maps.LatLng(event.latLng.lat(), event.latLng.lng()); 
+    //get address info such as city and state from lat and long 
+      geocoder.geocode({'latLng': latlng}, function(results, status)
+     { if (status == google.maps.GeocoderStatus.OK) { 
+      //break down the three dimensional array into simpler arrays
+       for (i = 0 ; i < results.length ; ++i) { var super_var1 = results[i].address_components; for (j = 0 ; j < super_var1.length ; ++j) { var super_var2 = super_var1[j].types; for (k = 0 ; k < super_var2.length ; ++k) { 
+        //find city 
+        if (super_var2[k] == "locality") { 
+          //put the city name in the form
+           main_form.city.value = super_var1[j].long_name; }
+            //find county 
+            if (super_var2[k] == "administrative_area_level_2")
+             {
+              //put the county name in the form 
+              main_form.county.value = super_var1[j].long_name; }
+               //find State
+                if (super_var2[k] == "administrative_area_level_1") { 
+                  //put the state abbreviation in the form 
+                  main_form.state.value = super_var1[j].short_name; } } } } } }); }); } </script> -->
+
+
+
+
+
+
+<!--
+ id = Imdb::Search.new("Agneepath")
+ uri = URI.parse(id.movies.first.url)
+ http = Net::HTTP.new(uri.host, uri.port)
+ request = Net::HTTP::Get.new(uri.request_uri)
+ response = http.request(request)
+ URI.extract(response.body).collect{|a| a.include?('.jpg') ? a.include?('amazon') ? a: nil : nil}.compact.first
+
+
+ -->

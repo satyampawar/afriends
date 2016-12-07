@@ -85,3 +85,13 @@ gem "jquery_context_menu-rails"
 gem 'geokit-rails'
 
 gem 'devise_lastseenable'
+
+gem "contacts"
+
+gem 'gdata', git: 'https://github.com/agentrock/gdata.git'
+
+gem 'hpricot'
+
+gem 'imdb', '~> 0.8'
+
+gem 'jquery-datatables-rails', '~> 3.4.0'
