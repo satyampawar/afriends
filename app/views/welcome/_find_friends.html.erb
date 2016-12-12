@@ -1,0 +1,19 @@
+<%@find_friends.flatten.each do |ff|%>
+<div class="col-md-12" style="padding:0;">
+	<% if ff.avatar.present? %>
+    <%=image_tag(ff.avatar.url ,id: "imgss",class: "img-responsive background col-md-3", width: "45px", style: "padding:0;") %>
+  <%elsif ff.img_url.present? %>
+    <%=image_tag(ff.img_url ,id: "imgss",class: "img-responsive background col-md-3" , width: "45px", style: "padding:0;") %>
+  <%else%>
+    <%=image_tag('/assets/user.png' ,id: "imgss",class: "img-responsive background col-md-3" , width: "45px",style: "padding:0;") %>
+  <%end%>
+ <div class="col-md-9">
+  <a href ="#"><%= ff.fullname%></a></br>
+  <span style="font-size:11.2px;"> is friend of 
+  	<% User.where(id: ff.friendlist.flatten.map(&:friend_id)).each do |u| %>
+   		<%= u.fullname%>
+ 		<%end%>
+ </span>
+</div>
+</div><hr style="width: 100%;height: 0.5px; background-color: black; margin-bottom:3px;">
+<%end%>
