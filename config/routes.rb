@@ -33,6 +33,7 @@ Rails.application.routes.draw do
 
 mount Soulmate::Server, :at => "/autocomplete"
   get "/photochange" => "users#photochange"
+  get "/remove_tag_user" => "tags#remove_tag_user",  as: :remove_tag_user
 
  devise_for :users ,controllers: { registrations: 'registrations', sessions: 'sessions' ,:omniauth_callbacks => "callbacks"} 
  resources :users do
@@ -41,8 +42,7 @@ mount Soulmate::Server, :at => "/autocomplete"
   resources :friendlog
    resources :posts do
     resources :likes
-
-
+    resources :tags 
    end 
    resources :albums  do
      resources :photos

@@ -40,6 +40,15 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
+    @friendreq=Friendlog.where(:friend_id => current_user).where(:status => "req") 
+    @friendlist=current_user.friendlist if user_signed_in?
+    s = @friendlist.map(&:friend_id)
+    f_f_id = User.where(id: s).collect{|k| k.friendlist}.flatten.map(&:friend_id).uniq - (current_user.friendlist.map(&:friend_id) + current_user.id.to_s[0..1000].split(','))
+    @find_friends = User.where(id: f_f_id)
+    @tags = Tag.where(post_id: params[:id])
+    @tag_users = @tags.collect{|k| User.where(id: k.tag_user_id)}.flatten
+
   end
 
   def show_all_post 

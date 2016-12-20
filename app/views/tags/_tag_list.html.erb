@@ -1,0 +1,56 @@
+
+<%#= select_tag "tagged_friend",options_for_select(@tags.all.collect{|t| [ t.user.id, t.user.fullname]}.sort!),:multiple => true, data: {role: "tagsinput"},:style => 'width: 100%',"data-required" => "true"
+                    %>
+<ul class="tag_ul">
+<% @tag_users.each do |tag_user| %>
+  <li>
+    <span class="label label-primary"><%= tag_user.fullname %>
+      <button  onclick="return remove_user_tag('<%=tag_user.id%>')" ><i class="fa fa-plus"></i></button></span>
+  </li>
+  <% end %>
+</ul>
+
+
+<style>
+.tag_ul{
+    display: inline-flex;
+    padding: 0;
+    margin-top: 4%;
+    list-style: none;
+}
+.tag_ul li button{background-color: #337ab7;
+    border: none;}
+ 
+</style>
+<script>
+// function remove_user_tag(user_id){
+//     $.ajax({
+//     type: "get",
+//     type: 'js',
+//     url: "/remove_tag_user",
+//     data: { post_id: "<%= @post.try(:id) || @post_id %>",user_id: user_id},
+
+//     })
+// }
+// $(document).ready(function(){
+//  $("#tagged_input").tagsinput('items') 
+// })
+
+// $('#tagged_friend').on('beforeItemRemove', function(event) {
+//    var tag = event.item;
+//    debugger
+//    // Do some processing here
+
+//    if (!event.options || !event.options.preventPost) {
+//       $.ajax('/ajax-url', ajaxData, function(response) {
+//          if (response.failure) {
+//             // Re-add the tag since there was a failure
+//             // "preventPost" here will stop this ajax call from running when the tag is added
+//             $('#tags-input').tagsinput('add', tag, {preventPost: true});
+//          }
+//       });
+//    }
+// });
+// $("#tagged_input").tagsinput('items')
+// $('tagged_friend').prop('disabled', true);
+// </script>

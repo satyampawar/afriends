@@ -11,36 +11,17 @@ Licensed under MIT
     <div class="row profile col-md-10">
 	    <aside class="sm-side col-md-3">
         <div class="user-head">
-            <a class="inbox-avatar" href="javascript:;">
-              <% if current_user.avatar.present? %>
-                <%=image_tag(current_user.avatar.url ,id: "imgss",class: "img-responsive background") %>
-              <%elsif current_user.img_url.present? %>
-                <%=image_tag(current_user.img_url ,id: "imgss",class: "img-responsive background") %>
-              <%else%>
-                <%=image_tag('/assets/user.png' ,id: "imgss",class: "img-responsive background") %>
-              <%end%>
+            <a class="inbox-avatar" href="javascript:void(0);">
+             <%=user_picture(current_user,"imgss","img-responsive background")%>
             </a>
             <div class="user-name">
-                <h5><a href="#"><%= current_user.fullname %></a></h5>
-                <!-- <span><a href="#">Info.Ali.Pci@Gmail.com</a></span> -->
+              <h5><a href="#"><%= current_user.fullname %></a></h5>
+                 <!-- <span><a href="#">Info.Ali.Pci@Gmail.com</a></span> -->
             </div>
         </div>
         <ul class="inbox-nav inbox-divider">
             <li class="active">
-                <a href="#"><i class="fa fa-inbox"></i> Inbox <span class="label label-danger pull-right">2</span></a>
-
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-envelope-o"></i> Sent Mail</a>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-bookmark-o"></i> Important</a>
-            </li>
-            <li>
-                <a href="#"><i class=" fa fa-external-link"></i> Drafts <span class="label label-info pull-right">30</span></a>
-            </li>
-            <li>
-                <a href="#"><i class=" fa fa-trash-o"></i> Trash</a>
+              <a href="#"><i class="fa fa-inbox"></i> Inbox <span class="label label-danger pull-right">2</span></a>
             </li>
         </ul>
         <ul class="nav nav-pills nav-stacked labels-info inbox-divider">
@@ -136,48 +117,3 @@ function get_last_seen()
     })
 }
 </script>
-<style>
-.enter
-{
-  float: right;
-   border-left: 1px solid #000000;
-    height: 100%;
-
-}
-.signup
-{
- height: 55px;
-    width: 304px;
-        margin-left: 153px;
-    margin-top: 102px;
-    background-color: teal;
-    color:white;
-    border-radius: 25px;
-
-
-}
-.signin
-{
-   height: 55px;
-    width: 304px;
-        margin-left: 153px;
-    margin-top: 18px;
-    background-color: teal;
-    color:white;
-    border-radius: 25px;
-
-}
-.signup .glyphicon
-{
-color: white;
-}
-.signin .glyphicon
-{
-color: white;
-}
-
-/*body, html {
-    height: auto;
-    background-repeat: no-repeat;
-    background-image: linear-gradient(rgb(12, 97, 33),rgb(104, 145, 162));
-}*/

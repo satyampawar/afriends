@@ -1,0 +1,75 @@
+
+<div  class="[ col-xs-15 col-sm-15 ]" style="margin-top:3%;">
+  <div id="@post<%=@post.id%>" class="[ panel panel-default ] panel-google-plus">
+    <div class="panel-heading">
+      <%= user_picture(@post.user,"imgss","[ img-circle pull-left ]",48) %>
+      <h3><%=@post.user.fullname%></h3>
+      <h5><span>Shared publicly</span> - <span>
+      <%= time_ago_in_words(@post.created_at) %> ago</span> </h5>
+    </div>
+    <div class="panel-body" >
+      <%=raw @post.post_name%>
+      <div class="row grid">
+      <% if @post.photoposts.present?%>
+        <%@post.photoposts.each do |photo|%>
+          <div class="col-xs-4 thumbnail">
+            <%=image_tag(photo.photopst.url) %>
+          </div>
+      	<%end%>
+      <%end%> 
+    </div> 
+  </div>
+	<div class="panel-footer">
+    <div> <%=@post.likes.count%></div>
+      <%if !@post.likes.find_by_user_id(current_user.id).present?%>
+        <%=link_to "" ,user_post_likes_path(current_user,@post.id),:id => "sp",class: "[ btn btn-default ] btn_new glyphicon glyphicon-heart-empty",method: :post,remote: true%> 
+      <%else%>
+      	<%@likeid=@post.likes.find_by_user_id(current_user.id).id%>
+      	<%=link_to "" ,user_post_like_path(current_user.id,@post.id,@likeid),:id => "sp1",class: "[ btn btn-default ] btn_new glyphicon glyphicon-heart",method: :delete,remote: true%>
+      <%end%>
+      <button type="button" class="[ btn btn-default ]">
+          <span class="[ glyphicon glyphicon-share-alt ]"></span>
+      </button>
+      <div class="input-placeholder">Add a comment...</div>
+    </div>
+    <div class="panel-google-plus-comment">
+        <img class="img-circle" src="/assets/user.png" width="38px" alt="User Image" />
+        <div class="panel-google-plus-textarea">
+            <textarea rows="1"></textarea>
+            <button type="submit" class="[ btn btn-success disabled ]">post comment</button>
+            <button type="reset" class="[ btn btn-default ]">Cancel</button>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div>
+     <%= form_tag user_post_tags_path(current_user,@post) ,remote: true do %>
+    		<%= select_tag "tag_user_id",options_for_select(@friendlist.all.collect{|p| [ User.find(p.friend_id).fullname, p.friend_id]}.sort!),:multiple => true,:style => 'width: 100%',"data-required" => "true"
+                    %>
+        <%=submit_tag "tag" ,class: 'btn btn-primary'%>
+     <%end%>
+    </div>
+    <div id="tag_list"><%=render partial: 'tags/tag_list'%></div>
+  </div>
+</div>
+
+<script>
+$(document).ready(function(){
+	$("#tags").select2({
+  	templateResult: formatState
+	});
+})
+
+function remove_user_tag(user_id){
+  $.ajax({
+    type: "get",
+    data_type: 'js',
+    url: "/remove_tag_user",
+    data: { post_id: "<%= @post.try(:id) || @post_id %>",user_id: user_id},
+
+    })
+}
+</script>
+
+
+
+

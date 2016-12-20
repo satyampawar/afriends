@@ -1,2 +1,43 @@
-<h1>Post#show</h1>
-<p>Find me in app/views/post/show.html.erb</p>
+
+<!--
+User Profile Sidebar by @keenthemes
+A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
+Licensed under MIT
+-->
+
+
+<%if user_signed_in? %>
+<div class="container cont-wid">
+    <div class="row profile col-md-10" style="margin-top:5%;">
+		  <aside class="sm-side col-md-3">
+		  </aside>
+			<div class="col-md-7" style="width: 54%">
+		    <div class="profile-content">
+		      <div id="posts">
+		        <%=render 'posts/show_post'%>
+		      </div>
+		    </div>
+		  </div>
+		 	<div class="col-md-2 right-pane">
+		    <%=render "welcome/find_friends"%>
+		  </div>
+		</div>
+	</div>
+</div>
+<div id="chat-panel" style="width: 50px; height: 100px">
+  <%=render 'welcome/chat'%>
+</div>
+<%end%>
+<script>
+$(document).ready(function(){
+  setInterval(function(){get_last_seen();}, 10000);
+});
+
+function get_last_seen()
+{
+  $.ajax({
+    type: "get",
+    url: "/who_is_online"
+    })
+}
+</script>
