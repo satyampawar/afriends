@@ -65,21 +65,20 @@ def user_details
 end 
 
 def create_page
-  @page = Post.new
-  @friendlog=Friendlog.new
-
-
-
-  @user1=User.find(params[:user_id])
-   @friendlogs=Friendlog.where(:friend_id => [@user1.id,current_user.id]).where(:user_id => [@user1_id,current_user.id])
-
- 
-  @user=User.new
-      @posts=Post.all.order(created_at: :desc)
-      @post=Post.new
-      @album=Album.new
-    @friendreq=Friendlog.where(:friend_id => current_user).where(:status => "req") 
-    @user_structure= @user1.structure_json
+  if params[:commit] == nil
+    @page = Post.new
+    @friendlog=Friendlog.new
+    @user1=User.find(params[:user_id])
+    @friendlogs=Friendlog.where(:friend_id => [@user1.id,current_user.id]).where(:user_id => [@user1_id,current_user.id])
+    @user=User.new
+        @posts=Post.all.order(created_at: :desc)
+        @post=Post.new
+        @album=Album.new
+      @friendreq=Friendlog.where(:friend_id => current_user).where(:status => "req") 
+      @user_structure= @user1.structure_json
+  else
+    debugger
+  end
 end
 
 def search_movies
