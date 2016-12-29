@@ -53,11 +53,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'pry'
-gem 'i18n-active_record'
-  # :git => 'git://github.com/svenfuchs/i18n-active_record.git',
-  # :require => 'i18n/active_record'
-
-
+gem 'i18n-active_record',
+  :git => 'git://github.com/svenfuchs/i18n-active_record.git',
+  :require => 'i18n/active_record'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
