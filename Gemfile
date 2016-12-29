@@ -55,7 +55,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'pry'
 gem 'i18n-active_record',
   # :git => 'git://github.com/svenfuchs/i18n-active_record.git',
-  :require => 'i18n/active_record'
+  # :require => 'i18n/active_record'
+
+  
 # Use Unicorn as the app server
 # gem 'unicorn'
 
