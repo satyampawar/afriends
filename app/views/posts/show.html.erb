@@ -9,7 +9,13 @@ Licensed under MIT
 <%if user_signed_in? %>
 <div class="container cont-wid">
     <div class="row profile col-md-10" style="margin-top:5%;">
-		  <aside class="sm-side col-md-3">
+		  <aside class="sm-side col-md-3 box-pane">
+		  	<div class="box-title"><%=t('activity_log')%></div>
+		  	<div class="box-body">
+		  		  <%#= render :partial => 'tree_panes/form_structures_pane',
+        :locals => {:object => @post, :form_structure => @post.structure_json} %>
+		  		<div id="post_tree"></div>
+		  	</div>
 		  </aside>
 			<div class="col-md-7" style="width: 54%">
 		    <div class="profile-content">
@@ -30,8 +36,25 @@ Licensed under MIT
 <%end%>
 <script>
 $(document).ready(function(){
+	post_tree();
   setInterval(function(){get_last_seen();}, 10000);
+ 
 });
+
+function post_tree()
+{
+		debugger
+	$('#post_tree').jstree({
+	
+    core: {
+      data: <%= @post.structure_json.html_safe %>,
+      check_callback: true
+      // data: [{"id":"post_179","parent":"#","text":"rgdgds","icon":"fa fa-square","type":"post_name"}],
+    
+    }
+  })
+
+}
 
 function get_last_seen()
 {
@@ -41,3 +64,25 @@ function get_last_seen()
     })
 }
 </script>
+
+<style>
+.box-title{
+	background: teal;
+    border: 1px solid;
+    padding: 0px;
+    color: wheat;
+    height: 31px;
+    text-align: center;
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.box-pane
+{
+	  padding: 0;
+    border: 1px solid teal;
+    margin: 0;
+}
+
+
+</style>

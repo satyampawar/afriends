@@ -1,0 +1,77 @@
+<div class="jarviswidget jarviswidget-color-darken" id="regions_widget" data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-custombutton="true">
+  <header>
+    <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+    <h2><%= Region.model_name.human(count: 2) %></h2>
+  </header>
+  <div role="content">
+    <div class="widget-body no-padding">
+      <div id="regions_tree"></div>
+    </div>
+  </div>
+</div>
+
+<% content_for :page_scripts do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+    <% if local_assigns[:mode] == 'edit' then %>
+      $('#regions_tree').jstree({
+        'plugins': ["json_data", "ui", "checkbox"],
+        'core' : {
+          'data' : <%= regions %>
+        }
+      });
+
+      $('#regions_tree').bind('ready.jstree', function() {
+        $('#regions_tree').on('changed.jstree', function (e, data) {
+          var $node_object = $("#"+data.node.id);
+          var tree = data.instance;
+          var nodes = [];
+          var child_nodes_ids = data.node.children_d;
+          var parent_nodes_ids = data.node.parents;
+
+          node_state = (data.node.state.selected == true) ? 'check' : 'uncheck'
+          nodes.push({id: data.node.id, state: node_state});
+
+          $.each(child_nodes_ids,function(index, node_id){
+            node = tree.get_node(node_id);
+            if (node){
+              child_state = node_state
+              nodes.push({id: node.id, state: child_state });
+            }
+          });
+
+          //mark parents as checked if there are checked children
+          $.each(parent_nodes_ids, function(index, node_id){
+            if (node_id != '#'){
+              node = tree.get_node(node_id);
+              if(node){
+                children_of_parent = node.children_d
+                parent_state = 'uncheck'
+                $.each(children_of_parent, function(index, child_node_id){
+                  child = tree.get_node(child_node_id)
+                  if (child.state.selected == true)
+                  {
+                    parent_state = 'check'
+                  }
+                });
+                nodes.push({id: node.id, state: parent_state});
+              }
+            }
+          });
+
+          $.post(
+            "<%= url_for :action => :update_permissions, :id => object.id %>",
+            {mode: "places", nodes: nodes}
+          );
+        });
+      });
+    <% else %>
+      $('#regions_tree').jstree({
+        'core' : {
+          'data' : <%= regions %>
+        }
+      });
+    <% end %>
+    });
+  </script>
+<% end %>

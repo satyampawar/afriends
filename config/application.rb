@@ -27,6 +27,8 @@ module Picssi
     config.active_record.raise_in_transactional_callbacks = true
     config.assets.paths << Emoji.images_path
     config.assets.precompile << "emoji/**/*.png"
+    config.i18n.enforce_available_locales = false
+    config.i18n.default_locale = :en
         
     # Precompile *all* assets, except those that start with underscore
    config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/

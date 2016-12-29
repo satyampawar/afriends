@@ -1,0 +1,49 @@
+
+<div class="jarviswidget jarviswidget-color-darken" id="teams_widget" data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-custombutton="true">
+  <header>
+    <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+    <h2><%= Team.model_name.human(count: 2) %></h2>
+  </header>
+  <div role="content">
+    <div class="widget-body no-padding">
+      <div id="teams_tree"></div>
+    </div>
+  </div>
+</div>
+<% content_for :page_scripts do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+    <% if local_assigns[:mode] == 'edit' then %>
+      $('#teams_tree').jstree({
+          'plugins': ["json_data", "ui", "checkbox"],
+          'core' : {
+            'data' : <%= teams %>
+          }
+        });
+
+        $('#teams_tree').bind('ready.jstree', function() {
+          $('#teams_tree').on('changed.jstree', function (e, data) {
+            var tree = data.instance;
+            var nodes = [];
+            var child_nodes_ids = data.node.children_d;
+            var parent_nodes_ids = data.node.parents;
+
+            node_state = (data.node.state.selected == true) ? 'check' : 'uncheck'
+            nodes.push({id: data.node.id, state: node_state});
+
+            $.post(
+              "<%= url_for :action => :update_permissions, :id => object.id %>",
+              {mode: "teams", nodes: nodes}
+            )
+          });
+        });
+    <% else %>
+      $('#teams_tree').jstree({
+        'core' : {
+          'data' : <%= teams %>
+        }
+      });
+    <% end %>
+    });
+  </script>
+<% end %>

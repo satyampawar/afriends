@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
+//= require plugins/jstree/jstree.min
 //= require dataTables/jquery.dataTables
 //= require jquery.e-calendar
 //= require jquery.soulmate

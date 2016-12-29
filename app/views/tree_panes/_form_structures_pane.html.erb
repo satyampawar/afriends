@@ -1,0 +1,21 @@
+<% content_for :page_scripts do %>
+  <script>
+    $('#form_structure_tree').jstree({
+      'core' : {
+        'data' : <%= form_structure.html_safe %>
+      }
+    });
+  </script>
+<% end %>
+
+<div class="jarviswidget jarviswidget-color-darken" id="form_structure_widget" data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-custombutton="true">
+  <header>
+    <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+    <h2><%= t('structure') %></h2>
+  </header>
+  <div role="content">
+    <div class="widget-body no-padding">
+      <div id="form_structure_tree"></div>
+    </div>
+  </div>
+</div>
