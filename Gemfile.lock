@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/svenfuchs/i18n-active_record.git
+  revision: 35abff38bae09c65ab9404a8292bcda9f0f49d34
+  specs:
+    i18n-active_record (0.1.2)
+      i18n (>= 0.5.0)
+
+GIT
   remote: https://github.com/agentrock/gdata.git
   revision: 271d0b49d7dbe97b16969f06104f3e91022c40bc
   specs:
@@ -374,6 +381,7 @@ DEPENDENCIES
   google-api-client (~> 0.7.1)
   heroku
   hpricot
+  i18n-active_record!
   imdb (~> 0.8)
   jbuilder (~> 2.0)
   jquery-datatables-rails (~> 3.4.0)
@@ -406,4 +414,4 @@ RUBY VERSION
    ruby 2.2.4p230
 
 BUNDLED WITH
-   1.13.4
+   1.13.6
