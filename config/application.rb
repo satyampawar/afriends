@@ -8,7 +8,7 @@ Bundler.require(*Rails.groups)
 
 module Picssi
   class Application < Rails::Application
-    config.force_ssl = true
+
     config.autoload_paths += %W(#{config.root}/lib) # add this line
     config.assets.paths << Rails.root.join("app","assets","fonts")
 

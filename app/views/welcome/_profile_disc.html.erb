@@ -60,44 +60,94 @@
   </div>
 
  <script>
-$(document).ready(function(){
+  $(document).ready(function(){
+    // var friends_list
+    // $.ajax({
+    //     type: "POST",
+    //     dataType: "JSON",
+    //     url: "/users/friends_list",
+    //     data: {"format": "json"},
+    //     success: function(data){
+    //       friends_list = data
+    //       $()
+    //       // $('.emoji-wysiwyg-editor.text_areasize.text_my.textarea-control.form-control').suggester({
+    //       //     data: friends_list,
+    //       //     searchProperties: ["first_name","email"],
+    //       //     keyDelay: 200,
+    //       //     minChars: 1,
+    //       //     labelProperty: 'name',
+    //       //     addOnSemicolon: true,
+    //       //     prompt: 'Enter a name or email address',
+    //       //     listItemTemplate: '<li class="sugg-item">' +
+    //       //       '<table><tr>' +
+    //       //       '<td><img class="addr-avatar" src="{record.avatar}" width="30" height="30" alt="" /></td>' + 
+    //       //       '<td><span class="addr-name">{record.first_name}</span>' +
+    //       //       '<span class="addr-email">{record.email}</span>' + 
+    //       //       '</td>' +
+    //       //       '</tr></table>' +
+    //       //      '</li>',
+    //       //     theme: 'graybox'
+    //       //   });
+    //     }
+    // });
+
+    // var suggester = new $.Suggester($('.emoji-wysiwyg-editor.text_areasize.text_my.textarea-control.form-control'), friends_list);
 
  
-	$("#maps_for_location").click(function(){
-    $.ajax({
-      method: 'get',
-      url: '/get_ip_machine',
-      type: 'json'
-    }).always(function(data) {
-    		var lats;
-    		var lngs;
-    		jQuery.get("http://ipinfo.io/"+data["responseText"], function (response) 
-    		{ 
-    			lats = parseFloat(response.loc.split(',')[0]); 
-    		  lngs = parseFloat(response.loc.split(',')[1]);
-    		 //  map = new GMaps({ 
-    		 //  	el: '#map',
-		  		 // 	lat: lats, //latitude 
-		  		 // 	lng: lngs //longitude 
-    			// }); 
-    			var uluru = {lat: lats, lng: lngs};
-		    var map = new google.maps.Map(document.getElementById('map'), {
-		      zoom: 4,
-		      center: uluru
-		    });
-		    var marker = new google.maps.Marker({
-		      position: uluru,
-		      map: map
-		    });
-      	 $("#myModal").modal('toggle');
-    		}, "jsonp");
-    		
-        
-      });
 
-		
-	})
-})
+    $(".emoji-wysiwyg-editor.text_areasize.text_my.textarea-control.form-control").on('paste copy cut keyup', function(e) {
+      pos = [],
+      lastOc = 0
+      if (e.keyCode == 50){
+         $.ajax({
+          type: "POST",
+          dataType: "JSON",
+          url: "/users/friends_list",
+          data: {"format": "json"},
+            success: function(data){
+              friends_list = data
+              debugger
+            console.log(e.type, window.getSelection().getRangeAt(0).startOffset);
+          }
+        });
+      }
+    })
+
+  	$("#maps_for_location").click(function(){
+      $.ajax({
+        method: 'get',
+        url: '/get_ip_machine',
+        type: 'json'
+      }).always(function(data) {
+      		var lats;
+      		var lngs;
+      		jQuery.get("http://ipinfo.io/"+data["responseText"], function (response) 
+      		{ 
+      			lats = parseFloat(response.loc.split(',')[0]); 
+      		  lngs = parseFloat(response.loc.split(',')[1]);
+      		 //  map = new GMaps({ 
+      		 //  	el: '#map',
+  		  		 // 	lat: lats, //latitude 
+  		  		 // 	lng: lngs //longitude 
+      			// }); 
+      			var uluru = {lat: lats, lng: lngs};
+  		    var map = new google.maps.Map(document.getElementById('map'), {
+  		      zoom: 4,
+  		      center: uluru
+  		    });
+  		    var marker = new google.maps.Marker({
+  		      position: uluru,
+  		      map: map
+  		    });
+        	 $("#myModal").modal('toggle');
+      		}, "jsonp");
+      		
+          
+        });
+
+  		
+  	})
+  })
   
   function initMap() {
     var uluru = {lat: -25.363, lng: 131.044};
@@ -194,6 +244,24 @@ function formatState (state) {
   overflow: hidden;
   width: 100%;
   height: 300px;
+}
+
+
+
+.friend-suggest-box
+{
+  max-height: 200px;
+  overflow: hidden;
+  background: #fff;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-box-shadow: 0 1px 5px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 1px 5px rgba(0,0,0,0.3);
+  box-shadow: 0 1px 5px rgba(0,0,0,0.3);
 }
 
 

@@ -107,6 +107,13 @@ def search_movies
   end
 end
 
+def friends_list
+  friends = User.where(id: (current_user.friendlist.map(&:friend_id))).select(:first_name, :email)
+    respond_to do |format|
+      format.json { render :json => friends }
+    end
+end
+
 
  protected
   

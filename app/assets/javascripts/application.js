@@ -30,6 +30,7 @@
 //= require jquery.contextMenu
 //= require gmaps
 
+//= require plugins/jquery.caret
 
 
 //= require chat
