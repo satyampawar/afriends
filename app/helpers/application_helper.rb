@@ -13,4 +13,14 @@ module ApplicationHelper
       image_tag('/assets/user.png' ,id: id,class: class_name, width: set_width) 
     end
   end
+
+  def user_picture_url(user,id=nil,class_name=nil,set_width=nil)  
+    if user.avatar.present? 
+      user.avatar.url
+    elsif user.img_url.present? 
+      user.img_url 
+    else
+      '/assets/user.png'
+    end
+  end
 end

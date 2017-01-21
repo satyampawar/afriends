@@ -18,7 +18,6 @@
 //= require jquery.e-calendar
 //= require jquery.soulmate
 //= require jquery.jstree
-
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
 //= require jstree.min
@@ -29,14 +28,11 @@
 //= require private_pub
 //= require jquery.contextMenu
 //= require gmaps
-
-//= require plugins/jquery.caret
-
-
 //= require chat
 //= require user
-
 //= require_tree .
+
+
 // $(document).keydown(function(e){
 //     if(e.which === 123){
 //        return false;

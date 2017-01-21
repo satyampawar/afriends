@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include ApplicationHelper
 	before_filter :authenticate_user!, only: [:update_profile, :fixposition, :cover_pic, :profile_page, :user_details, :create_page]
   def update_profile
   @user_photo=User.find_by_id(current_user.id)
@@ -108,7 +109,11 @@ def search_movies
 end
 
 def friends_list
-  friends = User.where(id: (current_user.friendlist.map(&:friend_id))).select(:first_name, :email)
+  users = User.where("first_name ilike ?","#{params[:filter]}%")
+  # users = users.where("last_name ilike ?","#{params[:filter][1..params[:filter].split.count].join('')}%") if params[:filter].split[1].present?
+
+  friends = users.where("id IN (?)",current_user.friendlist.map(&:friend_id)).collect{|a| [id: a.id, name: a.first_name, image_url: user_picture_url(a,"imgss","[ img-circle pull-left ]",48), created_at: a.created_at, updated_at: a.updated_at]}.flatten
+  #friends = User.where(id: (current_user.friendlist.map(&:friend_id))).select(:first_name, :email, :id)
     respond_to do |format|
       format.json { render :json => friends }
     end

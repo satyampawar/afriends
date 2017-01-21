@@ -4,7 +4,7 @@
 		<div class="form-group">
 			<div class="col-sm-10">
 				<p class="lead emoji-picker-container">					
-					<textarea id="post_post_name" class="text_areasize text_my textarea-control form-control" name="post[post_name]"  data-emojiable="true" style="height: 100px;"></textarea placeholder="what's in your mind">
+					<textarea id="post_post_name" class="text_areasize text_my textarea-control form-control tagged_text" name="post[post_name]"  data-emojiable="true" style="height: 100px;"></textarea placeholder="what's in your mind">
 				</p>
 			</div>
 			<div class="col-sm-2">
@@ -55,11 +55,12 @@
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
-      
     </div>
   </div>
 
+
  <script>
+   $.browser = {webkit: true}
   $(document).ready(function(){
     // var friends_list
     // $.ajax({
@@ -93,25 +94,10 @@
 
     // var suggester = new $.Suggester($('.emoji-wysiwyg-editor.text_areasize.text_my.textarea-control.form-control'), friends_list);
 
- 
-
-    $(".emoji-wysiwyg-editor.text_areasize.text_my.textarea-control.form-control").on('paste copy cut keyup', function(e) {
-      pos = [],
-      lastOc = 0
-      if (e.keyCode == 50){
-         $.ajax({
-          type: "POST",
-          dataType: "JSON",
-          url: "/users/friends_list",
-          data: {"format": "json"},
-            success: function(data){
-              friends_list = data
-              debugger
-            console.log(e.type, window.getSelection().getRangeAt(0).startOffset);
-          }
-        });
-      }
-    })
+  
+    $(".emoji-wysiwyg-editor.text_areasize.text_my.textarea-control.form-control").mentionable("/friends_list.json",
+  {minimumChar: 0, parameterName: "filter"}
+);
 
   	$("#maps_for_location").click(function(){
       $.ajax({
