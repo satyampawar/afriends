@@ -12,6 +12,8 @@ class PostsController < ApplicationController
   end
 
   def create
+    debugger
+    post_params[:post_name].partition('@').last.split[0..2][0..1].join(' ')
     @post = current_user.posts.create(post_params)
       if params["post"]["photopst"]
         params["post"]["photopst"].each do |photopst|

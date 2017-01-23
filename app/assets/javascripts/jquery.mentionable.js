@@ -240,7 +240,7 @@
     if(data.length > 0){
       listSize = data.length;
       $.each(data, function(key, value){
-        userList.append("<li><img src='" + value.image_url + "' /><span>" + value.name + "</span></li>");
+        userList.append("<li><img src='" + value.image_url + "' /><span id="+value.id+">" + value.name + "</span></li>");
       });
       userList.find("li:first-child").attr("class","active");
       bindItemClicked();
@@ -269,8 +269,8 @@
     debugger
     inputText    = textArea.text();
     replacedText = replaceString(caretStartPosition, caretStartPosition +
-                                  fullCachedName.length, inputText, "@" +
-                                  userItem.find("span").html());
+                                  fullCachedName.length, inputText,"<span id="+userItem.find("span").attr('id')+"> "+
+                                  userItem.find("span").html()+" </span>");
     textArea.focus();
     textArea.text("");
     textArea.text(replacedText);
@@ -332,10 +332,38 @@
    */
   function currentCaretPosition(){
     debugger
+    // getCaretPosition(textArea)
     // caretContainer = textArea[0];
     caretContainer = textArea.text()
     // return caretContainer.selectionStart;
-    return textArea.text().length
+    return getCaretPosition(textArea)
+  }
+
+  function getCaretPosition(editableDiv) {
+    
+  var caretPos = 0,
+    sel, range;
+  if (window.getSelection) {
+    
+    sel = window.getSelection();
+    if (sel.rangeCount) {
+      range = sel.getRangeAt(0);
+      if (range.commonAncestorContainer.parentNode == editableDiv[0]) {
+        caretPos = range.endOffset;
+      }
+    }
+  } else if (document.selection && document.selection.createRange) {
+    range = document.selection.createRange();
+    if (range.parentElement() == editableDiv) {
+      var tempEl = document.createElement("span");
+      editableDiv.insertBefore(tempEl, editableDiv.firstChild);
+      var tempRange = range.duplicate();
+      tempRange.moveToElementText(tempEl);
+      tempRange.setEndPoint("EndToEnd", range);
+      caretPos = tempRange.text.length;
+    }
+  }
+    return caretPos;
   }
 
   /*
