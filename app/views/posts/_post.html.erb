@@ -43,20 +43,31 @@
                      <%end%> 
                   </div> 
                 </div>
-
                 <div class="panel-footer">
-                     <div> <%=post.likes.count%></div>
+                 <span class="like-btn"> <!-- Default like button -->
+                  <span class="like-btn-emo like-btn-default"></span> 
+                  <span class="like-btn-text">Like</span>
+                  <div> <%=post.likes.count%></div>
                     <%if !post.likes.find_by_user_id(current_user.id).present?%>
 
-                   <%=link_to "" ,user_post_likes_path(current_user,post.id),:id => "sp",class: "[ btn btn-default ] btn_new glyphicon glyphicon-heart-empty",method: :post,remote: true%> 
+                   <%=link_to "like" ,user_post_likes_path(current_user,post.id),:id => "sp",class: " like-btn-text [ btn btn-default ] btn_new glyphicon glyphicon-heart-empty",method: :post,remote: true%> 
                  
                     <%else%>
                    
                       <%@likeid=post.likes.find_by_user_id(current_user.id).id%>
                   
-                       <%=link_to "" ,user_post_like_path(current_user.id,post.id,@likeid),:id => "sp1",class: "[ btn btn-default ] btn_new glyphicon glyphicon-heart",method: :delete,remote: true%>
+                       <%=link_to "unlike" ,user_post_like_path(current_user.id,post.id,@likeid),:id => "sp1",class: "[ btn btn-default ] btn_new glyphicon like-btn-text glyphicon-heart",method: :delete,remote: true%>
 
                     <%end%>
+                    <ul class="reactions-box"> <!-- Reaction buttons container-->
+                      <li class="reaction reaction-like" data-reaction="Like"></li>
+                      <li class="reaction reaction-love" data-reaction="Love"></li>
+                      <li class="reaction reaction-haha" data-reaction="HaHa"></li>
+                      <li class="reaction reaction-wow" data-reaction="Wow"></li>
+                      <li class="reaction reaction-sad" data-reaction="Sad"></li>
+                      <li class="reaction reaction-angry" data-reaction="Angry"></li>
+                    </ul>
+                  </span>
                     <button type="button" class="[ btn btn-default ]">
                         <span class="[ glyphicon glyphicon-share-alt ]"></span>
                     </button>

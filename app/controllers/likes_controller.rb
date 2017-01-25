@@ -4,10 +4,13 @@ class LikesController < ApplicationController
   end
 
   def create
+    debugger
     @posts=Post.all.order(created_at: :desc)
-    @like = current_user.likes.new(:post_id => params["post_id"])
+    likes = current_user.likes.where(:post_id => params["post_id"]).first_or_create
+    likes.update_attributes(emotion: params[:emotions])
+    debugger
+    @like = likes
     respond_to do |format| 
-     @like.save
      format.js
     end
   end

@@ -190,8 +190,9 @@ color: white;
     font-weight: 400;
 }
 .panel-google-plus > .panel-body {
-    padding-top: 5px;
+    padding-top: 10px !important;
     font-size: 13px;
+    min-height: 54px;
 }
 .panel-google-plus > .panel-body > .panel-google-plus-image {
     display: block;
@@ -213,7 +214,7 @@ color: white;
 .panel-google-plus > .panel-footer {
     font-size: 14px;
     font-weight: 700;
-    min-height: 54px;
+    min-height: 45px;
 }
 .panel-google-plus > .panel-footer > .btn {
     float: left;
@@ -221,12 +222,11 @@ color: white;
 }
 .panel-google-plus > .panel-footer > .input-placeholder {
     display: block;
-    margin-left: 98px;
     color: rgb(153, 153, 153);
     font-size: 14px;
     font-weight: 400;
     padding: 0px 6px 7px;
-    border: 1px solid rgb(217, 217, 217);
+   
     border-radius: 2px;
     box-shadow: rgba(0, 0, 0, 0.0470588) 0px 1px 0px 0px;
 }
