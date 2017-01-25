@@ -1,4 +1,5 @@
 class WelcomeController < ApplicationController
+  include ApplicationHelper
   def index
   	@user=User.new
   	@posts=Post.all.order(created_at: :desc)

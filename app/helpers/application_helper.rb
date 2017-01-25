@@ -23,4 +23,14 @@ module ApplicationHelper
       '/assets/user.png'
     end
   end
+
+
+  def last_post(post)
+    last_post = nil
+    post_likes = post.likes.where(user_id: !current_user.id)
+    if post_likes.present? 
+      last_post = post_likes
+    end 
+    return last_post
+  end
 end

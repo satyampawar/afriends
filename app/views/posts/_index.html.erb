@@ -79,6 +79,19 @@
                     </button>
                   </div>
                     <div class="input-placeholder col-md-8">Add a comment...</div>
+                    <div class="like-stat"> <!-- Like statistic container-->
+                        <span class="like-emo"> <!-- like emotions container -->
+                           
+                            <span class="like-btn-<%= last_post(post).nil? ? 'like' : last_post(post).try(:emotion)%>"></span>
+
+                            <%if post.likes.find_by_user_id(current_user.id).present?%>
+                              <span class="like-btn-<%=@like.emotion%>"></span>
+                            <% end %>
+                             <!-- given emotions like, wow, sad (default:Like) -->
+                        </span>
+                        <%debugger%>
+                        <span class="like-details"><%= last_post(post).nil? ? 'You': last_post(post).try(:user).try(:fullname) %></span>
+                    </div>
                 </div>
                 <div class="panel-google-plus-comment">
                     <img class="img-circle" src="/assets/user.png" width="38px" alt="User Image" />

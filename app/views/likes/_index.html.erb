@@ -1,8 +1,8 @@
- <%if !post.likes.find_by_user_id(current_user.id).present?%>
-                    <h5><%=link_to "" ,user_post_likes_path(current_user,post.id),:id => "sp",class: "glyphicon glyphicon-heart-empty",method: :post,remote: true%></h5>
-                    <%else%>
-                   
-                      <%@likeid=post.likes.find_by_user_id(current_user.id).id%>
+<%if !post.likes.find_by_user_id(current_user.id).present?%>
+<h5><%=link_to "" ,user_post_likes_path(current_user,post.id),:id => "sp",class: "glyphicon glyphicon-heart-empty",method: :post,remote: true%></h5>
+<%else%>
 
-                     <%=link_to "" ,user_post_like_path(current_user.id,post.id,@likeid),:id => "sp1",class: " glyphicon glyphicon-heart",method: :delete,remote: true%>
-                    <%end%>
+  <%@likeid=post.likes.find_by_user_id(current_user.id).id%>
+
+ <%=link_to "" ,user_post_like_path(current_user.id,post.id,@likeid),:id => "sp1",class: " glyphicon glyphicon-heart",method: :delete,remote: true%>
+<%end%>
