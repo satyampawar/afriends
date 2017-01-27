@@ -5,6 +5,7 @@
     <h1><%=@reciever.fullname %> </h1>
   </div>
   <div class="chatboxoptions">
+    <%=link_to "<i class='fa fa-video-camera'></i> ".html_safe, "",class: "video_chat_url"%>
     <%= link_to "<i class='fa  fa-minus'></i> ".html_safe, "#", class: "toggleChatBox", "data-cid" => @conversation.id %>
     &nbsp;&nbsp;
     <%= link_to "<i class='fa  fa-times'></i> ".html_safe, "#", class: "closeChat", "data-cid" => @conversation.id %>

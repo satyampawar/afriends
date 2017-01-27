@@ -57,7 +57,7 @@ var ready = function () {
          */
 
         restructure: function () {
-            debugger
+            
             align = 0;
             for (x in chatBoxes) {
                 chatbox_id = chatBoxes[x];
@@ -77,7 +77,6 @@ var ready = function () {
 
 
          redesign: function (align) {
-            debugger
             for (x in chatBoxes) {
                 chatbox_id = chatBoxes[x];
 
@@ -110,6 +109,7 @@ var ready = function () {
             if ($("#chatbox_" + conversation_id).length > 0) {
                 if ($("#chatbox_" + conversation_id).css('display') == 'none') {
                 $("#chatbox_" + conversation_id).css('display', 'block');
+                 $("#chatbox_" + conversation_id+ ".chatboxhead .chatboxoptions").append("<a href='#'>fdsaf</a>")
                    if($('.chatbox').length>0)
                    {
                     debugger
@@ -127,7 +127,7 @@ var ready = function () {
             }
 
             $("body").append('<div id="chatbox_' + conversation_id + '" class="chatbox"></div>')
-
+             $("#chatbox_" + conversation_id+ ".chatboxhead .chatboxoptions").append("<a href='#'>fdsaf</a>")
             $.get("conversations/" + conversation_id, function (data) {
                 $('#chatbox_' + conversation_id).html(data);
                 $("#chatbox_" + conversation_id + " .chatboxcontent").scrollTop($("#chatbox_" + conversation_id + " .chatboxcontent")[0].scrollHeight);
@@ -189,6 +189,8 @@ var ready = function () {
             });
 
             $("#chatbox_" + conversation_id).show();
+            debugger
+            $('#chatbox_'+conversation_id+'.chatboxoptions').prepend('<a href="#"><i class="fa fa-video-camera" aria-hidden="true"></i></a>')
 
         },
 
