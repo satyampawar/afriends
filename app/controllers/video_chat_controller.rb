@@ -1,0 +1,2 @@
+class VideoChatController < ApplicationController
+end

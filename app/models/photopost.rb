@@ -8,9 +8,10 @@ class Photopost < ActiveRecord::Base
 	belongs_to :post
 	accepts_nested_attributes_for :post;
 
-
+ 
 	has_attached_file :photopst, 
-	 styles: { original: "700x700>" }, default_url: "/images/:style/missing.png",
+	 styles: { original: "700x700>" }, default_url: "/images/:style/missing.png" 
+	 validates_attachment_content_type :photopst, content_type: /\Aimage\/.*\Z/,
     :storage => :google_drive,
     :google_drive_credentials => "#{Rails.root}/config/google_drive.yml",
       :google_drive_options => {
