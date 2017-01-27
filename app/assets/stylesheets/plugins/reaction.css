@@ -262,19 +262,23 @@
 .like-btn-text-angry{
   color:rgb(247, 113, 75);
 }
+.like-emo
+{
+  margin: -10px;
+}
 
 .like-emo > span{
     display: inline-block;
-    margin: 3px -14px -4px 15px;
-    width: 16px;
-    height: 16px;
+    margin: 3px -14px -4px 11px;
+    width: 18px;
+    height: 18px;
     border: 1px solid #EEE;
     border-radius: 50%;
 
 }
 
 .like-details{
-  margin-left:18px;
+  margin-left:23px;
   color:#9197a3;
   font-size:12px;
 }

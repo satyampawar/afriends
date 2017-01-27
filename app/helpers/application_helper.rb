@@ -27,10 +27,17 @@ module ApplicationHelper
 
   def last_post(post)
     last_post = nil
-    post_likes = post.likes.where(user_id: !current_user.id)
+    post_likes = post.likes.where.not(user_id: current_user.id)
     if post_likes.present? 
-      last_post = post_likes
+      last_post = post_likes.first
     end 
+    
     return last_post
+  end
+
+  def current_user_like(post)
+    cu_like = nil
+    cu_like = post.likes.find_by_user_id(current_user.id)  
+    return cu_like
   end
 end
