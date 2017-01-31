@@ -1,0 +1,6 @@
+<%=@page.title%>
+
+<% case @page.page_type %>
+<% when "inst" %>
+	<%= render "pages/show_page_institute" %>
+<% end %>

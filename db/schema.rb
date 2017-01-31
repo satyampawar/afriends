@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(version: 20170125081559) do
     t.string   "page_type"
     t.integer  "user_id"
     t.string   "title"
+    t.boolean  "is_publish"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -202,7 +203,6 @@ ActiveRecord::Schema.define(version: 20170125081559) do
     t.string   "provider"
     t.string   "uid"
     t.datetime "last_seen"
-    t.string   "user_token"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

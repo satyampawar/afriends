@@ -14,7 +14,7 @@
       </span>
     </div>
     <div class="panel-body">
-      <%= form_tag create_page_path, method: :get, multipart: true do%>
+      <%= form_tag user_pages_path, multipart: true do%>
         <div class="tab-content">
           <!-- <input id="address12" type="textbox" value="Sydney, NSW"> -->
           <!-- <input type="button" value="Get Addrss" onclick="codeAddress()"> -->
@@ -40,6 +40,7 @@
                 <%= hidden_field_tag :formatted_address, nil %>
                 <%= hidden_field_tag :lats, nil %>
                 <%= hidden_field_tag :longs, nil %>
+                <%= hidden_field_tag :page_type, nil %>
               </div>
               <div class="col-md-4">
                 <%= link_to "Find", "javascript:void(0)", :onclick => 'codeAddress()', :class => 'btn btn-primary' %>
@@ -260,6 +261,7 @@
         google.maps.event.trigger(marker, 'click');
         $("#lats").val(marker["position"].toUrlValue().split(',')[0]);
         $("#longs").val(marker["position"].toUrlValue().split(',')[1]);
+        $("#page_type").val("inst");
         $("#formatted_address").val($("#address").val())
       } else {
         alert('Geocode was not successful for the following reason: ' + status);
