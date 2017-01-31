@@ -35,19 +35,23 @@ Licensed under MIT
 </div>
 <%end%>
 <script>
+ post_tree();
 $(document).ready(function(){
-	post_tree();
+  post_tree();
   setInterval(function(){get_last_seen();}, 10000);
  
 });
 
 function post_tree()
 {
-		debugger
-	$('#post_tree').jstree({
-	
+	var lastOpenedNode = {
+		value: 'post_<%=@post.id%>'
+	}
+   $('#post_tree').on('ready.jstree', function () {
+        $("#post_tree").jstree()._open_to( lastOpenedNode.value );
+    }).jstree({
     core: {
-      data: <%= @post.structure_json.html_safe %>,
+      data: <%= raw @post.structure_json %>,
       check_callback: true
       // data: [{"id":"post_179","parent":"#","text":"rgdgds","icon":"fa fa-square","type":"post_name"}],
     

@@ -7,7 +7,7 @@
                         <span class="[ glyphicon glyphicon-chevron-down ]"></span>
                     </span>
                     <ul class="dropdown-menu" role="menu">
-                        <li role="presentation"><%= link_to "view post", user_post_path(post.user, post)%><</li>
+                        <li role="presentation"><%= link_to "view post", user_post_path(post.user, post)%></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
                         <li role="presentation" class="divider"></li>
@@ -79,18 +79,24 @@
                     </button>
                   </div>
                     <div class="input-placeholder col-md-8">Add a comment...</div>
-                    <div class="like-stat"> <!-- Like statistic container-->
+                    <div class="like-stat">
+                        <span><%=post.likes.count%></span>
+                     <!-- Like statistic container-->
                         <span class="like-emo"> <!-- like emotions container -->
-                           
-                            <span class="like-btn-<%= last_post(post).nil? ? 'like' : last_post(post).try(:emotion)%>"></span>
+                           <%unless last_post(post).nil?%>
+                                <span class="like-btn-<%=last_post(post).try(:emotion)%>"></span>
+                            <% end %>
 
                             <%if post.likes.find_by_user_id(current_user.id).present?%>
                               <span class="like-btn-<%=@like.emotion%>"></span>
                             <% end %>
                              <!-- given emotions like, wow, sad (default:Like) -->
                         </span>
-                        <%debugger%>
-                        <span class="like-details"><%= last_post(post).nil? ? 'You': last_post(post).try(:user).try(:fullname) %></span>
+                        <%if post.likes.present?%>
+                            <span class="like-details"><%= last_post(post).nil? ? 'You': (current_user_like(post).nil? ? last_post(post).try(:user).try(:fullname) : "You & "+last_post(post).try(:user).try(:fullname))%></span>
+                        <%else%>
+                         <span class="like-details">No likes</span>
+                        <%end%>
                     </div>
                 </div>
                 <div class="panel-google-plus-comment">
