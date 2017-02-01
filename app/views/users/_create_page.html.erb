@@ -70,6 +70,15 @@
           <div class="tab-pane" id="tab3">
             <div class="form-group">
               <div class="col-md-8" style="margin-left: -15px;">
+                <%= hidden_field_tag :movie_id, nil%>
+                <%= hidden_field_tag :title, nil %>
+                <%= hidden_field_tag :plot_summary, nil %>
+                <%= hidden_field_tag :poster_url, nil %>
+                <%= hidden_field_tag :video_url, nil %>
+                <%= hidden_field_tag :rating, nil %>
+                <%= hidden_field_tag :director, nil %>
+                <%= hidden_field_tag :year, nil %>
+                <%= hidden_field_tag :release_date, nil %>
                 <%= text_field_tag :movie_name, nil, :placeholder => 'Movie Name', :class => 'form-control' %>
               </div>
               <div class="col-md-4">
@@ -181,6 +190,32 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJho-K64WJTAuK9qZFV2-aqvUCDx5K8uI"></script>
 
 <script type="text/javascript">
+
+function setValue(id){
+  var plot_summary = $("#psm_"+id).val()
+  var image_url = $("#img_"+id).val()
+  var video_url = $("#video_"+id).val()
+  var title = $("#title_"+id).val()
+  var rating = $("#rating_"+id).val()
+  var director = $("#director_"+id).val()
+  var year = $("#year_"+id).val()
+  var votes = $("#votes_"+id).val()
+  var release_date = $("#release_date_"+id).val()
+  debugger
+  $("#movie_id").val(id)
+  $("#plot_summary").val(plot_summary)
+  $("#poster_url").val(image_url)
+  $("#video_url").val(video_url)
+  $("#title").val(title)
+  $("#rating").val(rating)
+  $("#director").val(director)
+  $("#year").val(year)
+  $("#votes").val(votes)
+  $("#release_date").val(release_date)
+  $("#page_type").val("movi")
+}
+
+
   var geocoder;
   var map;
   var marker;

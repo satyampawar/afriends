@@ -1,10 +1,13 @@
 class PagesController < ApplicationController
 	before_action :nav_content , only: :show
 	def create
+		debugger
 		page_type = params[:page_type]
 		case page_type
 		when "inst"
 			inst_page params
+		when "movi"
+			movie_page params
 		end
 		redirect_to user_page_path(@main_page)
 	end
@@ -22,6 +25,17 @@ class PagesController < ApplicationController
 			@second_page = page.build_page_institute page_params
 			@second_page.save
 		end
+	end
+
+	def movie_page params
+		debugger
+		# @main_page = Page.new(user_id: params[:user_id], page_type: params[:page_type],title: params[:title])
+		# if @main_page.save
+		# 	page_params = {url: string, imdb_id: integer, page_id:}
+		# 	# debugger
+		# 	@second_page = page.build_page_institute page_params
+		# 	@second_page.save
+		# end
 	end
 
 	def nav_content
