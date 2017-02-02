@@ -78,16 +78,25 @@ ActiveRecord::Schema.define(version: 20170125081559) do
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
+    t.string   "about"
+    t.string   "country"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
 
   create_table "page_movies", force: :cascade do |t|
-    t.string   "url"
-    t.integer  "imdb_id"
+    t.integer  "movie_id"
+    t.string   "title"
+    t.string   "plot_summary"
+    t.string   "video_url"
+    t.string   "poster_url"
+    t.string   "director"
+    t.decimal  "rating"
+    t.string   "year"
+    t.string   "release_date"
     t.integer  "page_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "pages", force: :cascade do |t|
