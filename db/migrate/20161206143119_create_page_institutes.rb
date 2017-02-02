@@ -6,6 +6,8 @@ class CreatePageInstitutes < ActiveRecord::Migration
       t.text :address
       t.references :page
       t.attachment :picture
+      t.string :about
+      t.string :country
 
       t.timestamps null: false
     end

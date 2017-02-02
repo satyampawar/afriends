@@ -94,13 +94,20 @@ def search_movies
     http = Net::HTTP.new(URI.parse(f.url).host, URI.parse(f.url).port)
     request = Net::HTTP::Get.new(URI.parse(f.url).request_uri)
     response = http.request(request)
+    video_id = response.body.split.collect{|a| a.include?('data-video') ? a:nil }.compact.first.split("=").second.gsub("\"","") rescue nil
+
     image_url = URI.extract(response.body).collect{|a| a.include?('.jpg') ? a.include?('amazon') ? a: nil : nil}.compact.first
+    video_url = video_id.present? ? "http://www.imdb.com/title/tt#{f.id}/videoplayer/#{video_id}?ref_=tt_ov_vi" : nil
+    # extra_data = {'title'=> f.title,'rating' => f.rating ,'director' => f.director,'year' => f.year, 'votes' => f.votes, 'release_date' => f.release_date}
       [
         "<img src= #{image_url} width='120px' height='120px'>",
         f.title,
         f.rating,
-        "<input type='radio' name='movies' class='radio-btn' value='#{f.id}'>"
-        
+        "<input type='radio' name='movies' class='radio-btn' onclick='setValue(#{f.id})' value='#{f.id}'><input type='hidden' id='psm_#{f.id}' name='plot_summary' value='#{f.plot_summary}'>
+        <input type='hidden' id='img_#{f.id}' name='image_url' value='#{image_url}'><input type='hidden' id='video_#{f.id}' name='video_url' value='#{video_url}'>
+         <input type='hidden' id='title_#{f.id}' name='title' value='#{f.title}'><input type='hidden' id='rating_#{f.id}' name='rating' value='#{f.rating}'>
+          <input type='hidden' id='director_#{f.id}' name='director' value='#{f.director}'><input type='hidden' id='year_#{f.id}' name='year' value='#{f.year}'>
+           <input type='hidden' id='votes_#{f.id}' name='votes' value='#{f.votes}'><input type='hidden' id='release_date_#{f.id}' name='release_date' value='#{f.release_date}'>"
       ]}
     render :json => data
   else

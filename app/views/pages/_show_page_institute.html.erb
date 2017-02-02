@@ -1,0 +1,67 @@
+<div id="piku" style="margin-top: 80px;  margin-left:255px;">
+<div class="main" style="width: 39% ">
+	The CSS tag 'margin' is actually a shorthand for the four separate margin values, top/left/bottom/right. Use css('marginTop') , etc. - note they will have 'px' on the end if you have specified them that way. Use parseInt() around the result to turn it in to the number value. NB.Nov 18, 2010
+css - get the margin size of an element with jquery - Stack Overflow
+stackoverflow.com/questions/4219534/get-the-margin-size-of-an-element-with-jquery
+Feedback
+About this result • 
+css - get the margin size of an element with jquery - Stack Overflow
+stackoverflow.com/questions/4219534/get-the-margin-size-of-an-element-with-jquery
+Nov 18, 2010 - The CSS tag 'margin' is actually a shorthand for the four separate margin values, top/left/bottom/right. Use css('marginTop') , etc. - note they will have 'px' on the end if you have specified them that way. Use parseInt() around the result to turn it in to the number value. NB.
+jQuery How to Get Element's Margin and Padding? - Stack Overflow
+stackoverflow.com/questions/.../jquery-how-to-get-elements-margin-and-padding
+Sep 14, 2011 - Border. I believe you can get the border width using .css('border-left-width') . You can also fetch top, right, and bottom and compare them to find the max value. Padding. See jQuery calculate padding-top as integer in px. Margin. Use the same logic as border or padding. Alternatively, you could use outerWidth.
+jquery - Get margin top with JavaScript - Stack Overflow
+stackoverflow.com/questions/17884653/get-margin-top-with-javascript/17884819
+Jul 26, 2013 - I need to get margin-top of an input with JavaScript. This is the jQuery ... possible duplicate of get Margins from a div javascript ...
+CSS Margin - W3Schools
+www.w3schools.com/css/css_margin.asp
+With CSS, you have full control over the margin
+</div>
+<%1.upto(5) do |i|%>
+<div class="set st_<%=i%>" style="margin-top: 10px; width: 39%; background: yellowgreen;
+}"><%=i%></div>
+<%end%>
+</div>
+<button onclick="brew()">check itc</button>
+
+<script type="text/javascript">
+function brew(){
+var a = $(".set")
+$(".set").remove()
+var len = $(".set").length
+var b=null;
+var arry = []
+var main_height = -$(".main").height()+80
+var main_height = main_height
+	$.each(a,function(e){  
+		debugger
+	 b = $(this).css({"margin-top": b==null ? main_height+"px" : parseInt($(b).css("marginTop").split("px")[0])+80+"px", "position":"absolute"})
+	 $(b).css("marginTop")
+	 arry.push(b)
+	})
+	$.each(arry,function(){
+		$("#piku").append(this)
+	})
+}
+</script>
+
+
+<!-- <script type="text/javascript">
+function brew(){
+var a = $(".set")
+$(".set").remove()
+var len = $(".set").length
+var b=null;
+var arry = []
+	$.each(a,function(e){  
+		debugger
+	 b = $(this).css("top",b==null ? "25px" : parseInt(b.style.top.split("px")[0])+25+"px")[0]
+	 b.style.top
+	 arry.push(b)
+	})
+	$.each(arry,function(){
+		$("#piku").append(this)
+	})
+}
+</script> -->
