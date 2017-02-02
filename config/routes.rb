@@ -64,6 +64,8 @@ mount Soulmate::Server, :at => "/autocomplete"
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+  match '/setting_up/:id', :to => "video_chat#setting_up", :as => :setting_up, :via => :get
+
    root 'welcome#index'
    resources :phone_numbers, only: [:new, :create]
   get '/change_emotion' => "welcome#change_emotion" , as: :change_emotion

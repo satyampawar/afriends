@@ -5,7 +5,7 @@
     <h1><%=@reciever.fullname %> </h1>
   </div>
   <div class="chatboxoptions">
-    <%=link_to "<i class='fa fa-video-camera'></i> ".html_safe, "",class: "video_chat_url"%>
+    <%=link_to "<i class='fa fa-video-camera'></i> ".html_safe,setting_up_path(@reciever.id),class: "video_chat_url"%>
     <%= link_to "<i class='fa  fa-minus'></i> ".html_safe, "#", class: "toggleChatBox", "data-cid" => @conversation.id %>
     &nbsp;&nbsp;
     <%= link_to "<i class='fa  fa-times'></i> ".html_safe, "#", class: "closeChat", "data-cid" => @conversation.id %>
@@ -24,8 +24,6 @@
 
 <%= subscribe_to conversation_path(@conversation) %>
 
-
 <script type="text/javascript">
-  
-  
 </script>
+<script src="https://static.opentok.com/v2/js/TB.min.js" type="text/javascript"></script>
