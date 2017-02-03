@@ -183,11 +183,13 @@ $(document).ready(function(){
 	
 $('#emotion').change(function(){ 
 	var value =  this.value;
+  debugger
  $.ajax
  ({
     method : "get",
-    url :  '<%= change_emotion_path %>',
-    data: {emo_id: value , stage: '1'},
+    url :  ($('#emotion :selected').first().attr("data") == "2") ? '<%= second_change_emotion_path %>' : '<%= change_emotion_path %>',
+   
+    data:  ($('#emotion :selected').first().attr("data") == "2") ? {emo_id: value , parent_stage: "2"} : {emo_id: value , stage: "1"} 
  //    contentType: false,               
 	// processData: false, 
 

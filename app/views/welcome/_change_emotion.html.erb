@@ -1,0 +1,5 @@
+<% results.each do |result| %>
+
+    <option value="<%= result.page_movie.id %>" data="2">
+    <%= image_tag(result.page_movie.poster_url) %><%= result.page_movie.title %></option>
+<% end %>

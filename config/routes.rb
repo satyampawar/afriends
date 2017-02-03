@@ -69,6 +69,7 @@ mount Soulmate::Server, :at => "/autocomplete"
    root 'welcome#index'
    resources :phone_numbers, only: [:new, :create]
   get '/change_emotion' => "welcome#change_emotion" , as: :change_emotion
+  get '/second_change_emotion' => "welcome#second_change_emotion" , as: :second_change_emotion
   get '/who_is_online' => "welcome#who_is_online" , as: :who_is_online
   get '/search_user' => "welcome#search_user" , as: :search_user
   get '/get_ip_machine' => "welcome#get_ip_machine" , as: :get_ip_machine

@@ -106,7 +106,7 @@ def search_movies
         "<input type='radio' name='movies' class='radio-btn' onclick='setValue(#{f.id})' value='#{f.id}'><input type='hidden' id='psm_#{f.id}' name='plot_summary' value='#{f.plot_summary}'>
         <input type='hidden' id='img_#{f.id}' name='image_url' value='#{image_url}'><input type='hidden' id='video_#{f.id}' name='video_url' value='#{video_url}'>
          <input type='hidden' id='title_#{f.id}' name='title' value='#{f.title}'><input type='hidden' id='rating_#{f.id}' name='rating' value='#{f.rating}'>
-          <input type='hidden' id='director_#{f.id}' name='director' value='#{f.director}'><input type='hidden' id='year_#{f.id}' name='year' value='#{f.year}'>
+          <input type='hidden' id='director_#{f.id}' name='director' value='#{f.director.first}'><input type='hidden' id='year_#{f.id}' name='year' value='#{f.year}'>
            <input type='hidden' id='votes_#{f.id}' name='votes' value='#{f.votes}'><input type='hidden' id='release_date_#{f.id}' name='release_date' value='#{f.release_date}'>"
       ]}
     render :json => data

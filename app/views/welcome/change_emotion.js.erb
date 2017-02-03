@@ -1,10 +1,2 @@
-$('#emotion').html('')
-// $(".js-example-basic-multiple-limit").select2({
-//   maximumSelectionLength: 2
-// });
-// $(".js-example-basic-hide-search").select2({
-//   minimumResultsForSearch: Infinity
-// });
-var results = "<%= @results %>"
-debugger
-$('#emotion').select2({data: results.replace(/&quot;/g, '\\"').replace(/&gt;/g,'\\<').replace(/&lt;/g, '\\>') });
+$('#emotion').empty().append("<%= escape_javascript(render :partial => '/welcome/change_emotion', :locals => {:results => @results}) %>")
+

@@ -1,5 +1,6 @@
 class WelcomeController < ApplicationController
   include ApplicationHelper
+  include PagesHelper
   def index
   	@user=User.new
   	@posts=Post.all.order(created_at: :desc)
@@ -77,7 +78,7 @@ def change_emotion
 	@results = [{ id: 0, text: 'enhancement' }, { id: 1, text: 'bug' }, { id: 2, text: 'duplicate' }];
 	# @results = JSON.parse(@results)
  when 2
-  "It's 6"
+  @results = current_user.pages.flatten
  when 3
   "You passed a string"
  else
@@ -86,6 +87,20 @@ def change_emotion
  respond_to do |format|
     format.js
   end
+end
+
+def second_change_emotion
+  debugger
+  emotion = params[:emo_id]
+  statge =   params[:parent_stage].to_i
+  case statge
+  when 2
+    @results = ["1","Inox Indore"]
+  end
+  respond_to do |format|
+    format.js
+  end
+
 end
 
 def create_page
