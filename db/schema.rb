@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170127175211) do
+ActiveRecord::Schema.define(version: 20170204110726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,6 +136,18 @@ ActiveRecord::Schema.define(version: 20170127175211) do
     t.boolean  "hide"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+  end
+
+  create_table "post_events", force: :cascade do |t|
+    t.integer  "post_id"
+    t.integer  "page_id"
+    t.string   "event_type"
+    t.string   "event_string"
+    t.string   "event_stage1"
+    t.string   "event_stage2"
+    t.string   "event_stage3"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "posts", force: :cascade do |t|

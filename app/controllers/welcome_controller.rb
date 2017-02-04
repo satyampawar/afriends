@@ -67,6 +67,7 @@ end
 
 def change_emotion
   emotion = params[:emo_id].to_i
+
   @results = [];
   case emotion
  when 1
@@ -76,13 +77,17 @@ def change_emotion
 	# ["sad", 3, {"data-currency_code"=>"jain"}]]
 
 	@results = [{ id: 0, text: 'enhancement' }, { id: 1, text: 'bug' }, { id: 2, text: 'duplicate' }];
-	# @results = JSON.parse(@results)
+	@stage_1=nil
+  # @results = JSON.parse(@results)
  when 2
   @results = current_user.pages.flatten
+  @stage_1 = "Watching movie .."
  when 3
   "You passed a string"
+  @stage_1 =nil
  else
   "You gave me #{a} -- I have no idea what to do with that."
+  @stage_1 =nil
  end
  respond_to do |format|
     format.js
@@ -90,11 +95,12 @@ def change_emotion
 end
 
 def second_change_emotion
-  debugger
+  
   emotion = params[:emo_id]
-  statge =   params[:parent_stage].to_i
-  case statge
+  @statge =   params[:parent_stage].to_i
+  case @statge
   when 2
+    @movie = PageMovie.find(params[:emo_id])
     @results = ["1","Inox Indore"]
   end
   respond_to do |format|

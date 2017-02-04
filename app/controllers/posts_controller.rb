@@ -22,6 +22,11 @@ class PostsController < ApplicationController
         @post.photoposts.create(:photopst => photopst)
         end       
       end
+      if params['event_type']
+       post_event_params =  {page_id: params[:page_id],event_string: params[:event_string], event_type: params[:event_type] ,event_stage1: params[:event_stage1],event_stage2: params[:event_stage2],event_stage3:  params[:event_stage3]}
+        @post_event = @post.build_post_event post_event_params
+        @post_event.save
+      end
     if request.xhr?
       respond_to do |format|
         format.js

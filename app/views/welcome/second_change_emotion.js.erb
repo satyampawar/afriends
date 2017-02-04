@@ -1,2 +1,28 @@
 $('#emotion').empty().append("<%= escape_javascript(render :partial => '/welcome/second_change_emotion', :locals => {:results => @results}) %>")
+debugger
+switch('<%=@statge.to_i%>')
+{
+	case '2':
+  $("#show-emotion").append("<%=@movie.title %>")
+	$('#emotion').parent().append('<input type="text" id="address" style="width: 457px;"></input>')
+	$('#emotion').hide()
+	$("#s2id_emotion").hide()
+	var autocomplete = new google.maps.places.Autocomplete($("#address")[0], {});
+	google.maps.event.addListener(autocomplete, 'place_changed', function() {
+	    var place = autocomplete.getPlace();
+	    debugger
+	    $("#show-emotion").append(' at <i class="fa fa-map-marker" aria-hidden="true" style="font-size: 18px !important;"></i> '+$("#address").val())
+			$("#page_id").val("<%=@movie.id %>")
+			$("#event_string").val($("#show-emotion"))
+			$("#event_type").val('watching')
+			$("#event_stage1").val('watching')
+			$("#event_stage2").val("<%=@movie.title %>")
+			$("#event_stage3").val($("#address").val())
+
+ 	});
+  break;
+}
+
+
+
 
