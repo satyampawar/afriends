@@ -25,6 +25,7 @@
                 <div class="panel-heading">
                   <%= user_picture(post.user,"imgss","[ img-circle pull-left ]",48) %>
                     <h3><%=post.user.fullname%></h3>
+                    
                     <h5><span>Shared publicly</span> - <span>
                     <%= time_ago_in_words(post.created_at) %> ago</span> </h5>
                 </div>

@@ -5,4 +5,5 @@ class PageInstitute < ActiveRecord::Base
     :url => "/system/:class/:id/:basename.:extension"
 
 	belongs_to :page
+	belongs_to :post_event
 end

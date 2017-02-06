@@ -190,7 +190,7 @@ var ready = function () {
 
             $("#chatbox_" + conversation_id).show();
             debugger
-            $('#chatbox_'+conversation_id+'.chatboxoptions').prepend('<a href="#"><i class="fa fa-video-camera" aria-hidden="true"></i></a>')
+            // $('#chatbox_'+conversation_id+'.chatboxoptions').prepend('<a href="#"><i class="fa fa-video-camera" aria-hidden="true"></i></a>')
 
         },
 

@@ -65,7 +65,7 @@ mount Soulmate::Server, :at => "/autocomplete"
 
   # You can have the root of your site routed with "root"
   match '/setting_up/:id', :to => "video_chat#setting_up", :as => :setting_up, :via => :get
-
+  match '/party/:id', :to => "video_chat#party", :as => :party, :via => :get
    root 'welcome#index'
    resources :phone_numbers, only: [:new, :create]
   get '/change_emotion' => "welcome#change_emotion" , as: :change_emotion

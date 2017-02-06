@@ -9,7 +9,8 @@ ruby "2.2.4"
 gem 'pg'
 
 gem 'gemoji'
-gem "opentok"
+ gem "opentok", "~> 2.3"
+gem 'httparty'
 gem 'rack-contrib'
 gem 'soulmate', :require => 'soulmate/server'
 gem 'twilio-ruby', '~> 4.1.0'

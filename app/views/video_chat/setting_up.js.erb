@@ -7,7 +7,7 @@ var modal = document.getElementById('video_chat_modal');
 var span = document.getElementsByClassName("close")[0];
 
 
-    $(modal).attr('style','display: block')
+ $(modal).attr('style','display: block')
 
  modal.style.display = "block";
 // When the user clicks on <span> (x), close the modal
@@ -22,25 +22,22 @@ window.onclick = function(event) {
     }
 }
 
-debugger
 $('#video_chat_modal .modal-body').html("<%= j(render(:partial => 'video_chat/setting_up')) %>");
 
 
+var apiKey =  "45756982";
+  var sessionId = "<%= @vid.token_base %>";
+  var token = "<%= @tok_token %>";
 
-
-	var apiKey =  45756982;
-	var sessionId = "<%= @vid.token_base %>";
-	var token = "<%= @tok_token %>";
-
-	var session;
+  var session;
         
 
-//	TB.addEventListener('exception', exceptionHandler);
-	
+//  TB.addEventListener('exception', exceptionHandler);
+  
 
-	//Video chat event listeners
-	//session.addEventListener('sessionConnected', sessionConnectedHandler);
-	//session.addEventListener('streamCreated', streamCreatedHandler);
+  //Video chat event listeners
+  //session.addEventListener('sessionConnected', sessionConnectedHandler);
+  //session.addEventListener('streamCreated', streamCreatedHandler);
     //session.addEventListener('streamDestroyed', streamDestroyedHandler);
 
 
@@ -75,10 +72,10 @@ TB.setLogLevel(TB.DEBUG);
 
         // Create the div to put the subscriber element in to
         var div = document.createElement('div');
-        div.setAttribute('id', 'stream' + streams[i].streamId);
-        document.body.appendChild(div);
+        modal.setAttribute('id', 'stream' + streams[i].streamId);
+       
 
         // Subscribe to the stream
-        session.subscribe(streams[i], div.id);
+        session.subscribe(streams[i], modal.id);
       }
     }
