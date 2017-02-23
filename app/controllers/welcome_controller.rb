@@ -2,12 +2,14 @@ class WelcomeController < ApplicationController
   include ApplicationHelper
   include PagesHelper
   include PostHelper
+  include NotificationsHelper
   def index
   	@user=User.new
   	@posts=Post.all.order(created_at: :desc)
   	@post=Post.new
   	@friendreq=Friendlog.where(:friend_id => current_user).where(:status => "req") 
   	@friendlist=current_user.friendlist if user_signed_in?
+    @notifications = current_user.notifications if user_signed_in?
 
     s = @friendlist.map(&:friend_id)
     

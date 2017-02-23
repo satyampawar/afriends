@@ -57,6 +57,7 @@ class PostsController < ApplicationController
     @find_friends = User.where(id: f_f_id)
     @tags = Tag.where(post_id: params[:id])
     @tag_users = @tags.collect{|k| User.where(id: k.tag_user_id)}.flatten
+     @notifications = current_user.notifications if user_signed_in?
 
   end
 
