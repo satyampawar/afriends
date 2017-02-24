@@ -1,3 +1,10 @@
 $("#posts").html("<%= j(render(:partial => 'posts/index')) %>");
  twemoji.size = '16x16';
  twemoji.parse(document.body);
+<% publish_to "/satyam" do %>
+  $.ajax({
+    type: "get",
+    url: "/count_notifications",
+    data_type: 'js'
+    })
+<%end%>

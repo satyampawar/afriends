@@ -86,6 +86,9 @@ mount Soulmate::Server, :at => "/autocomplete"
 
   post 'phone_numbers/verify' => "phone_numbers#verify"
   get '/:user_id/profile-page' => 'users#profile_page' ,as: :user_profile
+  get '/count_notifications' => 'notifications#count_notifications' ,as: :count_notifications
+  get '/birthday_notification' => 'notifications#birthday_notification' ,as: :birthday_notification
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

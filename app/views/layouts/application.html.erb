@@ -14,6 +14,7 @@
       type="image/png" 
       href="/assets/add.png">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
 <!--      // <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3&amp;sensor=false"></script> -->
 
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>    
@@ -27,7 +28,7 @@
   </span>
 </div>
 <%= yield %>
-
+  <%= subscribe_to "/satyam" %>
 <audio id="chatAudio"><source src="/sounds/notification.mp3" type="audio/mpeg"></audio>
 <div id="video_chat_modal" style="display:none">
   <div class="modal-content">
