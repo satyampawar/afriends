@@ -1,6 +1,18 @@
 <% @notifications.each do |notific| %>
   <%case notific.notification_type %>
     <%when "notification_tag"%>
-     <%= notification_tag_helper(notific)%>
+     	<%= notification_tag_helper(notific)%>
+    <%when "notification_like"%>
+    	<%= notification_like_helper(notific)%>
+    <%when "notification_birthday"%>
+      <%= notification_birthday_helper(notific)%>
   	<%end%>
 <%end%>
+
+<script type="text/javascript">
+	function PostShow(userid, postid, notifid)
+	{
+		debugger
+		 window.location.href = '/users/'+userid+'/posts/'+postid+'?notific='+notifid;
+	}
+</script>

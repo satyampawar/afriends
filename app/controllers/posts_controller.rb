@@ -4,7 +4,8 @@ class PostsController < ApplicationController
   include LastSeenUser
   include ApplicationHelper
 
-  before_action :show_all_post 
+  before_action :show_all_post
+  before_action :set_notification, :only => :show 
 
   def new
   end
@@ -63,6 +64,12 @@ class PostsController < ApplicationController
 
   def show_all_post 
      @posts=Post.all.order(created_at: :desc)
+  end
+
+  def set_notification
+    if params[:notific].present?
+     Notification.find(params[:notific]).update(is_read: true)
+    end
   end
 
   protected
