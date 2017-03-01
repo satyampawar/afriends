@@ -34,9 +34,7 @@
 <ul class="nav navbar-nav navbar-right">
 	<li id="notification_li">
 		<%if user_signed_in?%>
-			<%if @friendreq.count>0%>
-				<span id="notification_count"><%=@friendreq.count%></span>
-			<%end%>
+				<span id="notification_count"><%=@notifications.count%></span>
 			<a href="#" id="notificationLink">Notifications</a>
 		<%end%>
 		<div id="notificationContainer">
@@ -53,6 +51,7 @@
               <hr> 
              </div>
             <%end%>
+            <%= render 'notifications/index' %>
           <%end%> 
 				</div>
 				<div id="notificationFooter"><a href="#">See All</a></div>

@@ -65,10 +65,11 @@ mount Soulmate::Server, :at => "/autocomplete"
 
   # You can have the root of your site routed with "root"
   match '/setting_up/:id', :to => "video_chat#setting_up", :as => :setting_up, :via => :get
-
+  match '/party/:id', :to => "video_chat#party", :as => :party, :via => :get
    root 'welcome#index'
    resources :phone_numbers, only: [:new, :create]
   get '/change_emotion' => "welcome#change_emotion" , as: :change_emotion
+  get '/second_change_emotion' => "welcome#second_change_emotion" , as: :second_change_emotion
   get '/who_is_online' => "welcome#who_is_online" , as: :who_is_online
   get '/search_user' => "welcome#search_user" , as: :search_user
   get '/get_ip_machine' => "welcome#get_ip_machine" , as: :get_ip_machine
@@ -85,6 +86,9 @@ mount Soulmate::Server, :at => "/autocomplete"
 
   post 'phone_numbers/verify' => "phone_numbers#verify"
   get '/:user_id/profile-page' => 'users#profile_page' ,as: :user_profile
+  get '/count_notifications' => 'notifications#count_notifications' ,as: :count_notifications
+  get '/birthday_notification' => 'notifications#birthday_notification' ,as: :birthday_notification
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

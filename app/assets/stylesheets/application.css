@@ -204,7 +204,7 @@ width: 322px;
 border-bottom: 1px solid #dddddd;
 }
 #notificationsBody {
-padding: 33px 0px 0px 0px !important;
+/*padding: 11px 23px 0px 23px !important;*/
 min-height:300px;
 }
 #notificationFooter {
@@ -219,12 +219,12 @@ border-top: 1px solid #dddddd;
   background: none repeat scroll 0 0 #CC0000;
   border-radius: 9px 9px 9px 9px;
   color: #FFFFFF;
-  font-size: 11px;
+  font-size: 9px;
   font-weight: bold;
-  margin-left: 103px;
-  margin-top: 6px;
+  margin-top: 8px;
   padding: 3px 7px;
   position: absolute;
+  margin-left: 93px;
 }
 #notificationFooter {
   background-color: #008080;
@@ -929,6 +929,16 @@ ul.labels-info li a:hover, ul.labels-info li a:focus {
 {
       border: 1px solid teal !important;
       background-color: teal !important;
+}
+.ntf-read
+{
+  background-color: white;
+  padding: 10px 25px 7px 9px !important;
+}
+.ntf-not-read
+{
+  background-color: rgba(0, 128, 128, 0.4);
+  padding: 10px 25px 7px 9px !important;
 }
 /*.select2-container {
     margin: 0;

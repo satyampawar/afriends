@@ -93,7 +93,7 @@ color: white;
 
 .thumbnail {
   max-width: 33.333%;
-  min-width: 25%;
+  min-width: 15%;
 }
 .thumbnail img
 {

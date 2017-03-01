@@ -22,6 +22,7 @@ class TagsController < ApplicationController
 		end
 		@tags = Tag.where(post_id: params[:post_id])
 		@tag_users = @tags.collect{|k| User.where(id: k.tag_user_id)}.flatten
+		
 		respond_to do |format|
 			format.js
 		end

@@ -388,6 +388,7 @@ DEPENDENCIES
   google-api-client (~> 0.7.1)
   heroku
   hpricot
+  httparty
   i18n-active_record!
   imdb (~> 0.8)
   jbuilder (~> 2.0)
@@ -398,7 +399,7 @@ DEPENDENCIES
   mailcatcher
   omniauth-facebook (~> 3.0.0)
   omniauth-twitter (~> 0.0.17)
-  opentok
+  opentok (~> 2.3)
   paperclip (~> 4.2)
   paperclip-googledrive-new (~> 1.0)
   pg
@@ -422,4 +423,4 @@ RUBY VERSION
    ruby 2.2.4p230
 
 BUNDLED WITH
-   1.13.7
+   1.14.2

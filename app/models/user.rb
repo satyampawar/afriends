@@ -25,6 +25,8 @@ class User < ActiveRecord::Base
   has_many :friendlog
   has_many :friendlist
   has_many :tags
+  has_many :pages
+  has_many :notifications
   
   has_many :conversations, :foreign_key => :sender_id
 

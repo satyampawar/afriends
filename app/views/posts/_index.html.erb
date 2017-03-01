@@ -31,13 +31,15 @@
                 <%=image_tag('/assets/user.png' ,id: "imgss",class: "[ img-circle pull-left ]",:width=>"40") %>
                 <%end%> 
         
-                    <h3><%=link_to "#{post.user.fullname}" ,user_profile_path(post.user.id) %></h3>
+                    <h3><%=link_to "#{post.user.fullname}" ,user_profile_path(post.user.id) %>
+                    <highlight><%= post_event_view(post)  if post.post_event.present? %></highlight><span class="user-tags"><%= post_tag(post) unless post.tags.empty? %></span></h3>
                     <h5><span>Shared publicly</span> - <span>
                     <%= time_ago_in_words(post.created_at) %> ago</span> </h5>
                 </div>
                 <div class="panel-body" >
                   <%=raw post.post_name%>
-                  
+                  <%=post_movie_event_view(post) if post.post_event.try(:event_type).eql?("watching")%>
+
                     <div class="row grid">
                      <% if post.photoposts.present?%>
                       <%post.photoposts.each do |photo|%>
@@ -224,8 +226,23 @@ body {
 }
 .panel-google-plus > .panel-heading > h3 {
     margin: 0px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    line-height: 20px;
+     color :gray;
+}
+.panel-google-plus > .panel-heading > h3 .user-tags {
+    margin: 0px;
     font-size: 12px;
     font-weight: 700;
+    letter-spacing: 0.7px;
+    line-height: 20px;
+     color :gray;
+}
+.panel-google-plus > .panel-heading > h3 span 
+{
+    color :teal;
 }
 .panel-google-plus > .panel-heading > h5 {
     color: rgb(153, 153, 153);
@@ -245,6 +262,18 @@ body {
 .panel-google-plus > .panel-body > .panel-google-plus-image > img {
     max-width: 100%;
 }
+
+span.rating, span.rating span {
+    display: block;
+    background: url('/assets/stars.png') 0 -16px repeat-x;
+    width: 80px;
+    height: 16px;
+}
+
+span.rating span {
+    background-position: 0 0;
+}
+
 .btn_new
 {
 
@@ -320,6 +349,21 @@ body {
 </style>
 
 <script>
+$(function() {
+    $('span.rating').stars();
+});
+$.fn.stars = function() {
+    return $(this).each(function() {
+        // Get the value
+        var val = parseFloat($(this).html());
+        // Make sure that the value is in 0 - 5 range, multiply to get width
+        var size = Math.max(0, (Math.min(5, val))) * 16;
+        // Create stars holder
+        var $span = $('<span />').width(size);
+        // Replace the numerical value with stars
+        $(this).html($span);
+    });
+}
 
 $(function () {
    $('.panel-google-plus > .panel-footer > .input-placeholder, .panel-google-plus > .panel-google-plus-comment > .panel-google-plus-textarea > button[type="reset"]').on('click', function(event) {

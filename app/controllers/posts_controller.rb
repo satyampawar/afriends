@@ -4,7 +4,8 @@ class PostsController < ApplicationController
   include LastSeenUser
   include ApplicationHelper
 
-  before_action :show_all_post 
+  before_action :show_all_post
+  before_action :set_notification, :only => :show 
 
   def new
   end
@@ -21,6 +22,11 @@ class PostsController < ApplicationController
           debugger
         @post.photoposts.create(:photopst => photopst)
         end       
+      end
+      if params['event_type'].present?
+       post_event_params =  {page_id: params[:page_id],event_string: params[:event_string], event_type: params[:event_type] ,event_stage1: params[:event_stage1],event_stage2: params[:event_stage2],event_stage3:  params[:event_stage3]}
+        @post_event = @post.build_post_event post_event_params
+        @post_event.save
       end
     if request.xhr?
       respond_to do |format|
@@ -52,11 +58,18 @@ class PostsController < ApplicationController
     @find_friends = User.where(id: f_f_id)
     @tags = Tag.where(post_id: params[:id])
     @tag_users = @tags.collect{|k| User.where(id: k.tag_user_id)}.flatten
+     @notifications = current_user.notifications if user_signed_in?
 
   end
 
   def show_all_post 
      @posts=Post.all.order(created_at: :desc)
+  end
+
+  def set_notification
+    if params[:notific].present?
+     Notification.find(params[:notific]).update(is_read: true)
+    end
   end
 
   protected
