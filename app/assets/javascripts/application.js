@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
@@ -26,7 +27,6 @@
 //= require select2.min
 //= require turbolinks
 //= require bootstrap
-
 //= require jquery.contextMenu
 //= require gmaps
 //= require chat
