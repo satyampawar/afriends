@@ -81,6 +81,7 @@ group :production do
   gem 'spring'
 
   gem 'heroku'
+  gem 'rails_12factor'
 
 end
 
