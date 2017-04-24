@@ -655,22 +655,6 @@ height :74px !important
     position: relative;
 }
 
-@media (max-width:768px)
-{
-    
-.fb-profile-text>h1{
-    font-weight: 700;
-    font-size:16px;
-}
-
-
-.fb-image-profile
-{
-    margin: -45px 10px 0px 25px;
-    z-index: 9;
-    width: 20%; 
-}
-}
 
 .with-nav-tabs.panel-primary .nav-tabs > li > a,
 .with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
