@@ -1,6 +1,13 @@
 class UsersController < ApplicationController
   include ApplicationHelper
 	before_filter :authenticate_user!, only: [:update_profile, :fixposition, :cover_pic, :profile_page, :user_details, :create_page]
+  before_action :notifications
+
+  def notification
+     @notifications = current_user.notifications if user_signed_in?
+  end
+
+
   def update_profile
   @user_photo=User.find_by_id(current_user.id)
    render :action => "crop"
