@@ -12,12 +12,11 @@ class ConversationsController < ApplicationController
   end
 
   def show
-  
-
     @conversation = Conversation.find(params[:id])
     @reciever = interlocutor(@conversation)
     @messages = @conversation.messages
     @friendreq=Friendlog.where(:friend_id => current_user).where(:status => "req") 
+    @notifications = current_user.notifications if user_signed_in?
     @message = Message.new
   end
 
@@ -27,7 +26,6 @@ class ConversationsController < ApplicationController
   end
 
   def interlocutor(conversation)
-  
     current_user == conversation.recipient ? conversation.sender : conversation.recipient
   end
  
