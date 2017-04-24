@@ -46,10 +46,10 @@ ul.tagit li.tagit-choice a.tagLabel:hover,
 ul.tagit li.tagit-choice a.tagit-close .text-icon:hover {
     color: #222;
 }
-ul.tagit input[type="text"] {
+/*ul.tagit input[type="text"] {
     color: #333333;
     background: none;
-}
+}*/
 .ui-widget {
     font-size: 1.1em;
 }
