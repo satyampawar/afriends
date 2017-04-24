@@ -8,7 +8,7 @@ ruby "2.2.4"
 #gem 'mysql2', '~> 0.3.5'
 gem 'pg'
 
-gem 'gemoji'
+# gem 'gemoji'
  gem "opentok", "~> 2.3"
 gem 'httparty'
 gem 'rack-contrib'
