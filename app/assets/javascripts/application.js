@@ -18,6 +18,7 @@
 //= require jquery.e-calendar
 //= require jquery.soulmate
 //= require jquery.jstree
+//= require private_pub
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
 //= require jstree.min
@@ -25,7 +26,7 @@
 //= require select2.min
 //= require turbolinks
 //= require bootstrap
-//= require private_pub
+
 //= require jquery.contextMenu
 //= require gmaps
 //= require chat
