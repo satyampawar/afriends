@@ -73,8 +73,10 @@ ActiveRecord::Schema.define(version: 20170206140137) do
     t.integer  "user_id"
     t.integer  "notifier_id"
     t.string   "notification_type"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.boolean  "is_read",           default: false
+    t.string   "extra_data"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
   create_table "page_institutes", force: :cascade do |t|
