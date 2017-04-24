@@ -1,6 +1,8 @@
+
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+require 'net/https'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -30,6 +32,9 @@ module Picssi
     config.assets.precompile << "emoji/**/*.png"
     config.i18n.enforce_available_locales = false
     config.i18n.default_locale = :en
+    config.middleware.delete Rack::Lock
+    config.middleware.use FayeRails::Middleware, mount: '/faye', :timeout => 25
+
         
     # Precompile *all* assets, except those that start with underscore
    config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
@@ -45,3 +50,7 @@ module Picssi
 
     end    
 end
+
+
+
+

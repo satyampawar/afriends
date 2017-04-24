@@ -24,6 +24,7 @@ gem 'devise'
 gem "factory_girl_rails", "~> 4.0"
 
 gem "foreman"
+gem 'rufus-scheduler'
 gem 'jquery-fileupload-rails'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -35,7 +36,7 @@ gem 'redis'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-gem "faye"
+gem 'faye-rails', '~> 2.0'
 gem 'omniauth-facebook','~>3.0.0'
 gem 'omniauth-twitter','~>0.0.17'
 
