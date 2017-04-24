@@ -9,7 +9,7 @@ ruby "2.2.4"
 gem 'pg'
 
 # gem 'gemoji'
- gem "opentok", "~> 2.3"
+gem "opentok", "~> 2.3"
 gem 'httparty'
 gem 'rack-contrib'
 gem 'soulmate', :require => 'soulmate/server'
