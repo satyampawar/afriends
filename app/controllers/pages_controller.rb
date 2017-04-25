@@ -1,5 +1,10 @@
 class PagesController < ApplicationController
 	before_action :nav_content , only: :show
+	before_action :notification
+
+	def notification
+	 @notifications = current_user.notifications if user_signed_in?
+	end
 	def create
 		page_type = params[:page_type]
 		case page_type
