@@ -1,5 +1,5 @@
 $('#emotion').empty().append("<%= escape_javascript(render :partial => '/welcome/second_change_emotion', :locals => {:results => @results}) %>")
-debugger
+
 switch('<%=@statge.to_i%>')
 {
 	case '2':
@@ -10,7 +10,7 @@ switch('<%=@statge.to_i%>')
 	var autocomplete = new google.maps.places.Autocomplete($("#address")[0], {});
 	google.maps.event.addListener(autocomplete, 'place_changed', function() {
 	    var place = autocomplete.getPlace();
-	    debugger
+	
 	    $("#show-emotion").append(' at <i class="fa fa-map-marker" aria-hidden="true" style="font-size: 18px !important;"></i> '+$("#address").val())
 			$("#page_id").val("<%=@movie.id %>")
 			$("#event_string").val($("#show-emotion"))

@@ -223,7 +223,6 @@ $('#emotion').change(function(){
  $(".emotion").click(function(){
  	$('.emotion-channel').toggle()
 
- 	debugger
 $("#emotion").select2({
   templateResult: formatState
 });
@@ -236,7 +235,6 @@ $("#emotion").select2({
 
 
 function formatState (state) {
-	debugger
   if (!state.id) { 
    
   	return state.text; }

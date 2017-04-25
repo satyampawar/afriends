@@ -19,7 +19,6 @@ class PostsController < ApplicationController
     @post = current_user.posts.create(post_params)
       if params["post"]["photopst"]
         params["post"]["photopst"].each do |photopst|
-          debugger
         @post.photoposts.create(:photopst => photopst)
         end       
       end

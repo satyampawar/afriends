@@ -112,12 +112,10 @@ var ready = function () {
                  $("#chatbox_" + conversation_id+ ".chatboxhead .chatboxoptions").append("<a href='#'>fdsaf</a>")
                    if($('.chatbox').length>0)
                    {
-                    debugger
                     chatBox.redesign($('.chatbox')[0].style.right)
                    }
                    else
                    {
-                    debugger
                     chatBox.restructure();
                    }
                     

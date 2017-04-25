@@ -86,7 +86,6 @@ def create_page
     @friendreq=Friendlog.where(:friend_id => current_user).where(:status => "req") 
     @user_structure= @user1.structure_json
   else
-    debugger
   end
 end
 

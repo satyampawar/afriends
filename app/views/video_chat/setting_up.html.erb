@@ -31,7 +31,7 @@ TB.setLogLevel(TB.DEBUG);
 
  var publisher;
     function sessionConnectedHandler(event) {
-      debugger
+    
       publisher = TB.initPublisher(apiKey, 'videobox');
       session.publish(publisher);
 
@@ -40,13 +40,13 @@ TB.setLogLevel(TB.DEBUG);
     }
 
     function streamCreatedHandler(event) {
-      debugger
+     
       // Subscribe to any new streams that are created
       subscribeToStreams(event.streams);
     }
 
     function subscribeToStreams(streams) {
-      debugger
+
       for (var i = 0; i < streams.length; i++) {
         // Make sure we don't subscribe to ourself
         if (streams[i].connection.connectionId == session.connection.connectionId) {

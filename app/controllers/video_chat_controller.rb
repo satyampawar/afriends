@@ -28,7 +28,6 @@ class VideoChatController < ApplicationController
     f_f_id = User.where(id: s).collect{|k| k.friendlist}.flatten.map(&:friend_id).uniq - (current_user.friendlist.map(&:friend_id) + current_user.id.to_s[0..1000].split(','))
     @find_friends = User.where(id: f_f_id)
     session = @opentok.create_session
-   debugger
     @room = User.find(params[:id])
     @vid = VideoChat.new(caller_id:current_user.id, receiver_id: params[:id],token_base: session.session_id)
     @vid.save
