@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170206140137) do
+ActiveRecord::Schema.define(version: 20170318205208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,13 @@ ActiveRecord::Schema.define(version: 20170206140137) do
     t.datetime "updated_at",                null: false
     t.string   "locked",     default: "No"
     t.string   "pin"
+  end
+
+  create_table "blocks", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "block_user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "conversations", force: :cascade do |t|
@@ -73,8 +80,10 @@ ActiveRecord::Schema.define(version: 20170206140137) do
     t.integer  "user_id"
     t.integer  "notifier_id"
     t.string   "notification_type"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.boolean  "is_read",           default: false
+    t.string   "extra_data"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
   create_table "page_institutes", force: :cascade do |t|

@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
 	before_action :nav_content , only: :show
 	def create
-		debugger
+		
 		page_type = params[:page_type]
 		case page_type
 		when "inst"
@@ -13,7 +13,7 @@ class PagesController < ApplicationController
 	end
 
 	def show
-		debugger
+		
 		@page = Page.find(params[:id])
 	end
 

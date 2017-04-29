@@ -1,7 +1,7 @@
 class ConversationsController < ApplicationController
   before_filter :authenticate_user!
   def create
-
+    debugger
     if Conversation.between(params[:sender_id],params[:recipient_id]).present?
       @conversation = Conversation.between(params[:sender_id],params[:recipient_id]).first
     else
@@ -18,6 +18,7 @@ class ConversationsController < ApplicationController
     @reciever = interlocutor(@conversation)
     @messages = @conversation.messages
     @friendreq=Friendlog.where(:friend_id => current_user).where(:status => "req") 
+    @notifications= current_user.notifications
     @message = Message.new
   end
 
@@ -27,7 +28,7 @@ class ConversationsController < ApplicationController
   end
 
   def interlocutor(conversation)
-  
+    debugger
     current_user == conversation.recipient ? conversation.sender : conversation.recipient
   end
  

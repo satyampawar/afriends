@@ -238,8 +238,8 @@
             <div class="sidebar-name1">
                 <!-- Pass username and display name to register popup -->
                 <a href="#" data-rid ="<%=@friend.id%>" data-sid ="<%=current_user.id%>"class="start-conversation">
-                <a href="#" onclick="callfriend(<%=current_user.id%>,<%=@friend.id%>)"class="start-conversation">
-                    <%=@friend.avatar.present? ? image_tag(@friend.avatar.url ,id: "imgss",class: "",:width=>"30") : image_tag('/assets/user.png',:width=>"40" ,class: "")%>
+                <!-- <a href="#" onclick="callfriend(<%=current_user.id%>,<%=@friend.id%>)">
+                  -->   <%=@friend.avatar.present? ? image_tag(@friend.avatar.url ,id: "imgss",class: "",:width=>"30") : image_tag('/assets/user.png',:width=>"40" ,class: "")%>
                     <span><%=@friend.fullname%></span>
                     <%unless @friend.last_seen.nil?%>
                     <span><i class = "<%=@friend.last_seen.to_time < Time.now - 1.minute ? 'fa fa-circle-o' : 'fa fa-circle online' %>"> </i> <i class = "last_seen"><%=@friend.last_seen.to_time < Time.now - 1.minute ? time_ago_in_words(@friend.last_seen,include_seconds: true).slice(0..5) : '' %></i><br></span>

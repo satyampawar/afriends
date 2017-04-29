@@ -19,6 +19,7 @@ gem 'bootstrap-sass', '~> 2.3.2.0'
 gem "paperclip", "~> 4.2"
 gem 'google-api-client', '~> 0.7.1'
 gem 'paperclip-googledrive-new', '~> 1.0'
+gem 'rufus-scheduler' 
 #gem 'paperclip-googledrive'
 gem 'devise'        
 gem "factory_girl_rails", "~> 4.0"

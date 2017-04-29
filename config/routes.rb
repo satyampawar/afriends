@@ -37,7 +37,14 @@ mount Soulmate::Server, :at => "/autocomplete"
 
  devise_for :users ,controllers: { registrations: 'registrations', sessions: 'sessions' ,:omniauth_callbacks => "callbacks"} 
  resources :users do
-  
+  member do 
+    get "block"
+  end
+  resources :settings do 
+   collection do 
+    get "block_list"
+   end
+  end
   resources :pages
   resources :friendlog
    resources :posts do

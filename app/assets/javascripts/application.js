@@ -13,22 +13,29 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
+//= require private_pub
+//= require select2.min
+//= require jstree
+//= require jstree.min
 //= require plugins/jstree/jstree.min
 //= require dataTables/jquery.dataTables
 //= require jquery.e-calendar
 //= require jquery.soulmate
+
 //= require jquery.jstree
-//= require jquery-fileupload/basic
-//= require jquery-fileupload/vendor/tmpl
-//= require jstree.min
-//= require jstree
-//= require select2.min
+
 //= require turbolinks
 //= require bootstrap
-//= require private_pub
-//= require jquery.contextMenu
 //= require gmaps
 //= require chat
+//= require jquery-fileupload/basic
+//= require jquery-fileupload/vendor/tmpl
+
+
+
+
+//= require jquery.contextMenu
+
 //= require user
 //= require_tree .
 

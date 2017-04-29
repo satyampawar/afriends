@@ -1,9 +1,1 @@
 $("#tag_list").html("<%= j(render(:partial => 'tags/tag_list')) %>");
-<% publish_to "/satyam" do %>
-  $.ajax({
-    type: "get",
-    url: "/count_notifications",
-    data_type: 'js'
-    })
-<%end%>
-

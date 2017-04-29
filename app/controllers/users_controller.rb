@@ -42,12 +42,12 @@ def photochange()
   end
 def profile_page
   @friendlog=Friendlog.new
-
-
-
   @user1=User.find(params[:user_id])
-   @friendlogs=Friendlog.where(:friend_id => [@user1.id,current_user.id]).where(:user_id => [@user1_id,current_user.id])
-
+  @friendlogs=Friendlog.find_by(:friend_id => @user1.id, :user_id => current_user.id)
+  @friendlogs=Friendlog.find_by(:friend_id => current_user.id, :user_id => @user1.id) unless @friendlogs.present?
+  @friend=Friendlist.find_by(:friend_id => @user1.id, :user_id => current_user.id)
+  @friend=Friendlist.find_by(:friend_id => current_user.id, :user_id => @user1.id) unless @friend.present?
+   
  @notifications = current_user.notifications if user_signed_in?
   @user=User.new
       @posts=Post.all.order(created_at: :desc)
@@ -71,6 +71,7 @@ def create_page
     @friendlog=Friendlog.new
     @user1=User.find(params[:user_id])
     @friendlogs=Friendlog.where(:friend_id => [@user1.id,current_user.id]).where(:user_id => [@user1_id,current_user.id])
+    @notifications = current_user.notifications if user_signed_in?
     @user=User.new
         @posts=Post.all.order(created_at: :desc)
         @post=Post.new
@@ -124,6 +125,14 @@ def friends_list
     respond_to do |format|
       format.json { render :json => friends }
     end
+end
+
+def block
+  @block = Block.new(user_id: current_user, block_user_id: @user1)
+  @block.save
+  response_to do |format|
+    format.json @block
+  end
 end
 
 

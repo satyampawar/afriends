@@ -3,7 +3,7 @@
 <div class="col-md-12" style="padding-left:4px;padding-right:4px;">
 	<%case p.page_type%>
 		<% when 'inst'%>
-			
+			<%= page_inst_helper(p) %>
 		<%when 'movi'%>
      <%= page_movie_helper(p) %>
 		<%end%>
