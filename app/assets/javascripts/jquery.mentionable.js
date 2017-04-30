@@ -266,7 +266,6 @@
    * to the text aprea
    */
   function selectUser(userItem){
-    debugger
     inputText    = textArea.text();
     replacedText = replaceString(caretStartPosition, caretStartPosition +
                                   fullCachedName.length, inputText,"<span id="+userItem.find("span").attr('id')+"> "+

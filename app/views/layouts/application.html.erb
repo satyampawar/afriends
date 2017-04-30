@@ -10,6 +10,7 @@
   <%= csrf_meta_tags %>
   <title>Picssi</title>
   <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%#= stylesheet_link_tag    "application", :media => "all" %>
   <link rel="icon" 
       type="image/png" 
       href="/assets/add.png">
@@ -17,7 +18,8 @@
 
 <!--      // <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3&amp;sensor=false"></script> -->
 
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>    
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%#= javascript_include_tag "private_pub" %>   
   <script src="//twemoji.maxcdn.com/twemoji.min.js"></script>  
 </head>
 <body>

@@ -6,16 +6,24 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,:omniauthable, :lastseenable
 
- has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
-  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/,
-    :path => "public/system/:class/:id/:filename",
-    :url => "/system/:class/:id/:basename.:extension"
+ # has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+ #  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/,
+ #    :path => "public/system/:class/:id/:filename",
+ #    :url => "/system/:class/:id/:basename.:extension"
 
 
- has_attached_file :coverpic, styles: { medium: "800x600>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
-  validates_attachment_content_type :coverpic, content_type: /\Aimage\/.*\Z/,
-    :path => "public/system/:class/:id/:filename",
-    :url => "/system/:class/:id/:basename.:extension"
+ # has_attached_file :coverpic, styles: { medium: "800x600>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+ #  validates_attachment_content_type :coverpic, content_type: /\Aimage\/.*\Z/,
+ #    :path => "public/system/:class/:id/:filename",
+ #    :url => "/system/:class/:id/:basename.:extension"
+
+     has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png",
+ :storage => :dropbox,
+    :dropbox_credentials => Rails.root.join("config/dropbox.yml")
+
+has_attached_file :coverpic, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png",
+ :storage => :dropbox,
+    :dropbox_credentials => Rails.root.join("config/dropbox.yml")
 
 
   has_many :likes

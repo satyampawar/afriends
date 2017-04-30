@@ -14,7 +14,7 @@ module PostHelper
 		string = "<br><div class='col-md-12'>"
 		string += "<div class='col-md-3'><img src='"+pgm.poster_url+"'></div>"
 		string += "<div class='col-md-9'><span class='moviename'>"+pgm.title.titleize+"</span><br><span>"+pgm.plot_summary+"</span>"
-		string += "<br><span><span class='rating'>"+(pgm.rating/2).to_s+"</span>("+pgm.rating.to_s+")</span>"
+		string += "<br><span><span class='rating'>"+(pgm.rating/2).to_s+"</span>("+pgm.rating.to_s+")</span>" if pgm.rating.present? 
 		string += "<br><span>Director : "+pgm.director+"</span>"
 		string += "<br><span>Release Date : "+pgm.release_date+"</span>"
 		string += "</div></div>"

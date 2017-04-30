@@ -6,6 +6,7 @@ class Post < ActiveRecord::Base
 		accepts_nested_attributes_for :photoposts;
 	has_many :likes ,:dependent => :destroy
   has_one :post_event,:dependent => :destroy
+  has_many :comments ,:dependent => :destroy
 
 
 

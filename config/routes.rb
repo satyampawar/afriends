@@ -1,36 +1,4 @@
 Rails.application.routes.draw do
-
-
-
-
-  # get 'photos/create'
-
-  # get 'photos/index'
-
-  # get 'photos/new'
-
-  # get 'photos/destroy'
-
-  # get 'photos/show'
-
-  # get 'albums/create'
-
-  # get 'albums/index'
-
-  # get 'albums/new'
-
-  # get 'albums/destroy'
-
-  # get 'albums/show'
-
-
-
-
-
-
-
-
-
 mount Soulmate::Server, :at => "/autocomplete"
   get "/photochange" => "users#photochange"
   get "/remove_tag_user" => "tags#remove_tag_user",  as: :remove_tag_user
@@ -45,9 +13,11 @@ mount Soulmate::Server, :at => "/autocomplete"
     get "block_list"
    end
   end
+
   resources :pages
   resources :friendlog
    resources :posts do
+    resources :comments
     resources :likes
     resources :tags 
    end 

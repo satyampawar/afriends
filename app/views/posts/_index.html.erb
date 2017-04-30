@@ -43,8 +43,9 @@
                     <div class="row grid">
                      <% if post.photoposts.present?%>
                       <%post.photoposts.each do |photo|%>
-                            <div class="col-xs-4 thumbnail">
-                            <%= post_photo(photo.id,photo.photopst_file_name) %>
+                            <div class="col-md-12 thumbnail">
+                            <%#= post_photo(photo.id,photo.photopst_file_name) %>
+                            <%=image_tag(photo.photopst.url) %>
                           </div>
                     
                       <%end%>
@@ -54,7 +55,7 @@
 
                 <div class="panel-footer col-md-12">
                 <div class="col-md-4">
-                <span class="like-btn"> <!-- Default like button -->
+                   <span class="like-btn"> <!-- Default like button -->
                   
                    <ul class="reactions-box">
                     <%=link_to "." ,user_post_likes_path(current_user,post.id, emotions: "like"),:id => "sp",class: "reaction reaction-like",method: :post,remote: true,data: {reaction: "Like"}%>
@@ -80,7 +81,22 @@
                         <span class="[ glyphicon glyphicon-share-alt ]"></span>
                     </button>
                   </div>
-                    <div class="input-placeholder col-md-8">Add a comment...</div>
+                   <div class="col-md-8">
+                    <%= form_tag  user_post_comments_path(current_user,post) ,remote: true ,multipart: true do%>
+                    <div class="panel-google-plus-textarea">
+                        
+                            <div class="photo-c"><textarea id="post_post_name" rows="1" class="text_areasize1 text_my textarea-control form-control tagged_text" name="comment[comment_name]"  data-emojiable="true" style="height: 100px;"></textarea placeholder="what's in your mind">
+                                <span class="select-wrapper">
+                                <input type="file" name="comment[comment_pic]" id="image_src" />
+                                </span>
+                                <%=submit_tag "comment"%>
+                                <%end%>
+                        </div>
+
+                       
+                      <!--   <textarea name rows="1"></textarea> -->
+
+                    </div></div>
                     <div class="like-stat">
                         <span><%=post.likes.count%></span>
                      <!-- Like statistic container-->
@@ -99,17 +115,18 @@
                         <%else%>
                          <span class="like-details">No likes</span>
                         <%end%>
+                        <div id="post_comment_<%=post.id%>">
+                          <%post.comments.each do |comment|%>
+                            <div id="comment_<%=comment.id%>">
+
+                                <%=comment.comment_name%>
+                            </div>
+                           
+                          <%end%>
+                        </div>
                     </div>
                 </div>
-                <div class="panel-google-plus-comment">
-                    <img class="img-circle" src="/assets/user.png" width="38px" alt="User Image" />
-                    <div class="panel-google-plus-textarea">
-                        <textarea rows="1"></textarea>
-                        <button type="submit" class="[ btn btn-success disabled ]">Post comment</button>
-                        <button type="reset" class="[ btn btn-default ]">Cancel</button>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
+                
             </div>
               <hr id="hr<%=post.id%>" class="gape">
             <%end%>
@@ -128,7 +145,30 @@ body {
     padding-top: 60px;
     padding-bottom: 30px;
 }
-
+.text_areasize1{    height: 17px !important;
+    width: 55% !important;}
+    .photo-c{
+    width: 300px;
+    /*border: 1px solid #333;*/
+    padding-top: 4px;
+    display: inline-flex;
+}
+.photo-c i{font-size: 27px;}
+.select-wrapper {
+    background: url(http://s10.postimg.org/4rc0fv8jt/camera.png) no-repeat;
+    background-size: cover;
+    display: block;
+    position: relative;
+    width: 33px;
+    height: 26px;
+}
+#image_src {
+    width: 26px;
+    height: 26px;
+    margin-right: 100px;
+    opacity: 0;
+    filter: alpha(opacity=0); /* IE 5-7 */
+}
 .gape
 {
     height: 6px;
@@ -139,8 +179,8 @@ body {
 }
 
 .thumbnail {
-  max-width: 33.333%;
-  min-width: 25%;
+    max-width: 100%;
+    min-width: 71%;
 }
 .thumbnail img
 {
@@ -309,7 +349,9 @@ span.rating span {
 }*/
 .panel-google-plus > .panel-google-plus-comment > .panel-google-plus-textarea {
     float: right;
-    width: calc(100% - 56px);
+    display: inline-block !important;
+    height: 20px !important;
+    width: 62% !important;
 }
 .panel-google-plus > .panel-google-plus-comment > .panel-google-plus-textarea > textarea {
     display: block;

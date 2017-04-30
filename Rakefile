@@ -33,4 +33,4 @@ Emoji::Extractor.new(64, "#{gem_dir}/images/emoji/unicode").extract!
 end
 end
 Rails.application.load_tasks
-load 'tasks/emoji.rake'
+# load 'tasks/emoji.rake'

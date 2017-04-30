@@ -4,6 +4,11 @@ class Photo < ActiveRecord::Base
     :path => "public/system/:class/:id/:filename",
     :url => "/system/:class/:id/:basename.:extension"
 
+ 
+    has_attached_file :pic,
+    :storage => :dropbox,
+    :dropbox_credentials => Rails.root.join("config/dropbox.yml")
+
 	belongs_to :album
 	belongs_to :user 
 end

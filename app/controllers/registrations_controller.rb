@@ -3,14 +3,15 @@ class RegistrationsController < Devise::RegistrationsController
   private
  def after_inactive_sign_up_path_for(resource)
     
-      "/phone_numbers/create"
-
+      # "/phone_numbers/create"
+    "/"
     # Or :prefix_to_your_route
   end
 
  def after_sign_up_path_for(resource)
   	
-      "/phone_numbers/create"
+      # "/phone_numbers/create"
+      "/"
 
     # Or :prefix_to_your_route
   end

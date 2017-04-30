@@ -1,6 +1,13 @@
 class UsersController < ApplicationController
   include ApplicationHelper
 	before_filter :authenticate_user!, only: [:update_profile, :fixposition, :cover_pic, :profile_page, :user_details, :create_page]
+  before_action :notification
+
+  def notification
+     @notifications = current_user.notifications if user_signed_in?
+  end
+
+
   def update_profile
   @user_photo=User.find_by_id(current_user.id)
    render :action => "crop"
@@ -73,13 +80,12 @@ def create_page
     @friendlogs=Friendlog.where(:friend_id => [@user1.id,current_user.id]).where(:user_id => [@user1_id,current_user.id])
     @notifications = current_user.notifications if user_signed_in?
     @user=User.new
-        @posts=Post.all.order(created_at: :desc)
-        @post=Post.new
-        @album=Album.new
-      @friendreq=Friendlog.where(:friend_id => current_user).where(:status => "req") 
-      @user_structure= @user1.structure_json
+    @posts=Post.all.order(created_at: :desc)
+    @post=Post.new
+    @album=Album.new
+    @friendreq=Friendlog.where(:friend_id => current_user).where(:status => "req") 
+    @user_structure= @user1.structure_json
   else
-    debugger
   end
 end
 

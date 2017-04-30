@@ -8,8 +8,8 @@ ruby "2.2.4"
 #gem 'mysql2', '~> 0.3.5'
 gem 'pg'
 
-gem 'gemoji'
- gem "opentok", "~> 2.3"
+# gem 'gemoji'
+gem "opentok", "~> 2.3"
 gem 'httparty'
 gem 'rack-contrib'
 gem 'soulmate', :require => 'soulmate/server'
@@ -18,13 +18,16 @@ gem 'remotipart', '~> 1.2'
 gem 'bootstrap-sass', '~> 2.3.2.0'
 gem "paperclip", "~> 4.2"
 gem 'google-api-client', '~> 0.7.1'
-gem 'paperclip-googledrive-new', '~> 1.0'
+# gem 'paperclip-googledrive-new', '~> 1.0'
+
+gem "paperclip-dropbox", ">= 1.1.7"
 gem 'rufus-scheduler' 
 #gem 'paperclip-googledrive'
 gem 'devise'        
 gem "factory_girl_rails", "~> 4.0"
 
 gem "foreman"
+gem 'rufus-scheduler'
 gem 'jquery-fileupload-rails'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -81,6 +84,7 @@ group :production do
   gem 'spring'
 
   gem 'heroku'
+  gem 'rails_12factor'
 
 end
 
