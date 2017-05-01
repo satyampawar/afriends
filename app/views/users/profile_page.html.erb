@@ -32,7 +32,7 @@
           <%if @friend.nil?%>
            
             <%if @friendlogs.try(:status).eql?("req")  %>
-            <li> <%=link_to "Cancel request" ,user_friendlog_path(@user1.id,@friendlogs.first.id), method: :delete,id: "cancelreq",class: "btn btn-lg btn-info addfriendbtn cancel_req" %></li>
+            <li> <%=link_to "Cancel request" ,user_friendlog_path(@user1.id,@friendlogs.id), method: :delete,id: "cancelreq",class: "btn btn-lg btn-info addfriendbtn cancel_req" %></li>
             <%else%>
             <li > <%= render "friendlog/new" %></li>
             <%end%>
