@@ -24,9 +24,9 @@
 //= require jquery.e-calendar
 //= require jquery.soulmate
 //= require jquery.jstree
+
 //= require turbolinks
 //= require bootstrap
-
 //= require gmaps
 //= require chat
 //= require jquery-fileupload/basic
@@ -34,11 +34,11 @@
 
 
 
-
 //= require jquery.contextMenu
 
 //= require user
 //= require_tree .
+
 
 
 window.onload = function() {

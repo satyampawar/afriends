@@ -32,8 +32,13 @@ module Picssi
     # config.assets.precompile << "emoji/**/*.png"
     config.i18n.enforce_available_locales = false
     config.i18n.default_locale = :en
+
     # config.middleware.delete Rack::Lock
     # config.middleware.use FayeRails::Middleware, mount: '/faye', :timeout => 25
+
+    config.middleware.delete Rack::Lock
+    config.middleware.use FayeRails::Middleware, mount: '/faye', :timeout => 25
+
 
         
     # Precompile *all* assets, except those that start with underscore

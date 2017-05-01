@@ -35,7 +35,6 @@
                     <div class="row grid">
                      <% if post.photoposts.present?%>
                       <%post.photoposts.each do |photo|%>
-                        
                             <div class="col-xs-4 thumbnail">
                                 <%=image_tag(photo.photopst.url) %>
                           </div>

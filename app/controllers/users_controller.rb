@@ -78,7 +78,9 @@ def create_page
     @friendlog=Friendlog.new
     @user1=User.find(params[:user_id])
     @friendlogs=Friendlog.where(:friend_id => [@user1.id,current_user.id]).where(:user_id => [@user1_id,current_user.id])
+
     @notifications = current_user.notifications if user_signed_in?
+
     @user=User.new
     @posts=Post.all.order(created_at: :desc)
     @post=Post.new

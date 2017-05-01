@@ -39,7 +39,7 @@ gem 'redis'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-gem "faye"
+gem 'faye-rails', '~> 2.0'
 gem 'omniauth-facebook','~>3.0.0'
 gem 'omniauth-twitter','~>0.0.17'
 
