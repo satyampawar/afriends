@@ -30,10 +30,12 @@
       <div class="collapse navbar-collapse ats" id="navbar-collapse-2" style="width: 761px">
         <ul class="nav navbar-nav navbar-right" >
           <%if @friend.nil?%>
+           <%if @friendlogs.present? %>
             <%if @friendlogs.status.eql?("req")%>
             <li> <%=link_to "Cancel request" ,user_friendlog_path(@user1.id,@friendlogs.first.id), method: :delete,id: "cancelreq",class: "btn btn-lg btn-info addfriendbtn cancel_req" %></li>
             <%else%>
             <li > <%= render "friendlog/new" %></li>
+            <%end%>
             <%end%>
           <%else%>
              <li> <%=link_to "Block" ,block_user_path(@user1),id: "block",class: "btn btn-primary" %></li>
