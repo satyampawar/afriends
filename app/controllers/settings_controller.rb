@@ -18,17 +18,16 @@ class SettingsController < ApplicationController
   def change_password
     
     begin
-      raise  CustomException.new(invalid: "current password is wrong") unless current_user.valid_password?(params[:current_password]) 
-      raise  CustomException.new(missmatch: "password doesnt match") unless  params["password"].eql?(params["password_confirmation"])
+      raise  CustomException.new("current password is wrong") unless current_user.valid_password?(params[:current_password]) 
+      raise  CustomException.new("password doesnt match") unless  params["password"].eql?(params["password_confirmation"])
        if current_user.update_attributes(password: params["password"] ,password_confirmation: params["password_confirmation"])
          flash[:notice]= "password successfully update"
        else
         flash[:notice]= "somethig went wrong"
        end  
     
-    rescue Exception => e
-      debugger
-      
+    rescue CustomException => e
+      e.message
     end
    
   end
