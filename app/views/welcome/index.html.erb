@@ -19,47 +19,12 @@ Licensed under MIT
                  <!-- <span><a href="#">Info.Ali.Pci@Gmail.com</a></span> -->
             </div>
         </div>
-        <ul class="inbox-nav inbox-divider">
-            <li class="active">
-              <a href="#"><i class="fa fa-inbox"></i> Inbox <span class="label label-danger pull-right">2</span></a>
-            </li>
-        </ul>
-        <ul class="nav nav-pills nav-stacked labels-info inbox-divider">
-            <li> <h4>Labels</h4> </li>
-            <li> <a href="#"> <i class=" fa fa-sign-blank text-danger"></i> Work </a> </li>
-            <li> <a href="#"> <i class=" fa fa-sign-blank text-success"></i> Design </a> </li>
-            <li> <a href="#"> <i class=" fa fa-sign-blank text-info "></i> Family </a>
-            </li><li> <a href="#"> <i class=" fa fa-sign-blank text-warning "></i> Friends </a>
-            </li><li> <a href="#"> <i class=" fa fa-sign-blank text-primary "></i> Office </a>
-            </li>
-        </ul>
         <ul class="nav nav-pills nav-stacked labels-info ">
-            <li> <h4>Buddy online</h4> </li>
-            <li> <a href="#"> <i class=" fa fa-circle text-success"></i>Alireza Zare <p>I do not think</p></a>  </li>
-            <li> <a href="#"> <i class=" fa fa-circle text-danger"></i>Dark Coders<p>Busy with coding</p></a> </li>
-            <li> <a href="#"> <i class=" fa fa-circle text-muted "></i>Mentaalist <p>I out of control</p></a>
-            </li><li> <a href="#"> <i class=" fa fa-circle text-muted "></i>H3s4m<p>I am not here</p></a>
-            </li><li> <a href="#"> <i class=" fa fa-circle text-muted "></i>Dead man<p>I do not think</p></a>
-            </li>
             <li><%= link_to "Create Page", create_page_path(current_user.id) %></li>
+             <li><%= link_to "Settings", user_settings_path(current_user) %></li>
+            
         </ul>
-        <div class="inbox-body text-center">
-        <div class="btn-group">
-          <a class="btn mini btn-primary" href="javascript:;">
-              <i class="fa fa-plus"></i>
-          </a>
-        </div>
-        <div class="btn-group">
-          <a class="btn mini btn-success" href="javascript:;">
-              <i class="fa fa-phone"></i>
-          </a>
-        </div>
-        <div class="btn-group">
-          <a class="btn mini btn-info" href="javascript:;">
-              <i class="fa fa-cog"></i>
-          </a>
-        </div>
-        </div>
+        
       </aside>
 		<div class="col-md-7" style="width: 54%">
       <%=render 'welcome/profile_disc'%>
@@ -120,3 +85,6 @@ function get_last_seen()
     })
 }
 </script>
+<style>
+.sm-side .nav{margin-top: 150px;}
+</style>

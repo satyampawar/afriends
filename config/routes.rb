@@ -12,6 +12,7 @@ mount Soulmate::Server, :at => "/autocomplete"
   resources :settings do 
    collection do 
     get "block_list"
+    post "change_password"
    end
   end
 

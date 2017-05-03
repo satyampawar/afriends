@@ -17,18 +17,37 @@
 tmp = []
  %>
 <%@photos.each_with_index do |photo, index|%>
+<div class="container">
+    <div class="row">
+      <div class='list-group gallery'>
+        <div class='col-sm-4 col-xs-6 col-md-3 col-lg-3'>
+            <a class="thumbnail fancybox" rel="ligthbox" href="<%= photo.pic.url%>">
+                 <%= image_tag photo.pic.url , class: 'img_view img-responsive'%>
+                
+                <div class='text-right'>
+                    <small class='text-muted'>Image Title</small>
+                </div> <!-- text-right / end -->
+            </a>
+        </div> <!-- col-6 / end -->
+      </div> <!-- list-group / end -->
+    </div> <!-- row / end -->
+</div> 
 <div class="col-md-4">
-	<%
+	<%#
 	frmat =(File.extname(photo.pic_file_name)).gsub("..",".")
-    encrypted_file_content = (File.read(photo.pic.path(:medium)) rescue  File.read(photo.pic.path))
+    
+    encrypted_file_content = (File.read(photo.pic.path) rescue Net::HTTP.get(URI(photo.pic.url)))
+
     secured_keys=SecuredKey.last
+    debugger
     file_content = AES.decrypt(encrypted_file_content, secured_keys.key)
     tmp[index] = Tempfile.new([File.basename((photo.pic_file_name), frmat)+index.to_s, frmat], "#{Rails.root.to_s}/app/assets/images/tmp/")
     tmp[index] << file_content.force_encoding('utf-8')
     tmp[index].flush 
     file = tmp[index]
 	%>
-    <%= image_tag file.path.gsub("images/","").split("/app",2)[1], class: "img_view"%>
+    <%#= image_tag file.path.gsub("images/","").split("/app",2)[1], class: "img_view"%>
+   
 </div>
 <% end %>
 <%# tmp.collect{|a| a.unlink} %>
@@ -57,8 +76,23 @@ $("#formData1").change(function(){
 });
 
 });
+
+$(document).ready(function(){
+    //FANCYBOX
+    //https://github.com/fancyapps/fancyBox
+    $(".fancybox").fancybox({
+        openEffect: "none",
+        closeEffect: "none"
+    });
+});
+
 </script>
 <style>
+.gallery
+{
+    display: inline-block;
+    margin-top: 20px;
+}
 .img_view
 {
 	max-width: 200px;

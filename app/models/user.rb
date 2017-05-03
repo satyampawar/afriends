@@ -40,6 +40,8 @@ has_attached_file :coverpic, styles: { medium: "300x300>", thumb: "100x100>" }, 
 
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   after_update :reprocess_avatar, :if => :cropping?
+
+  SETTINGLINK = {"1"=> "General","2"=> "Security","3"=> "Privacy","4"=> "Notification","5"=> "Black list",}
   
   def cropping?
     !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
