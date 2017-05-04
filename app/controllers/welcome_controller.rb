@@ -49,7 +49,7 @@ end
   def web_notification
     Notifier.new(current_user).notify_all_devices
     respond_to do |format|
-      format.js { render :create }
+      format.js 
     end
   end
 
@@ -77,7 +77,7 @@ end
 def manifest
   manifest_hash = {
     name: "Browser notifications example",
-    gcm_sender_id: ENV["GCM_SENDER_ID"]
+    gcm_sender_id: ENV["GCM_MESSAGE_SENDER_ID"]
   }
 
   render json: manifest_hash

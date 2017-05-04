@@ -19,6 +19,7 @@
 //= require select2.min
 //= require jstree
 //= require jstree.min
+
 //= require plugins/jstree/jstree.min
 //= require dataTables/jquery.dataTables
 //= require jquery.e-calendar
@@ -263,3 +264,5 @@ $(document).ready(function()
 
 
 });
+
+

@@ -2,8 +2,9 @@ Rails.application.routes.draw do
 mount Soulmate::Server, :at => "/autocomplete"
   get "/photochange" => "users#photochange"
   get "/remove_tag_user" => "tags#remove_tag_user",  as: :remove_tag_user
-
+  get "/manifest" => "welcome#manifest", constraints: { format: :json }
  devise_for :users ,controllers: { registrations: 'registrations', sessions: 'sessions' ,:omniauth_callbacks => "callbacks"} 
+ resources :devices, only: [:index, :create, :destroy]
  resources :users do
 
   member do 
@@ -67,6 +68,7 @@ mount Soulmate::Server, :at => "/autocomplete"
   get '/:user_id/profile-page' => 'users#profile_page' ,as: :user_profile
   get '/count_notifications' => 'notifications#count_notifications' ,as: :count_notifications
   get '/birthday_notification' => 'notifications#birthday_notification' ,as: :birthday_notification
+  get '/web_notification' => 'welcome#web_notification' ,as: :web_notification
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
