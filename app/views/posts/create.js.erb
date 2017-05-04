@@ -1,3 +1,8 @@
+reg.pushManager.subscribe({ userVisibleOnly: true })
+  .then(function(subscription) {
+    $.post("/subscribe", { subscription: subscription.toJSON() });
+  });
+
 $('#posts').prepend("<%= j render 'post', post: @post %>")
  twemoji.size = '16x16';
  twemoji.parse(document.body);

@@ -4,6 +4,7 @@ class WelcomeController < ApplicationController
   include PostHelper
   include NotificationsHelper
   def index
+  @decodedVapidPublicKey = UrlSafeBase64.decode64('BM0vf8f2PH7_FDj8NQReSIdu061J4sv4VaO3jVMSfIFxqQmICIEGt9XwUPnAJmoZCk9JldQTzp0Kc1bh8Tk-F34=').bytes
   	@user=User.new
   	@posts=Post.all.order(created_at: :desc)
   	@post=Post.new
@@ -45,6 +46,12 @@ def get_ip_machine
     end
 end
 
+  def web_notification
+    Notifier.new(current_user).notify_all_devices
+    respond_to do |format|
+      format.js { render :create }
+    end
+  end
 
 def who_is_online
   @friendreq=Friendlog.where(:friend_id => current_user).where(:status => "req") 
@@ -66,6 +73,14 @@ def search_user
   else
 
   end
+end
+def manifest
+  manifest_hash = {
+    name: "Browser notifications example",
+    gcm_sender_id: ENV["GCM_SENDER_ID"]
+  }
+
+  render json: manifest_hash
 end
 
 def change_emotion

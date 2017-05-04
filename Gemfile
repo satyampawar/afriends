@@ -47,6 +47,14 @@ gem "private_pub"
 
 gem "thin"
 
+
+
+#push web notification
+gem 'serviceworker-rails'
+gem "webpush"
+gem 'url_safe_base64'
+#end
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -71,6 +79,7 @@ gem 'i18n-active_record',
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'pry'
   gem 'mailcatcher'
    gem 'web-console', '~> 2.0'
      gem 'capistrano'

@@ -41,6 +41,20 @@
 
 
 
+// if ('serviceWorker' in navigator) {
+//   console.log('Service Worker is supported');
+//   navigator.serviceWorker.register('/assets/plugins/serviceworker.js')
+//     .then(function(registration) {
+//       console.log('Successfully registered!', '', registration);
+//       registration.pushManager.subscribe({ userVisibleOnly: true })
+//   .then(function(subscription) {
+//     $.post("/subscribe", { subscription: subscription.toJSON() });
+//   });
+//   }).catch(function(error) {
+//     console.log('Registration failed', '', error);
+//   });
+// }
+
 window.onload = function() {
 
   // Set the size of the rendered Emojis

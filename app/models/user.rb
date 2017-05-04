@@ -35,6 +35,7 @@ has_attached_file :coverpic, styles: { medium: "300x300>", thumb: "100x100>" }, 
   has_many :tags
   has_many :pages
   has_many :notifications
+  has_many :devices
   
   has_many :conversations, :foreign_key => :sender_id
 
